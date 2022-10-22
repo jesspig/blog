@@ -333,213 +333,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Markdown 语法</title>
-    <url>/2022/03/24/014020/cd2f2ef0ebaa/</url>
-    <content><![CDATA[<p><code>markdown</code> （以下称 <code>md</code> ）是一种轻量级的文本标记语言，通常用于编写文档时进行快速排版，是一种很好用的文档编写工具（或者说语言？），并且可以通过一些 Markdown 编辑器可以将其生成为 PDF 、HTML、Word 等文件格式<span id="more"></span></p>
-<h2 id="Markdown-编辑器"><a href="#Markdown-编辑器" class="headerlink" title="Markdown 编辑器"></a>Markdown 编辑器</h2><p>这里推荐一些好用的 Markdown 编辑器</p>
-<table>
-<thead>
-<tr>
-<th>名称</th>
-<th>功能</th>
-<th>价格</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><span class="exturl" data-url="aHR0cDovL3R5cG9yYS5pby8=">Typora<i class="fa fa-external-link-alt"></i></span> （推荐）</td>
-<td>所见即所得，实时渲染</td>
-<td>￥ 89 &#x2F; $ 14.99</td>
-</tr>
-<tr>
-<td><span class="exturl" data-url="aHR0cHM6Ly9jb2RlLnZpc3VhbHN0dWRpby5jb20v">vscode<i class="fa fa-external-link-alt"></i></span></td>
-<td>写代码和写文档无缝切换</td>
-<td>免费</td>
-</tr>
-<tr>
-<td><span class="exturl" data-url="aHR0cHM6Ly9vYnNpZGlhbi5tZC8=">Obsidian<i class="fa fa-external-link-alt"></i></span> （推荐）</td>
-<td>逼格高，适合做笔记和思维导图</td>
-<td>免费 &#x2F; 订阅</td>
-</tr>
-<tr>
-<td><span class="exturl" data-url="aHR0cHM6Ly9tcC5jc2RuLm5ldC8=">CSDN<i class="fa fa-external-link-alt"></i></span></td>
-<td>在线编辑 <code>md</code> ，并且可以快速发布到博客</td>
-<td>免费</td>
-</tr>
-<tr>
-<td><span class="exturl" data-url="aHR0cHM6Ly93d3cuamlhbnNodS5jb20vd3JpdGVy">简书<i class="fa fa-external-link-alt"></i></span></td>
-<td>跟 CSDN 差不多</td>
-<td>免费</td>
-</tr>
-</tbody></table>
-<h2 id="Markdown-常用语法"><a href="#Markdown-常用语法" class="headerlink" title="Markdown 常用语法"></a>Markdown 常用语法</h2><h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><p>由于不好展示，我这里将其对应的 <code>HTML</code> 语法写出来</p>
-<table>
-<thead>
-<tr>
-<th>Markdown 语法</th>
-<th>HTML 语法</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code># 一级标题</code></td>
-<td><code>&lt;h1&gt;一级标题&lt;/h1&gt;</code></td>
-</tr>
-<tr>
-<td><code>## 二级标题</code></td>
-<td><code>&lt;h2&gt;二级标题&lt;/h2&gt;</code></td>
-</tr>
-<tr>
-<td><code>### 三级标题</code></td>
-<td><code>&lt;h3&gt;三级标题&lt;/h3&gt;</code></td>
-</tr>
-<tr>
-<td><code>#### 四级标题</code></td>
-<td><code>&lt;h4&gt;四级标题&lt;/h4&gt;</code></td>
-</tr>
-<tr>
-<td><code>##### 五级标题</code></td>
-<td><code>&lt;h5&gt;五级标题&lt;/h5&gt;</code></td>
-</tr>
-<tr>
-<td><code>###### 六级标题</code></td>
-<td><code>&lt;h6&gt;六级标题&lt;/h6&gt;</code></td>
-</tr>
-</tbody></table>
-<h3 id="强调"><a href="#强调" class="headerlink" title="强调"></a>强调</h3><table>
-<thead>
-<tr>
-<th>Markdown</th>
-<th>预览</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>*预览文本*</code></td>
-<td><em>预览文本</em></td>
-</tr>
-<tr>
-<td><code>_预览文本</code></td>
-<td><em>预览文本</em></td>
-</tr>
-<tr>
-<td><code>**预览文本**</code></td>
-<td><strong>预览文本</strong></td>
-</tr>
-<tr>
-<td><code>__预览文本__</code></td>
-<td><strong>预览文本</strong></td>
-</tr>
-<tr>
-<td><code>***预览文本***</code></td>
-<td><em><strong>预览文本</strong></em></td>
-</tr>
-<tr>
-<td><code>___预览文本___</code></td>
-<td><em><strong>预览文本</strong></em></td>
-</tr>
-</tbody></table>
-<h3 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h3><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="quote">&gt;   这里是引用文本</span></span><br><span class="line"></span><br><span class="line"><span class="quote">&gt;   这里是引用文本块  </span></span><br><span class="line"><span class="quote">&gt;   这里是引用文本块  </span></span><br><span class="line"><span class="quote">&gt;   这里是引用文本块  </span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>  这里是引用文本</p>
-</blockquote>
-<blockquote>
-<p>  这里是引用文本块<br>  这里是引用文本块<br>  这里是引用文本块  </p>
-</blockquote>
-<h3 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h3><h4 id="无序列表"><a href="#无序列表" class="headerlink" title="无序列表"></a>无序列表</h4><p>可以使用 <code>-</code> 、<code>+</code> 、<code>*</code> 来表示</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="bullet">-</span>   这里是无序列表</span><br><span class="line"><span class="bullet">-</span>   这里是无序列表</span><br><span class="line"><span class="bullet">-</span>   这里是无序列表</span><br><span class="line"><span class="bullet">    -</span>   这里是无序列表</span><br><span class="line"><span class="bullet">    -</span>   这里是无序列表</span><br><span class="line"><span class="bullet">-</span>   这里是无序列表</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>这里是无序列表</li>
-<li>这里是无序列表</li>
-<li>这里是无序列表<ul>
-<li>这里是无序列表</li>
-<li>这里是无序列表</li>
-</ul>
-</li>
-<li>这里是无序列表</li>
-</ul>
-<h4 id="有序列表"><a href="#有序列表" class="headerlink" title="有序列表"></a>有序列表</h4><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="bullet">1.</span>   这里是有序列表</span><br><span class="line"><span class="bullet">2.</span>   这里是有序列表</span><br><span class="line"><span class="bullet">3.</span>   这里是有序列表</span><br><span class="line"><span class="bullet">     1.</span>   这里是有序列表</span><br><span class="line"><span class="bullet">     2.</span>   这里是有序列表</span><br><span class="line"><span class="bullet">4.</span>   这里是有序列表</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>这里是有序列表</li>
-<li>这里是有序列表</li>
-<li>这里是有序列表<ol>
-<li>这里是有序列表</li>
-<li>这里是有序列表</li>
-</ol>
-</li>
-<li>这里是有序列表</li>
-</ol>
-<h4 id="嵌套"><a href="#嵌套" class="headerlink" title="嵌套"></a>嵌套</h4><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="bullet">1.</span>   这里是有序列表</span><br><span class="line"><span class="bullet">2.</span>   这里是有序列表</span><br><span class="line"><span class="bullet">     -</span>   这里是无序列表</span><br><span class="line"><span class="bullet">     -</span>   这里是无序列表</span><br><span class="line"><span class="bullet">         1.</span>   这里是有序列表</span><br><span class="line"><span class="bullet">         2.</span>   这里是有序列表</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>这里是有序列表</li>
-<li>这里是有序列表<ul>
-<li>这里是无序列表</li>
-<li>这里是无序列表<ol>
-<li>这里是有序列表</li>
-<li>这里是有序列表</li>
-</ol>
-</li>
-</ul>
-</li>
-</ol>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p><strong>代码块</strong></p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="code">```python</span></span><br><span class="line"><span class="code">print(&#x27;Hello Markdown&#x27;)</span></span><br><span class="line"><span class="code">```</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;Hello Markdown&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
-<p><strong>代码段</strong></p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="code">`print(&#x27;Hello Markdown&#x27;)`</span></span><br></pre></td></tr></table></figure>
-
-<p><code>print(&#39;Hello Markdown&#39;)</code></p>
-<h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><p><strong>网站链接</strong></p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">[<span class="string">Markdown 语法</span>](<span class="link">https://jesspig.github.io/blog/2022/03/24/014020/cd2f2ef0ebaa/</span>)</span><br></pre></td></tr></table></figure>
-
-<p><span class="exturl" data-url="aHR0cHM6Ly9qZXNzcGlnLmdpdGh1Yi5pby9ibG9nLzIwMjIvMDMvMjQvMDE0MDIwL2NkMmYyZWYwZWJhYS8=">Markdown 语法<i class="fa fa-external-link-alt"></i></span> </p>
-<p>图片链接</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">![<span class="string">微信</span>](<span class="link">https://jesspig.github.io/blog/images/wechatpay.png</span>)</span><br><span class="line">![](<span class="link">https://jesspig.github.io/blog/images/alipay.png &quot;支付宝&quot;</span>)</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://jesspig.github.io/blog/images/wechatpay.png" alt="微信"><br><img data-src="https://jesspig.github.io/blog/images/alipay.png" title="支付宝"></p>
-<h3 id="内嵌-HTML"><a href="#内嵌-HTML" class="headerlink" title="内嵌 HTML"></a>内嵌 HTML</h3><p>除了上面那些用法，还可以使用 <code>内嵌 HTML</code> 的方式使得 <code>md</code> 具有更加多的样式，就比如这样</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">center</span>&gt;</span>这是一段<span class="tag">&lt;<span class="name">span</span> <span class="attr">style</span>=<span class="string">&#x27;font-weight:900;color:white;background:black;&#x27;</span>&gt;</span>居中<span class="tag">&lt;/<span class="name">span</span>&gt;</span>的文字<span class="tag">&lt;/<span class="name">center</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<center>这是一段<span style='font-weight:900;color:white;background:black;'>居中</span>的文字</center>
-]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-      <tags>
-        <tag>markdown</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Mybatis 二级缓存</title>
-    <url>/2022/06/10/115704/1c591d879103/</url>
-    <content><![CDATA[<p> 今天在使用 mybatis 时想要开启二级缓存，结果报错了，所以来记录一下</p>
-<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/blog/202206101141800.png"></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">org.apache.ibatis.cache.CacheException: Error serializing object.  Cause: java.io.NotSerializableException: exam.pojo.xxx</span><br></pre></td></tr></table></figure>
-
-<span id="more"></span>
-
-<p>可以看到报错信息是序列化的问题那么只需要在对应的实体类中实现序列化接口 <code>Serializable</code> 就行（我这里使用了 Lombok）</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> exam.pojo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> lombok.AllArgsConstructor;</span><br><span class="line"><span class="keyword">import</span> lombok.Data;</span><br><span class="line"><span class="keyword">import</span> lombok.NoArgsConstructor;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.Serializable;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@NoArgsConstructor</span></span><br><span class="line"><span class="meta">@AllArgsConstructor</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">xxx</span> <span class="keyword">implements</span> <span class="title class_">Serializable</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> String attr0;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> attr1;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
-
-<p>如果还不行，那就改一下对应的 mapper 的 <code>&lt;cache /&gt;</code> 标签中的属性，跟着 <span class="exturl" data-url="aHR0cHM6Ly9teWJhdGlzLm9yZy9teWJhdGlzLTMvemgvc3FsbWFwLXhtbC5odG1sI2NhY2hl">官方文档<i class="fa fa-external-link-alt"></i></span> 走就好了</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">cache</span></span></span><br><span class="line"><span class="tag">  <span class="attr">eviction</span>=<span class="string">&quot;FIFO&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">flushInterval</span>=<span class="string">&quot;60000&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">size</span>=<span class="string">&quot;512&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">readOnly</span>=<span class="string">&quot;true&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p><strong>参考自以下内容</strong>：<br>mybatis 官方文档：<span class="exturl" data-url="aHR0cHM6Ly9teWJhdGlzLm9yZy9teWJhdGlzLTMvemgvc3FsbWFwLXhtbC5odG1sI2NhY2hl">https://mybatis.org/mybatis-3/zh/sqlmap-xml.html#cache<i class="fa fa-external-link-alt"></i></span></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>小技巧</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>mybatis</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Log4j 配置</title>
     <url>/2022/05/07/014411/070fc9e13887/</url>
     <content><![CDATA[<p>接下来简单讲解一下 Log4j 的配置，因为最近的学习当中会使用到，所以在这里记录一下<span id="more"></span></p>
@@ -745,6 +538,213 @@
         <tag>Java</tag>
         <tag>maven</tag>
         <tag>log4j</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Markdown 语法</title>
+    <url>/2022/03/24/014020/cd2f2ef0ebaa/</url>
+    <content><![CDATA[<p><code>markdown</code> （以下称 <code>md</code> ）是一种轻量级的文本标记语言，通常用于编写文档时进行快速排版，是一种很好用的文档编写工具（或者说语言？），并且可以通过一些 Markdown 编辑器可以将其生成为 PDF 、HTML、Word 等文件格式<span id="more"></span></p>
+<h2 id="Markdown-编辑器"><a href="#Markdown-编辑器" class="headerlink" title="Markdown 编辑器"></a>Markdown 编辑器</h2><p>这里推荐一些好用的 Markdown 编辑器</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>功能</th>
+<th>价格</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><span class="exturl" data-url="aHR0cDovL3R5cG9yYS5pby8=">Typora<i class="fa fa-external-link-alt"></i></span> （推荐）</td>
+<td>所见即所得，实时渲染</td>
+<td>￥ 89 &#x2F; $ 14.99</td>
+</tr>
+<tr>
+<td><span class="exturl" data-url="aHR0cHM6Ly9jb2RlLnZpc3VhbHN0dWRpby5jb20v">vscode<i class="fa fa-external-link-alt"></i></span></td>
+<td>写代码和写文档无缝切换</td>
+<td>免费</td>
+</tr>
+<tr>
+<td><span class="exturl" data-url="aHR0cHM6Ly9vYnNpZGlhbi5tZC8=">Obsidian<i class="fa fa-external-link-alt"></i></span> （推荐）</td>
+<td>逼格高，适合做笔记和思维导图</td>
+<td>免费 &#x2F; 订阅</td>
+</tr>
+<tr>
+<td><span class="exturl" data-url="aHR0cHM6Ly9tcC5jc2RuLm5ldC8=">CSDN<i class="fa fa-external-link-alt"></i></span></td>
+<td>在线编辑 <code>md</code> ，并且可以快速发布到博客</td>
+<td>免费</td>
+</tr>
+<tr>
+<td><span class="exturl" data-url="aHR0cHM6Ly93d3cuamlhbnNodS5jb20vd3JpdGVy">简书<i class="fa fa-external-link-alt"></i></span></td>
+<td>跟 CSDN 差不多</td>
+<td>免费</td>
+</tr>
+</tbody></table>
+<h2 id="Markdown-常用语法"><a href="#Markdown-常用语法" class="headerlink" title="Markdown 常用语法"></a>Markdown 常用语法</h2><h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><p>由于不好展示，我这里将其对应的 <code>HTML</code> 语法写出来</p>
+<table>
+<thead>
+<tr>
+<th>Markdown 语法</th>
+<th>HTML 语法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code># 一级标题</code></td>
+<td><code>&lt;h1&gt;一级标题&lt;/h1&gt;</code></td>
+</tr>
+<tr>
+<td><code>## 二级标题</code></td>
+<td><code>&lt;h2&gt;二级标题&lt;/h2&gt;</code></td>
+</tr>
+<tr>
+<td><code>### 三级标题</code></td>
+<td><code>&lt;h3&gt;三级标题&lt;/h3&gt;</code></td>
+</tr>
+<tr>
+<td><code>#### 四级标题</code></td>
+<td><code>&lt;h4&gt;四级标题&lt;/h4&gt;</code></td>
+</tr>
+<tr>
+<td><code>##### 五级标题</code></td>
+<td><code>&lt;h5&gt;五级标题&lt;/h5&gt;</code></td>
+</tr>
+<tr>
+<td><code>###### 六级标题</code></td>
+<td><code>&lt;h6&gt;六级标题&lt;/h6&gt;</code></td>
+</tr>
+</tbody></table>
+<h3 id="强调"><a href="#强调" class="headerlink" title="强调"></a>强调</h3><table>
+<thead>
+<tr>
+<th>Markdown</th>
+<th>预览</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>*预览文本*</code></td>
+<td><em>预览文本</em></td>
+</tr>
+<tr>
+<td><code>_预览文本</code></td>
+<td><em>预览文本</em></td>
+</tr>
+<tr>
+<td><code>**预览文本**</code></td>
+<td><strong>预览文本</strong></td>
+</tr>
+<tr>
+<td><code>__预览文本__</code></td>
+<td><strong>预览文本</strong></td>
+</tr>
+<tr>
+<td><code>***预览文本***</code></td>
+<td><em><strong>预览文本</strong></em></td>
+</tr>
+<tr>
+<td><code>___预览文本___</code></td>
+<td><em><strong>预览文本</strong></em></td>
+</tr>
+</tbody></table>
+<h3 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h3><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="quote">&gt;   这里是引用文本</span></span><br><span class="line"></span><br><span class="line"><span class="quote">&gt;   这里是引用文本块  </span></span><br><span class="line"><span class="quote">&gt;   这里是引用文本块  </span></span><br><span class="line"><span class="quote">&gt;   这里是引用文本块  </span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>  这里是引用文本</p>
+</blockquote>
+<blockquote>
+<p>  这里是引用文本块<br>  这里是引用文本块<br>  这里是引用文本块  </p>
+</blockquote>
+<h3 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h3><h4 id="无序列表"><a href="#无序列表" class="headerlink" title="无序列表"></a>无序列表</h4><p>可以使用 <code>-</code> 、<code>+</code> 、<code>*</code> 来表示</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="bullet">-</span>   这里是无序列表</span><br><span class="line"><span class="bullet">-</span>   这里是无序列表</span><br><span class="line"><span class="bullet">-</span>   这里是无序列表</span><br><span class="line"><span class="bullet">    -</span>   这里是无序列表</span><br><span class="line"><span class="bullet">    -</span>   这里是无序列表</span><br><span class="line"><span class="bullet">-</span>   这里是无序列表</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>这里是无序列表</li>
+<li>这里是无序列表</li>
+<li>这里是无序列表<ul>
+<li>这里是无序列表</li>
+<li>这里是无序列表</li>
+</ul>
+</li>
+<li>这里是无序列表</li>
+</ul>
+<h4 id="有序列表"><a href="#有序列表" class="headerlink" title="有序列表"></a>有序列表</h4><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="bullet">1.</span>   这里是有序列表</span><br><span class="line"><span class="bullet">2.</span>   这里是有序列表</span><br><span class="line"><span class="bullet">3.</span>   这里是有序列表</span><br><span class="line"><span class="bullet">     1.</span>   这里是有序列表</span><br><span class="line"><span class="bullet">     2.</span>   这里是有序列表</span><br><span class="line"><span class="bullet">4.</span>   这里是有序列表</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>这里是有序列表</li>
+<li>这里是有序列表</li>
+<li>这里是有序列表<ol>
+<li>这里是有序列表</li>
+<li>这里是有序列表</li>
+</ol>
+</li>
+<li>这里是有序列表</li>
+</ol>
+<h4 id="嵌套"><a href="#嵌套" class="headerlink" title="嵌套"></a>嵌套</h4><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="bullet">1.</span>   这里是有序列表</span><br><span class="line"><span class="bullet">2.</span>   这里是有序列表</span><br><span class="line"><span class="bullet">     -</span>   这里是无序列表</span><br><span class="line"><span class="bullet">     -</span>   这里是无序列表</span><br><span class="line"><span class="bullet">         1.</span>   这里是有序列表</span><br><span class="line"><span class="bullet">         2.</span>   这里是有序列表</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>这里是有序列表</li>
+<li>这里是有序列表<ul>
+<li>这里是无序列表</li>
+<li>这里是无序列表<ol>
+<li>这里是有序列表</li>
+<li>这里是有序列表</li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p><strong>代码块</strong></p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="code">```python</span></span><br><span class="line"><span class="code">print(&#x27;Hello Markdown&#x27;)</span></span><br><span class="line"><span class="code">```</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;Hello Markdown&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p><strong>代码段</strong></p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="code">`print(&#x27;Hello Markdown&#x27;)`</span></span><br></pre></td></tr></table></figure>
+
+<p><code>print(&#39;Hello Markdown&#39;)</code></p>
+<h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><p><strong>网站链接</strong></p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">[<span class="string">Markdown 语法</span>](<span class="link">https://jesspig.github.io/blog/2022/03/24/014020/cd2f2ef0ebaa/</span>)</span><br></pre></td></tr></table></figure>
+
+<p><span class="exturl" data-url="aHR0cHM6Ly9qZXNzcGlnLmdpdGh1Yi5pby9ibG9nLzIwMjIvMDMvMjQvMDE0MDIwL2NkMmYyZWYwZWJhYS8=">Markdown 语法<i class="fa fa-external-link-alt"></i></span> </p>
+<p>图片链接</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">![<span class="string">微信</span>](<span class="link">https://jesspig.github.io/blog/images/wechatpay.png</span>)</span><br><span class="line">![](<span class="link">https://jesspig.github.io/blog/images/alipay.png &quot;支付宝&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="https://jesspig.github.io/blog/images/wechatpay.png" alt="微信"><br><img data-src="https://jesspig.github.io/blog/images/alipay.png" title="支付宝"></p>
+<h3 id="内嵌-HTML"><a href="#内嵌-HTML" class="headerlink" title="内嵌 HTML"></a>内嵌 HTML</h3><p>除了上面那些用法，还可以使用 <code>内嵌 HTML</code> 的方式使得 <code>md</code> 具有更加多的样式，就比如这样</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">center</span>&gt;</span>这是一段<span class="tag">&lt;<span class="name">span</span> <span class="attr">style</span>=<span class="string">&#x27;font-weight:900;color:white;background:black;&#x27;</span>&gt;</span>居中<span class="tag">&lt;/<span class="name">span</span>&gt;</span>的文字<span class="tag">&lt;/<span class="name">center</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<center>这是一段<span style='font-weight:900;color:white;background:black;'>居中</span>的文字</center>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>markdown</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Mybatis 二级缓存</title>
+    <url>/2022/06/10/115704/1c591d879103/</url>
+    <content><![CDATA[<p> 今天在使用 mybatis 时想要开启二级缓存，结果报错了，所以来记录一下</p>
+<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/blog/202206101141800.png"></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">org.apache.ibatis.cache.CacheException: Error serializing object.  Cause: java.io.NotSerializableException: exam.pojo.xxx</span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<p>可以看到报错信息是序列化的问题那么只需要在对应的实体类中实现序列化接口 <code>Serializable</code> 就行（我这里使用了 Lombok）</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> exam.pojo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> lombok.AllArgsConstructor;</span><br><span class="line"><span class="keyword">import</span> lombok.Data;</span><br><span class="line"><span class="keyword">import</span> lombok.NoArgsConstructor;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.Serializable;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@NoArgsConstructor</span></span><br><span class="line"><span class="meta">@AllArgsConstructor</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">xxx</span> <span class="keyword">implements</span> <span class="title class_">Serializable</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> String attr0;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> attr1;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+<p>如果还不行，那就改一下对应的 mapper 的 <code>&lt;cache /&gt;</code> 标签中的属性，跟着 <span class="exturl" data-url="aHR0cHM6Ly9teWJhdGlzLm9yZy9teWJhdGlzLTMvemgvc3FsbWFwLXhtbC5odG1sI2NhY2hl">官方文档<i class="fa fa-external-link-alt"></i></span> 走就好了</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">cache</span></span></span><br><span class="line"><span class="tag">  <span class="attr">eviction</span>=<span class="string">&quot;FIFO&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">flushInterval</span>=<span class="string">&quot;60000&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">size</span>=<span class="string">&quot;512&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">readOnly</span>=<span class="string">&quot;true&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>参考自以下内容</strong>：<br>mybatis 官方文档：<span class="exturl" data-url="aHR0cHM6Ly9teWJhdGlzLm9yZy9teWJhdGlzLTMvemgvc3FsbWFwLXhtbC5odG1sI2NhY2hl">https://mybatis.org/mybatis-3/zh/sqlmap-xml.html#cache<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>小技巧</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>mybatis</tag>
       </tags>
   </entry>
   <entry>
@@ -981,70 +981,6 @@
       </tags>
   </entry>
   <entry>
-    <title>docker 部署应用</title>
-    <url>/2022/05/05/211538/38f7bad9b217/</url>
-    <content><![CDATA[<p>最近在耍 docker ，接下来就简单记录一下 docker 的从安装到部署一些容器 <span id="more"></span></p>
-<h2 id="Linux-下安装"><a href="#Linux-下安装" class="headerlink" title="Linux 下安装"></a>Linux 下安装</h2><p>其实 docker 的 <span class="exturl" data-url="aHR0cHM6Ly9kb2NzLmRvY2tlci5jb20vZW5naW5lL2luc3RhbGwv">官方文档<i class="fa fa-external-link-alt"></i></span> 中就已经写明白了，接下来的安装步骤是照搬官网的，以 Ubuntu 为例</p>
-<p><strong>更新 <code>apt</code> 包索引并安装包，以允许 <code>apt</code> 通过HTTPS使用存储库</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get update</span><br><span class="line">apt-get install ca-certificates curl gnupg lsb-release</span><br></pre></td></tr></table></figure>
-
-<p><strong>添加Docker官方GPG密钥</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg</span><br></pre></td></tr></table></figure>
-
-<p><strong>使用以下命令设置稳定存储库</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;deb [arch=<span class="subst">$(dpkg --print-architecture)</span> signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu <span class="subst">$(lsb_release -cs)</span> stable&quot;</span> | sudo <span class="built_in">tee</span> /etc/apt/sources.list.d/docker.list &gt; /dev/null</span><br></pre></td></tr></table></figure>
-
-<p><strong>更新 <code>apt</code> 包索引，安装最新版本的 Docker Engine、containerd 和 Docker Compose</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get update</span><br><span class="line">apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin</span><br></pre></td></tr></table></figure>
-
-<h2 id="Windows-下安装"><a href="#Windows-下安装" class="headerlink" title="Windows 下安装"></a>Windows 下安装</h2><p>windows 下安装其实挺简单的，直接到 <span class="exturl" data-url="aHR0cHM6Ly93d3cuZG9ja2VyLmNvbS9nZXQtc3RhcnRlZC8=">docker 官网<i class="fa fa-external-link-alt"></i></span> 里下载就好了，这里顺便讲一下 wsl2 的安装， wsl2 有 Linux 的内核，所以其实可以按照上面 Linux 的步骤进行安装</p>
-<p><strong>启用 Windows 子系统</strong></p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">dism.exe /online /<span class="built_in">enable-feature</span> /featurename:Microsoft<span class="literal">-Windows-Subsystem-Linux</span> /all /norestart</span><br></pre></td></tr></table></figure>
-
-<p><strong>启用虚拟机</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart</span><br></pre></td></tr></table></figure>
-
-<p><strong>下载内核更新包</strong></p>
-<ul>
-<li><span class="exturl" data-url="aHR0cHM6Ly93c2xzdG9yZXN0b3JhZ2UuYmxvYi5jb3JlLndpbmRvd3MubmV0L3dzbGJsb2Ivd3NsX3VwZGF0ZV94NjQubXNp">适用于 x64 计算机的 WSL2 Linux 内核更新包<i class="fa fa-external-link-alt"></i></span></li>
-</ul>
-<p><strong>设置 wsl2</strong> </p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">wsl <span class="literal">--set-default-version</span> <span class="number">2</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>安装一个子系统</strong></p>
-<p>这里以 Ubuntu 为例</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">wsl <span class="literal">--install</span> <span class="literal">-d</span> Ubuntu</span><br></pre></td></tr></table></figure>
-
-<p><strong>打开 docker desktop 进行设置</strong></p>
-<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/blog/202205050121079.png"></p>
-<p>这个时候你就会发现你的 windows 的 docker 和子系统的相通了</p>
-<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/blog/202205050127031.png"></p>
-<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/blog/202205050128677.png"></p>
-<h2 id="创建一个容器"><a href="#创建一个容器" class="headerlink" title="创建一个容器"></a>创建一个容器</h2><p>接下来尝试部署一些应用</p>
-<h3 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h3><p><code>-it</code> 远程连接</p>
-<p><code>-p</code> 端口映射</p>
-<p><code>–name</code> 容器名</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -it -p 80:80 -p 443:443 --name nginx nginx</span><br></pre></td></tr></table></figure>
-
-<p>执行完以上命令后就会运行容器，如果发现本地没有对应的镜像就会到 docker hub 上下载，比如像下面这样</p>
-<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/blog/202205052103422.png"></p>
-<p>当它下载完成以后就会开始运行</p>
-<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/blog/202205052106368.png" alt="image-20220505210627987"></p>
-<p>这时候就可以到浏览器中输入 <code>http://localhost:80</code> 进行访问</p>
-<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/blog/202205052109663.png"></p>
-<p>运行成功，现在可以将容器停了，重新打开让它在后台运行</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker start nginx</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>小技巧</category>
-      </categories>
-      <tags>
-        <tag>docker</tag>
-        <tag>nginx</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>git 的使用</title>
     <url>/2022/03/24/002444/6919d9f4ccfe/</url>
     <content><![CDATA[<p><code>git</code> 在日常开发中会经常使用到，它用于对项目进行版本控制<span id="more"></span></p>
@@ -1209,8 +1145,72 @@
       </categories>
       <tags>
         <tag>Java</tag>
-        <tag>mybatis</tag>
         <tag>maven</tag>
+        <tag>mybatis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>docker 部署应用</title>
+    <url>/2022/05/05/211538/38f7bad9b217/</url>
+    <content><![CDATA[<p>最近在耍 docker ，接下来就简单记录一下 docker 的从安装到部署一些容器 <span id="more"></span></p>
+<h2 id="Linux-下安装"><a href="#Linux-下安装" class="headerlink" title="Linux 下安装"></a>Linux 下安装</h2><p>其实 docker 的 <span class="exturl" data-url="aHR0cHM6Ly9kb2NzLmRvY2tlci5jb20vZW5naW5lL2luc3RhbGwv">官方文档<i class="fa fa-external-link-alt"></i></span> 中就已经写明白了，接下来的安装步骤是照搬官网的，以 Ubuntu 为例</p>
+<p><strong>更新 <code>apt</code> 包索引并安装包，以允许 <code>apt</code> 通过HTTPS使用存储库</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get update</span><br><span class="line">apt-get install ca-certificates curl gnupg lsb-release</span><br></pre></td></tr></table></figure>
+
+<p><strong>添加Docker官方GPG密钥</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg</span><br></pre></td></tr></table></figure>
+
+<p><strong>使用以下命令设置稳定存储库</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;deb [arch=<span class="subst">$(dpkg --print-architecture)</span> signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu <span class="subst">$(lsb_release -cs)</span> stable&quot;</span> | sudo <span class="built_in">tee</span> /etc/apt/sources.list.d/docker.list &gt; /dev/null</span><br></pre></td></tr></table></figure>
+
+<p><strong>更新 <code>apt</code> 包索引，安装最新版本的 Docker Engine、containerd 和 Docker Compose</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get update</span><br><span class="line">apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin</span><br></pre></td></tr></table></figure>
+
+<h2 id="Windows-下安装"><a href="#Windows-下安装" class="headerlink" title="Windows 下安装"></a>Windows 下安装</h2><p>windows 下安装其实挺简单的，直接到 <span class="exturl" data-url="aHR0cHM6Ly93d3cuZG9ja2VyLmNvbS9nZXQtc3RhcnRlZC8=">docker 官网<i class="fa fa-external-link-alt"></i></span> 里下载就好了，这里顺便讲一下 wsl2 的安装， wsl2 有 Linux 的内核，所以其实可以按照上面 Linux 的步骤进行安装</p>
+<p><strong>启用 Windows 子系统</strong></p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">dism.exe /online /<span class="built_in">enable-feature</span> /featurename:Microsoft<span class="literal">-Windows-Subsystem-Linux</span> /all /norestart</span><br></pre></td></tr></table></figure>
+
+<p><strong>启用虚拟机</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart</span><br></pre></td></tr></table></figure>
+
+<p><strong>下载内核更新包</strong></p>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly93c2xzdG9yZXN0b3JhZ2UuYmxvYi5jb3JlLndpbmRvd3MubmV0L3dzbGJsb2Ivd3NsX3VwZGF0ZV94NjQubXNp">适用于 x64 计算机的 WSL2 Linux 内核更新包<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+<p><strong>设置 wsl2</strong> </p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">wsl <span class="literal">--set-default-version</span> <span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>安装一个子系统</strong></p>
+<p>这里以 Ubuntu 为例</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">wsl <span class="literal">--install</span> <span class="literal">-d</span> Ubuntu</span><br></pre></td></tr></table></figure>
+
+<p><strong>打开 docker desktop 进行设置</strong></p>
+<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/blog/202205050121079.png"></p>
+<p>这个时候你就会发现你的 windows 的 docker 和子系统的相通了</p>
+<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/blog/202205050127031.png"></p>
+<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/blog/202205050128677.png"></p>
+<h2 id="创建一个容器"><a href="#创建一个容器" class="headerlink" title="创建一个容器"></a>创建一个容器</h2><p>接下来尝试部署一些应用</p>
+<h3 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h3><p><code>-it</code> 远程连接</p>
+<p><code>-p</code> 端口映射</p>
+<p><code>–name</code> 容器名</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -it -p 80:80 -p 443:443 --name nginx nginx</span><br></pre></td></tr></table></figure>
+
+<p>执行完以上命令后就会运行容器，如果发现本地没有对应的镜像就会到 docker hub 上下载，比如像下面这样</p>
+<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/blog/202205052103422.png"></p>
+<p>当它下载完成以后就会开始运行</p>
+<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/blog/202205052106368.png" alt="image-20220505210627987"></p>
+<p>这时候就可以到浏览器中输入 <code>http://localhost:80</code> 进行访问</p>
+<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/blog/202205052109663.png"></p>
+<p>运行成功，现在可以将容器停了，重新打开让它在后台运行</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker start nginx</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>小技巧</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+        <tag>nginx</tag>
       </tags>
   </entry>
   <entry>
@@ -1478,18 +1478,6 @@
       </tags>
   </entry>
   <entry>
-    <title>画画练习 22-03-29</title>
-    <url>/2022/03/29/214823/02b33d73a2c8/</url>
-    <content><![CDATA[<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/img/202204052015422.png"></p>
-]]></content>
-      <categories>
-        <category>绘画</category>
-      </categories>
-      <tags>
-        <tag>线稿</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>画画练习 22-04-25</title>
     <url>/2022/04/25/125909/80e46dbcc039/</url>
     <content><![CDATA[<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/img/202204251302793.png"></p>
@@ -1499,6 +1487,18 @@
 <p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/img/202204251303396.png"></p>
 <p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/img/202204251304095.png"></p>
 <p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/img/202204251304984.png"></p>
+]]></content>
+      <categories>
+        <category>绘画</category>
+      </categories>
+      <tags>
+        <tag>线稿</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>画画练习 22-03-29</title>
+    <url>/2022/03/29/214823/02b33d73a2c8/</url>
+    <content><![CDATA[<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/img/202204052015422.png"></p>
 ]]></content>
       <categories>
         <category>绘画</category>
