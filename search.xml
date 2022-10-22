@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>Hexo + gh-pages 搭建个人博客</title>
-    <url>/blog/2022/03/24/221537/c2f16b4c5af9/</url>
+    <url>/2022/03/24/221537/c2f16b4c5af9/</url>
     <content><![CDATA[<p>使用 <code>hexo</code> 和 <code>GitHub Pages</code> 来搭建属于自己的个人博客，可以随时随地通过网络进行对自己的博客进行访问<span id="more"></span></p>
 <h2 id="安装-Hexo"><a href="#安装-Hexo" class="headerlink" title="安装 Hexo"></a>安装 Hexo</h2><p>在安装 <code>hexo</code> 之前请确保已经安装了 <code>nodejs</code> 以及其相关的包管理工具，如 <code>npm</code> 和 <code>yarn</code> ，还需要安装了 <code>git</code> </p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># npm 安装</span></span><br><span class="line">npm install hexo-cli -g</span><br><span class="line"><span class="comment"># yarn 安装</span></span><br><span class="line">yarn global add hexo-cli</span><br></pre></td></tr></table></figure>
@@ -91,7 +91,7 @@
   </entry>
   <entry>
     <title>Java 生成随机姓名</title>
-    <url>/blog/2022/05/15/185106/2f0066a457fb/</url>
+    <url>/2022/05/15/185106/2f0066a457fb/</url>
     <content><![CDATA[<p>做数据库的时候写人名实在是太麻烦，用姓氏 + 数字的形式好像又感觉不太好（主要是闲的），所以我就制作了一个用 Java 写的工具类👉 <a href="https://github.com/jesspig/MyUtils/blob/main/Java/RandomName.java"><strong>RandomName.java</strong></a> <span id="more"></span></p>
 <h2 id="生成姓氏"><a href="#生成姓氏" class="headerlink" title="生成姓氏"></a>生成姓氏</h2><p>首先就是要找到姓氏，其实这比较简单，直接上网搜 <span class="exturl" data-url="aHR0cHM6Ly9jbi5iaW5nLmNvbS9zZWFyY2g/cT0lRTclOTklQkUlRTUlQUUlQjYlRTUlQTclOTM=">百家姓<i class="fa fa-external-link-alt"></i></span> ，随随便便就有一大把，然后将它们全部复制下来，进行一些处理，比如说去掉空格和做成数组啥的，只需要随便找一个 ide 或代码编辑器就能做到，这里拿 idea 举例，使用正则表达式将他们替换就好了</p>
 <p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/blog/202205151819363.png"></p>
@@ -125,216 +125,8 @@
       </tags>
   </entry>
   <entry>
-    <title>Log4j 配置</title>
-    <url>/blog/2022/05/07/014411/070fc9e13887/</url>
-    <content><![CDATA[<p>接下来简单讲解一下 Log4j 的配置，因为最近的学习当中会使用到，所以在这里记录一下<span id="more"></span></p>
-<h2 id="前置操作"><a href="#前置操作" class="headerlink" title="前置操作"></a>前置操作</h2><h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><p>通过 maven 进行拉取相关的依赖</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- https://mvnrepository.com/artifact/log4j/log4j --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>log4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>log4j<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2.17<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="创建-log4j-properties-文件"><a href="#创建-log4j-properties-文件" class="headerlink" title="创建 log4j.properties 文件"></a>创建 log4j.properties 文件</h3><p>到 <code>src/main/resources</code> 目录下创建 <code>log4j.properties</code> </p>
-<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/blog/202205052130067.png"></p>
-<h2 id="配置文件解析"><a href="#配置文件解析" class="headerlink" title="配置文件解析"></a>配置文件解析</h2><h3 id="根配置-rootLogger"><a href="#根配置-rootLogger" class="headerlink" title="根配置 [rootLogger]"></a>根配置 [rootLogger]</h3><figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="attr">log4j.rootLogger</span>=&lt;level&gt;,appenderName ...</span><br></pre></td></tr></table></figure>
-
-<p><code>level</code> 表示日志等级</p>
-<p><code>appenderName</code> 表示输出的位置，可以是一个或多个</p>
-<p>比如以下配置就是将 <code>DEBUG</code> 日志等级的信息输出到控制台和文件</p>
-<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">log4j.rootLogger</span>=<span class="string">DEBUG,Console,File</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>补充：<code>Console</code> 和 <code>File</code> 可以任意取名，只需要跟后面的 <code>log4j.appender.xxx</code> 的 <code>xxx</code> 部分对应即可</p>
-</blockquote>
-<h3 id="日志等级"><a href="#日志等级" class="headerlink" title="日志等级"></a>日志等级</h3><p><strong>ALL &lt; TRACE &lt; DEBUG &lt; INFO &lt; WARN &lt; ERROR &lt; FATAL &lt; OFF</strong> </p>
-<p>级别越低包含内容越多</p>
-<table>
-<thead>
-<tr>
-<th>级别</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>ALL</td>
-<td>所有级别的信息</td>
-</tr>
-<tr>
-<td>TRACE</td>
-<td>比 DEBUG 更详细的信息</td>
-</tr>
-<tr>
-<td>DEBUG</td>
-<td>调试信息</td>
-</tr>
-<tr>
-<td>INFO</td>
-<td>普通信息</td>
-</tr>
-<tr>
-<td>WARN</td>
-<td>可能会出现潜在错误的警告信息</td>
-</tr>
-<tr>
-<td>ERROR</td>
-<td>不影响系统的继续运行的错误信息</td>
-</tr>
-<tr>
-<td>FATAL</td>
-<td>将会导致应用程序的退出的严重错误事件信息</td>
-</tr>
-<tr>
-<td>OFF</td>
-<td>用于关闭所有日志记录</td>
-</tr>
-</tbody></table>
-<h3 id="输出类型-appender"><a href="#输出类型-appender" class="headerlink" title="输出类型 [appender]"></a>输出类型 [appender]</h3><table>
-<thead>
-<tr>
-<th>类型</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>org.apache.log4j.ConsoleAppender</td>
-<td>控制台</td>
-</tr>
-<tr>
-<td>org.apache.log4j.FileAppender</td>
-<td>文件</td>
-</tr>
-<tr>
-<td>org.apache.log4j.DailyRollingFileAppender</td>
-<td>每天产生一个日志文件</td>
-</tr>
-<tr>
-<td>org.apache.log4j.RollingFileAppender</td>
-<td>文件大小到达指定尺寸的时候产生一个新的文件</td>
-</tr>
-<tr>
-<td>org.apache.log4j.WriterAppender</td>
-<td>将日志信息以流格式发送到任意指定的地方</td>
-</tr>
-</tbody></table>
-<p>使用方式大概如下</p>
-<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">log4j.rootLogger</span>=<span class="string">DEBUG,Console,File</span></span><br><span class="line"><span class="comment"># 控制台输出</span></span><br><span class="line"><span class="attr">log4j.appender.Console</span>=<span class="string">org.apache.log4j.ConsoleAppender</span></span><br><span class="line"><span class="comment"># 文件输出</span></span><br><span class="line"><span class="attr">log4j.appender.File</span>=<span class="string">org.apache.log4j.FileAppender</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="信息格式-layout"><a href="#信息格式-layout" class="headerlink" title="信息格式 [layout]"></a>信息格式 [layout]</h3><table>
-<thead>
-<tr>
-<th>格式</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>org.apache.log4j.HTMLLayout</td>
-<td>输出 HTML 表格代码</td>
-</tr>
-<tr>
-<td>org.apache.log4j.PatternLayout</td>
-<td>自定义格式输出</td>
-</tr>
-<tr>
-<td>org.apache.log4j.SimpleLayout</td>
-<td>输出级别和信息</td>
-</tr>
-<tr>
-<td>org.apache.log4j.TTCCLayout</td>
-<td>输出线程、级别、类名、信息</td>
-</tr>
-</tbody></table>
-<p>使用方法如下</p>
-<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 控制台输出，信息格式是 org.apache.log4j.SimpleLayout</span></span><br><span class="line"><span class="attr">log4j.appender.Console</span>=<span class="string">org.apache.log4j.ConsoleAppender</span></span><br><span class="line"><span class="attr">log4j.appender.Console.layout</span>=<span class="string">org.apache.log4j.SimpleLayout</span></span><br></pre></td></tr></table></figure>
-
-<p>输出信息大概如下</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">INFO - xxxx</span><br><span class="line">DEBUG - xxxx</span><br></pre></td></tr></table></figure>
-
-<h4 id="自定义格式的用法"><a href="#自定义格式的用法" class="headerlink" title="自定义格式的用法"></a>自定义格式的用法</h4><p> <code>org.apache.log4j.PatternLayout</code> 的格式</p>
-<table>
-<thead>
-<tr>
-<th>格式</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>%m</td>
-<td>消息</td>
-</tr>
-<tr>
-<td>%n</td>
-<td>换行</td>
-</tr>
-<tr>
-<td>%d</td>
-<td>时间，可以指定格式，如 <code>%d&#123;yyyy-MM-dd HH:mm:ss,SSS&#125;</code></td>
-</tr>
-<tr>
-<td>%t</td>
-<td>线程名</td>
-</tr>
-<tr>
-<td>%p</td>
-<td>输出优先级，即DEBUG，INFO，WARN，ERROR，FATAL</td>
-</tr>
-<tr>
-<td>%c</td>
-<td>类名</td>
-</tr>
-<tr>
-<td>%M</td>
-<td>方法名</td>
-</tr>
-<tr>
-<td>%r</td>
-<td>耗费时间，毫秒</td>
-</tr>
-<tr>
-<td>%l</td>
-<td>代码所在位置</td>
-</tr>
-</tbody></table>
-<p>用法如下</p>
-<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 控制台输出，信息格式是 org.apache.log4j.PatternLayout</span></span><br><span class="line"><span class="attr">log4j.appender.Console</span>=<span class="string">org.apache.log4j.ConsoleAppender</span></span><br><span class="line"><span class="attr">log4j.appender.Console.layout</span>=<span class="string">org.apache.log4j.PatternLayout</span></span><br><span class="line"><span class="comment"># 通过 ConversionPattern 设置属性</span></span><br><span class="line"><span class="attr">log4j.appender.Console.layout.ConversionPattern</span>=<span class="string">%d&#123;HH:mm:ss&#125; [%p] %m%n</span></span><br></pre></td></tr></table></figure>
-
-<p>输出信息大概如下</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">HH:mm:ss [INFO] xxxx</span><br><span class="line">HH:mm:ss [DEBUG] xxxx</span><br></pre></td></tr></table></figure>
-
-<h3 id="输出等级-Threshold"><a href="#输出等级-Threshold" class="headerlink" title="输出等级 [Threshold]"></a>输出等级 [Threshold]</h3><p>相当于过滤，只输出指定级别的内容到指定位置</p>
-<p>比如说控制台中只输出 <code>DEBUG</code> 级别的信息</p>
-<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 文件输出</span></span><br><span class="line"><span class="attr">log4j.appender.Console</span>=<span class="string">org.apache.log4j.ConsoleAppender</span></span><br><span class="line"><span class="attr">log4j.appender.Console.layout</span>=<span class="string">org.apache.log4j.PatternLayout</span></span><br><span class="line"><span class="attr">log4j.appender.Console.layout.ConversionPattern</span>=<span class="string">%d&#123;HH:mm:ss&#125; [%p] %m%n</span></span><br><span class="line"><span class="comment"># 设置级别</span></span><br><span class="line"><span class="attr">log4j.appender.Console.Threshold</span>=<span class="string">DEBUG</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>补充：<code>Threshold</code> 的等级不能比根配置 <code>log4j.rootLogger</code> 低级，所以尽量使用较低的等级，【<a href="#%E6%97%A5%E5%BF%97%E7%AD%89%E7%BA%A7">回顾日志等级</a> 】</p>
-</blockquote>
-<h3 id="追加内容-Append"><a href="#追加内容-Append" class="headerlink" title="追加内容-[Append]"></a>追加内容-[Append]</h3><p>往旧的日志文件中追加内容</p>
-<p>如果为 <code>true</code> 表示开启，会将新的内容追加到旧的日志文件</p>
-<p>如果为 <code>false</code> 表示关闭，会将新的内容覆盖到旧的日志文件</p>
-<p>默认是 <code>true</code></p>
-<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">log4j.appender.File</span>=<span class="string">org.apache.log4j.FileAppender</span></span><br><span class="line"><span class="attr">log4j.appender.File.layout</span>=<span class="string">org.apache.log4j.PatternLayout</span></span><br><span class="line"><span class="attr">log4j.appender.File.layout.ConversionPattern</span>=<span class="string">%d&#123;HH:mm:ss&#125; [%p] %m%n</span></span><br><span class="line"><span class="comment"># 开启追加内容</span></span><br><span class="line"><span class="attr">log4j.appender.File.Append</span>=<span class="string">true</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="内容补充"><a href="#内容补充" class="headerlink" title="内容补充"></a>内容补充</h3><p><code>MaxFileSize</code> 设置日志文件大小，仅 <code>RollingFileAppender</code> 可用</p>
-<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">log4j.appender.File</span>=<span class="string">org.apache.log4j.RollingFileAppender</span></span><br><span class="line"><span class="attr">log4j.appender.File.layout</span>=<span class="string">org.apache.log4j.PatternLayout</span></span><br><span class="line"><span class="attr">log4j.appender.File.layout.ConversionPattern</span>=<span class="string">%d&#123;HH:mm:ss&#125; [%p] %m%n</span></span><br><span class="line"><span class="comment"># 输出大小为 4MB</span></span><br><span class="line"><span class="attr">log4j.appender.File.MaxFileSize</span>=<span class="string">4MB</span></span><br><span class="line"><span class="attr">log4j.appender.File.Append</span>=<span class="string">true</span></span><br></pre></td></tr></table></figure>
-
-<p><code>File</code> 设置日志文件输出位置</p>
-<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">log4j.rootLogger</span>=<span class="string">DEBUG,ErrorFile</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"># error 日志</span></span><br><span class="line"><span class="attr">log4j.appender.ErrorFile</span>=<span class="string">org.apache.log4j.RollingFileAppender</span></span><br><span class="line"><span class="attr">log4j.appender.ErrorFile.layout</span>=<span class="string">org.apache.log4j.PatternLayout</span></span><br><span class="line"><span class="attr">log4j.appender.ErrorFile.layout.ConversionPattern</span>=<span class="string">%d&#123;HH:mm:ss&#125; [%p] %m%n</span></span><br><span class="line"><span class="attr">log4j.appender.ErrorFile.MaxFileSize</span>=<span class="string">4MB</span></span><br><span class="line"><span class="comment"># 输出位置</span></span><br><span class="line"><span class="attr">log4j.appender.ErrorFile.File</span>=<span class="string">/logs/ERROR.log</span></span><br><span class="line"><span class="comment"># 等级不能低于根配置</span></span><br><span class="line"><span class="attr">log4j.appender.ErrorFile.Threshold</span>=<span class="string">Error</span></span><br><span class="line"><span class="attr">log4j.appender.ErrorFile.Append</span>=<span class="string">true</span></span><br></pre></td></tr></table></figure>
-
-
-
-<blockquote>
-<p><strong>参考自以下内容</strong></p>
-<p>哔哩哔哩：<span class="exturl" data-url="aHR0cHM6Ly93d3cuYmlsaWJpbGkuY29tL3ZpZGVvL0JWMWp0NDExVDd6dA==">https://www.bilibili.com/video/BV1jt411T7zt<i class="fa fa-external-link-alt"></i></span></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>小技巧</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>maven</tag>
-        <tag>log4j</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Lua 学习笔记</title>
-    <url>/blog/2022/01/21/024632/f29997384681/</url>
+    <url>/2022/01/21/024632/f29997384681/</url>
     <content><![CDATA[<p> 最近不知道发什么神经，突然想起 <span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvTHVh">Lua<i class="fa fa-external-link-alt"></i></span> 来了，没错就是发神经，就是我又不是写脚本，又不是写mod啥的，无端端就想起来这门语言了，所以这次就来写个快速入门的教程吧。这次是 Windows 环境下使用 VSCode 进行编写，Linux 和 Mac 其实也差不多</p>
 <span id="more"></span>
 
@@ -542,7 +334,7 @@
   </entry>
   <entry>
     <title>Markdown 语法</title>
-    <url>/blog/2022/03/24/014020/cd2f2ef0ebaa/</url>
+    <url>/2022/03/24/014020/cd2f2ef0ebaa/</url>
     <content><![CDATA[<p><code>markdown</code> （以下称 <code>md</code> ）是一种轻量级的文本标记语言，通常用于编写文档时进行快速排版，是一种很好用的文档编写工具（或者说语言？），并且可以通过一些 Markdown 编辑器可以将其生成为 PDF 、HTML、Word 等文件格式<span id="more"></span></p>
 <h2 id="Markdown-编辑器"><a href="#Markdown-编辑器" class="headerlink" title="Markdown 编辑器"></a>Markdown 编辑器</h2><p>这里推荐一些好用的 Markdown 编辑器</p>
 <table>
@@ -703,7 +495,7 @@
 <h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><p><strong>网站链接</strong></p>
 <figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">[<span class="string">Markdown 语法</span>](<span class="link">https://jesspig.github.io/blog/2022/03/24/014020/cd2f2ef0ebaa/</span>)</span><br></pre></td></tr></table></figure>
 
-<p><a href="https://jesspig.github.io/blog/2022/03/24/014020/cd2f2ef0ebaa/">Markdown 语法</a> </p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9qZXNzcGlnLmdpdGh1Yi5pby9ibG9nLzIwMjIvMDMvMjQvMDE0MDIwL2NkMmYyZWYwZWJhYS8=">Markdown 语法<i class="fa fa-external-link-alt"></i></span> </p>
 <p>图片链接</p>
 <figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">![<span class="string">微信</span>](<span class="link">https://jesspig.github.io/blog/images/wechatpay.png</span>)</span><br><span class="line">![](<span class="link">https://jesspig.github.io/blog/images/alipay.png &quot;支付宝&quot;</span>)</span><br></pre></td></tr></table></figure>
 
@@ -722,7 +514,7 @@
   </entry>
   <entry>
     <title>Mybatis 二级缓存</title>
-    <url>/blog/2022/06/10/115704/1c591d879103/</url>
+    <url>/2022/06/10/115704/1c591d879103/</url>
     <content><![CDATA[<p> 今天在使用 mybatis 时想要开启二级缓存，结果报错了，所以来记录一下</p>
 <p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/blog/202206101141800.png"></p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">org.apache.ibatis.cache.CacheException: Error serializing object.  Cause: java.io.NotSerializableException: exam.pojo.xxx</span><br></pre></td></tr></table></figure>
@@ -748,8 +540,216 @@
       </tags>
   </entry>
   <entry>
+    <title>Log4j 配置</title>
+    <url>/2022/05/07/014411/070fc9e13887/</url>
+    <content><![CDATA[<p>接下来简单讲解一下 Log4j 的配置，因为最近的学习当中会使用到，所以在这里记录一下<span id="more"></span></p>
+<h2 id="前置操作"><a href="#前置操作" class="headerlink" title="前置操作"></a>前置操作</h2><h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><p>通过 maven 进行拉取相关的依赖</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- https://mvnrepository.com/artifact/log4j/log4j --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>log4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>log4j<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2.17<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="创建-log4j-properties-文件"><a href="#创建-log4j-properties-文件" class="headerlink" title="创建 log4j.properties 文件"></a>创建 log4j.properties 文件</h3><p>到 <code>src/main/resources</code> 目录下创建 <code>log4j.properties</code> </p>
+<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/blog/202205052130067.png"></p>
+<h2 id="配置文件解析"><a href="#配置文件解析" class="headerlink" title="配置文件解析"></a>配置文件解析</h2><h3 id="根配置-rootLogger"><a href="#根配置-rootLogger" class="headerlink" title="根配置 [rootLogger]"></a>根配置 [rootLogger]</h3><figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="attr">log4j.rootLogger</span>=&lt;level&gt;,appenderName ...</span><br></pre></td></tr></table></figure>
+
+<p><code>level</code> 表示日志等级</p>
+<p><code>appenderName</code> 表示输出的位置，可以是一个或多个</p>
+<p>比如以下配置就是将 <code>DEBUG</code> 日志等级的信息输出到控制台和文件</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">log4j.rootLogger</span>=<span class="string">DEBUG,Console,File</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>补充：<code>Console</code> 和 <code>File</code> 可以任意取名，只需要跟后面的 <code>log4j.appender.xxx</code> 的 <code>xxx</code> 部分对应即可</p>
+</blockquote>
+<h3 id="日志等级"><a href="#日志等级" class="headerlink" title="日志等级"></a>日志等级</h3><p><strong>ALL &lt; TRACE &lt; DEBUG &lt; INFO &lt; WARN &lt; ERROR &lt; FATAL &lt; OFF</strong> </p>
+<p>级别越低包含内容越多</p>
+<table>
+<thead>
+<tr>
+<th>级别</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ALL</td>
+<td>所有级别的信息</td>
+</tr>
+<tr>
+<td>TRACE</td>
+<td>比 DEBUG 更详细的信息</td>
+</tr>
+<tr>
+<td>DEBUG</td>
+<td>调试信息</td>
+</tr>
+<tr>
+<td>INFO</td>
+<td>普通信息</td>
+</tr>
+<tr>
+<td>WARN</td>
+<td>可能会出现潜在错误的警告信息</td>
+</tr>
+<tr>
+<td>ERROR</td>
+<td>不影响系统的继续运行的错误信息</td>
+</tr>
+<tr>
+<td>FATAL</td>
+<td>将会导致应用程序的退出的严重错误事件信息</td>
+</tr>
+<tr>
+<td>OFF</td>
+<td>用于关闭所有日志记录</td>
+</tr>
+</tbody></table>
+<h3 id="输出类型-appender"><a href="#输出类型-appender" class="headerlink" title="输出类型 [appender]"></a>输出类型 [appender]</h3><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>org.apache.log4j.ConsoleAppender</td>
+<td>控制台</td>
+</tr>
+<tr>
+<td>org.apache.log4j.FileAppender</td>
+<td>文件</td>
+</tr>
+<tr>
+<td>org.apache.log4j.DailyRollingFileAppender</td>
+<td>每天产生一个日志文件</td>
+</tr>
+<tr>
+<td>org.apache.log4j.RollingFileAppender</td>
+<td>文件大小到达指定尺寸的时候产生一个新的文件</td>
+</tr>
+<tr>
+<td>org.apache.log4j.WriterAppender</td>
+<td>将日志信息以流格式发送到任意指定的地方</td>
+</tr>
+</tbody></table>
+<p>使用方式大概如下</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">log4j.rootLogger</span>=<span class="string">DEBUG,Console,File</span></span><br><span class="line"><span class="comment"># 控制台输出</span></span><br><span class="line"><span class="attr">log4j.appender.Console</span>=<span class="string">org.apache.log4j.ConsoleAppender</span></span><br><span class="line"><span class="comment"># 文件输出</span></span><br><span class="line"><span class="attr">log4j.appender.File</span>=<span class="string">org.apache.log4j.FileAppender</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="信息格式-layout"><a href="#信息格式-layout" class="headerlink" title="信息格式 [layout]"></a>信息格式 [layout]</h3><table>
+<thead>
+<tr>
+<th>格式</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>org.apache.log4j.HTMLLayout</td>
+<td>输出 HTML 表格代码</td>
+</tr>
+<tr>
+<td>org.apache.log4j.PatternLayout</td>
+<td>自定义格式输出</td>
+</tr>
+<tr>
+<td>org.apache.log4j.SimpleLayout</td>
+<td>输出级别和信息</td>
+</tr>
+<tr>
+<td>org.apache.log4j.TTCCLayout</td>
+<td>输出线程、级别、类名、信息</td>
+</tr>
+</tbody></table>
+<p>使用方法如下</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 控制台输出，信息格式是 org.apache.log4j.SimpleLayout</span></span><br><span class="line"><span class="attr">log4j.appender.Console</span>=<span class="string">org.apache.log4j.ConsoleAppender</span></span><br><span class="line"><span class="attr">log4j.appender.Console.layout</span>=<span class="string">org.apache.log4j.SimpleLayout</span></span><br></pre></td></tr></table></figure>
+
+<p>输出信息大概如下</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">INFO - xxxx</span><br><span class="line">DEBUG - xxxx</span><br></pre></td></tr></table></figure>
+
+<h4 id="自定义格式的用法"><a href="#自定义格式的用法" class="headerlink" title="自定义格式的用法"></a>自定义格式的用法</h4><p> <code>org.apache.log4j.PatternLayout</code> 的格式</p>
+<table>
+<thead>
+<tr>
+<th>格式</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>%m</td>
+<td>消息</td>
+</tr>
+<tr>
+<td>%n</td>
+<td>换行</td>
+</tr>
+<tr>
+<td>%d</td>
+<td>时间，可以指定格式，如 <code>%d&#123;yyyy-MM-dd HH:mm:ss,SSS&#125;</code></td>
+</tr>
+<tr>
+<td>%t</td>
+<td>线程名</td>
+</tr>
+<tr>
+<td>%p</td>
+<td>输出优先级，即DEBUG，INFO，WARN，ERROR，FATAL</td>
+</tr>
+<tr>
+<td>%c</td>
+<td>类名</td>
+</tr>
+<tr>
+<td>%M</td>
+<td>方法名</td>
+</tr>
+<tr>
+<td>%r</td>
+<td>耗费时间，毫秒</td>
+</tr>
+<tr>
+<td>%l</td>
+<td>代码所在位置</td>
+</tr>
+</tbody></table>
+<p>用法如下</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 控制台输出，信息格式是 org.apache.log4j.PatternLayout</span></span><br><span class="line"><span class="attr">log4j.appender.Console</span>=<span class="string">org.apache.log4j.ConsoleAppender</span></span><br><span class="line"><span class="attr">log4j.appender.Console.layout</span>=<span class="string">org.apache.log4j.PatternLayout</span></span><br><span class="line"><span class="comment"># 通过 ConversionPattern 设置属性</span></span><br><span class="line"><span class="attr">log4j.appender.Console.layout.ConversionPattern</span>=<span class="string">%d&#123;HH:mm:ss&#125; [%p] %m%n</span></span><br></pre></td></tr></table></figure>
+
+<p>输出信息大概如下</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">HH:mm:ss [INFO] xxxx</span><br><span class="line">HH:mm:ss [DEBUG] xxxx</span><br></pre></td></tr></table></figure>
+
+<h3 id="输出等级-Threshold"><a href="#输出等级-Threshold" class="headerlink" title="输出等级 [Threshold]"></a>输出等级 [Threshold]</h3><p>相当于过滤，只输出指定级别的内容到指定位置</p>
+<p>比如说控制台中只输出 <code>DEBUG</code> 级别的信息</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 文件输出</span></span><br><span class="line"><span class="attr">log4j.appender.Console</span>=<span class="string">org.apache.log4j.ConsoleAppender</span></span><br><span class="line"><span class="attr">log4j.appender.Console.layout</span>=<span class="string">org.apache.log4j.PatternLayout</span></span><br><span class="line"><span class="attr">log4j.appender.Console.layout.ConversionPattern</span>=<span class="string">%d&#123;HH:mm:ss&#125; [%p] %m%n</span></span><br><span class="line"><span class="comment"># 设置级别</span></span><br><span class="line"><span class="attr">log4j.appender.Console.Threshold</span>=<span class="string">DEBUG</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>补充：<code>Threshold</code> 的等级不能比根配置 <code>log4j.rootLogger</code> 低级，所以尽量使用较低的等级，【<a href="#%E6%97%A5%E5%BF%97%E7%AD%89%E7%BA%A7">回顾日志等级</a> 】</p>
+</blockquote>
+<h3 id="追加内容-Append"><a href="#追加内容-Append" class="headerlink" title="追加内容-[Append]"></a>追加内容-[Append]</h3><p>往旧的日志文件中追加内容</p>
+<p>如果为 <code>true</code> 表示开启，会将新的内容追加到旧的日志文件</p>
+<p>如果为 <code>false</code> 表示关闭，会将新的内容覆盖到旧的日志文件</p>
+<p>默认是 <code>true</code></p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">log4j.appender.File</span>=<span class="string">org.apache.log4j.FileAppender</span></span><br><span class="line"><span class="attr">log4j.appender.File.layout</span>=<span class="string">org.apache.log4j.PatternLayout</span></span><br><span class="line"><span class="attr">log4j.appender.File.layout.ConversionPattern</span>=<span class="string">%d&#123;HH:mm:ss&#125; [%p] %m%n</span></span><br><span class="line"><span class="comment"># 开启追加内容</span></span><br><span class="line"><span class="attr">log4j.appender.File.Append</span>=<span class="string">true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="内容补充"><a href="#内容补充" class="headerlink" title="内容补充"></a>内容补充</h3><p><code>MaxFileSize</code> 设置日志文件大小，仅 <code>RollingFileAppender</code> 可用</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">log4j.appender.File</span>=<span class="string">org.apache.log4j.RollingFileAppender</span></span><br><span class="line"><span class="attr">log4j.appender.File.layout</span>=<span class="string">org.apache.log4j.PatternLayout</span></span><br><span class="line"><span class="attr">log4j.appender.File.layout.ConversionPattern</span>=<span class="string">%d&#123;HH:mm:ss&#125; [%p] %m%n</span></span><br><span class="line"><span class="comment"># 输出大小为 4MB</span></span><br><span class="line"><span class="attr">log4j.appender.File.MaxFileSize</span>=<span class="string">4MB</span></span><br><span class="line"><span class="attr">log4j.appender.File.Append</span>=<span class="string">true</span></span><br></pre></td></tr></table></figure>
+
+<p><code>File</code> 设置日志文件输出位置</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">log4j.rootLogger</span>=<span class="string">DEBUG,ErrorFile</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"># error 日志</span></span><br><span class="line"><span class="attr">log4j.appender.ErrorFile</span>=<span class="string">org.apache.log4j.RollingFileAppender</span></span><br><span class="line"><span class="attr">log4j.appender.ErrorFile.layout</span>=<span class="string">org.apache.log4j.PatternLayout</span></span><br><span class="line"><span class="attr">log4j.appender.ErrorFile.layout.ConversionPattern</span>=<span class="string">%d&#123;HH:mm:ss&#125; [%p] %m%n</span></span><br><span class="line"><span class="attr">log4j.appender.ErrorFile.MaxFileSize</span>=<span class="string">4MB</span></span><br><span class="line"><span class="comment"># 输出位置</span></span><br><span class="line"><span class="attr">log4j.appender.ErrorFile.File</span>=<span class="string">/logs/ERROR.log</span></span><br><span class="line"><span class="comment"># 等级不能低于根配置</span></span><br><span class="line"><span class="attr">log4j.appender.ErrorFile.Threshold</span>=<span class="string">Error</span></span><br><span class="line"><span class="attr">log4j.appender.ErrorFile.Append</span>=<span class="string">true</span></span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p><strong>参考自以下内容</strong></p>
+<p>哔哩哔哩：<span class="exturl" data-url="aHR0cHM6Ly93d3cuYmlsaWJpbGkuY29tL3ZpZGVvL0JWMWp0NDExVDd6dA==">https://www.bilibili.com/video/BV1jt411T7zt<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>小技巧</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>maven</tag>
+        <tag>log4j</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>TypeScript 学习笔记</title>
-    <url>/blog/2022/01/25/224007/7bef4c9a98bb/</url>
+    <url>/2022/01/25/224007/7bef4c9a98bb/</url>
     <content><![CDATA[<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><p>在 JavaScript 当中是没有数据类型的，应该说是在声明变量的时候不需要声明数据类型，所以就会有问题，而且有很多问题是在编写代码的时候不能被发现，因为是动态类型，所以即使是代码编辑器也没办法对代码有正确的提示，只有在编译时才会报错，而 TypeScript 就是为了解决 JavaScript 的这些小问题而出现的，所以就先来讲一下 TypeScript 的写法</p>
 <span id="more"></span>
 
@@ -805,7 +805,7 @@
   </entry>
   <entry>
     <title>VSCode 摸鱼插件</title>
-    <url>/blog/2022/01/07/002503/e9243eeadaf9/</url>
+    <url>/2022/01/07/002503/e9243eeadaf9/</url>
     <content><![CDATA[<p>今天就来做一波 VScode 的插件分享吧，因为写其他东西要花的时间太多了，草稿还存着没写完，不过又想要发点什么内容，所以就有了这一期的 VSCode 的插件分享，这次要分享的插件是一些好玩的摸鱼插件，做人这么能不摸鱼呢，一天不摸鱼就浑身难受，今天就先推荐 5 个吧</p>
 <span id="more"></span>
 
@@ -849,7 +849,7 @@
   </entry>
   <entry>
     <title>Vim 学习笔记</title>
-    <url>/blog/2022/01/03/161249/7ee67d7b2d4f/</url>
+    <url>/2022/01/03/161249/7ee67d7b2d4f/</url>
     <content><![CDATA[<p>现在的 <span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvJUU1JTlCJUJFJUU1JUJEJUEyJUU3JTk0JUE4JUU2JTg4JUI3JUU3JTk1JThDJUU5JTlEJUEy">GUI<i class="fa fa-external-link-alt"></i></span> 已经做的非常好看和实用了，现在很多 <span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvTGludXg=">Linux<i class="fa fa-external-link-alt"></i></span> 都有桌面版了，像 <span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvVmlt">Vim<i class="fa fa-external-link-alt"></i></span> 这种老古董估计也就做服务器运维的用的比较多了，虽然但是我还是觉得有必要学习一下，因为从编辑的效率上来说确实要比现在的 GUI 应用要快不少</p>
 <span id="more"></span>
 
@@ -905,7 +905,7 @@
   </entry>
   <entry>
     <title>Windows Terminal 美化</title>
-    <url>/blog/2022/04/15/204456/7ce1539dd5ae/</url>
+    <url>/2022/04/15/204456/7ce1539dd5ae/</url>
     <content><![CDATA[<p><span class="exturl" data-url="aHR0cHM6Ly9kb2NzLm1pY3Jvc29mdC5jb20vemgtY24vd2luZG93cy90ZXJtaW5hbC8=">Windows Terminal<i class="fa fa-external-link-alt"></i></span> 我已经使用了很长一段时间了，美化也用了很长一段时间，但是有个问题，每次一设置完就可以很长一段时间不用管了，所以每次操作系统或者换电脑时很费功夫，所以先记录下来方便之后使用<span id="more"></span></p>
 <h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><ul>
 <li><p><strong>安装 Windows Terminal</strong></p>
@@ -982,7 +982,7 @@
   </entry>
   <entry>
     <title>docker 部署应用</title>
-    <url>/blog/2022/05/05/211538/38f7bad9b217/</url>
+    <url>/2022/05/05/211538/38f7bad9b217/</url>
     <content><![CDATA[<p>最近在耍 docker ，接下来就简单记录一下 docker 的从安装到部署一些容器 <span id="more"></span></p>
 <h2 id="Linux-下安装"><a href="#Linux-下安装" class="headerlink" title="Linux 下安装"></a>Linux 下安装</h2><p>其实 docker 的 <span class="exturl" data-url="aHR0cHM6Ly9kb2NzLmRvY2tlci5jb20vZW5naW5lL2luc3RhbGwv">官方文档<i class="fa fa-external-link-alt"></i></span> 中就已经写明白了，接下来的安装步骤是照搬官网的，以 Ubuntu 为例</p>
 <p><strong>更新 <code>apt</code> 包索引并安装包，以允许 <code>apt</code> 通过HTTPS使用存储库</strong></p>
@@ -1046,7 +1046,7 @@
   </entry>
   <entry>
     <title>git 的使用</title>
-    <url>/blog/2022/03/24/002444/6919d9f4ccfe/</url>
+    <url>/2022/03/24/002444/6919d9f4ccfe/</url>
     <content><![CDATA[<p><code>git</code> 在日常开发中会经常使用到，它用于对项目进行版本控制<span id="more"></span></p>
 <h2 id="git-安装"><a href="#git-安装" class="headerlink" title="git 安装"></a>git 安装</h2><ul>
 <li><p><span class="exturl" data-url="aHR0cDovL21zeXNnaXQuZ2l0aHViLmlvLw==">下载 git Windows 版<i class="fa fa-external-link-alt"></i></span> </p>
@@ -1142,7 +1142,7 @@
   </entry>
   <entry>
     <title>maven 配置 mybatis</title>
-    <url>/blog/2022/03/27/145724/14018c0d6b6c/</url>
+    <url>/2022/03/27/145724/14018c0d6b6c/</url>
     <content><![CDATA[<p>使用 <code>idea</code> 通过 <code>maven</code> 进行配置 <code>mybatis</code>  <span id="more"></span></p>
 <h2 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h2><p>首先打开 idea，然后创建空的 maven 项目</p>
 <p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/img/202203270314433.png"></p>
@@ -1209,13 +1209,13 @@
       </categories>
       <tags>
         <tag>Java</tag>
-        <tag>maven</tag>
         <tag>mybatis</tag>
+        <tag>maven</tag>
       </tags>
   </entry>
   <entry>
     <title>Python 中的 &#39;*args&#39; 和 &#39;**kwargs&#39;</title>
-    <url>/blog/2022/03/23/131930/314aa0d5ce97/</url>
+    <url>/2022/03/23/131930/314aa0d5ce97/</url>
     <content><![CDATA[<p>在看别人的 <code>python</code> 代码时，会发现一些函数的入参是 <code>*args</code> 和 <code>**kwargs</code> ，那么这两个是用来干嘛的呢，接下来进行测试和研究一下它们的用法<span id="more"></span></p>
 <h2 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h2><p>首先看一下它们是什么类型，这样好方便之后研究怎么用</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">func</span>(<span class="params">*args,**kwargs</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;args:&#x27;</span>,<span class="built_in">type</span>(args))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;kwargs:&#x27;</span>,<span class="built_in">type</span>(kwargs))</span><br><span class="line">    </span><br><span class="line">func()</span><br></pre></td></tr></table></figure>
@@ -1269,7 +1269,7 @@
   </entry>
   <entry>
     <title>【Harmonyos】22-04-14 在 Java 中使用布局的属性</title>
-    <url>/blog/2022/04/14/211120/aff37c54d9fe/</url>
+    <url>/2022/04/14/211120/aff37c54d9fe/</url>
     <content><![CDATA[<p>今天在写鸿蒙应用时遇到的一个问题，经过我的长时间认真思考，最终在华为的开发者论坛上找到了解决方案🤣🤣<span id="more"></span></p>
 <h2 id="事情的经过"><a href="#事情的经过" class="headerlink" title="事情的经过"></a>事情的经过</h2><p>在写鸿蒙应用时，因为要用到很多重重复复的布局，所以为了方便打算使用 <code>Java</code> 来代替 <code>XML</code> ，但是发现一个问题，居然有一些属性在 <code>Java</code> 中没有找到</p>
 <p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/img/202204142059120.png"></p>
@@ -1301,7 +1301,7 @@
   </entry>
   <entry>
     <title>搭建个人图床</title>
-    <url>/blog/2022/03/19/210217/ae3618c68f4d/</url>
+    <url>/2022/03/19/210217/ae3618c68f4d/</url>
     <content><![CDATA[<p>在写博客或写笔记时会需要用到很多图片，但是为了节省本地资源，可以使用网络图片，那么就需要用到图床了，可以使用 <code>PicGo</code> 来搭建属于自己的图床<span id="more"></span></p>
 <h2 id="安装-PicGo"><a href="#安装-PicGo" class="headerlink" title="安装 PicGo"></a>安装 PicGo</h2><p>首先到 <span class="exturl" data-url="aHR0cHM6Ly9tb2x1bmVyZmlubi5jb20vUGljR28v">PicGo 官网<i class="fa fa-external-link-alt"></i></span> 进行下载，点击 <code>免费下载</code> 以后会跳转到 <code>GitHub</code> ，这时候点开 <code>Assets</code> 选择自己需要的版本进行下载安装即可</p>
 <p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/img/202203192006170.png"></p>
@@ -1334,7 +1334,7 @@
   </entry>
   <entry>
     <title>数据结构与算法-单链表</title>
-    <url>/blog/2022/04/17/184139/9b23354010ea/</url>
+    <url>/2022/04/17/184139/9b23354010ea/</url>
     <content><![CDATA[<p>链表是线性结构中的一种，采用的数据存储方式是链式存储，链式存储是一种逻辑结构，不像数组一样使用连续的存储空间，而是通过结构体和指针将每个元素连接在一起，所以是自适应内存大小的，理论上来说无论多大的数据都能保存下来，前提是不超过机器的上限<span id="more"></span></p>
 <h2 id="单链表"><a href="#单链表" class="headerlink" title="单链表"></a>单链表</h2><p>单链表的结构就像下图（本文图片均由本灵魂画手使用 OneNote 作画）一样，利用结构体，存储数据的同时额外开辟一份空间用来保存指针，而这个指针则是用于指向下一个节点</p>
 <p>存储方式大概就像下图一样，通过指针将数据像烤串一样串起来</p>
@@ -1396,20 +1396,8 @@
       </tags>
   </entry>
   <entry>
-    <title>画画练习 22-03-29</title>
-    <url>/blog/2022/03/29/214823/02b33d73a2c8/</url>
-    <content><![CDATA[<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/img/202204052015422.png"></p>
-]]></content>
-      <categories>
-        <category>绘画</category>
-      </categories>
-      <tags>
-        <tag>线稿</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>数据结构与算法-基础</title>
-    <url>/blog/2022/04/15/212403/93223b13e229/</url>
+    <url>/2022/04/15/212403/93223b13e229/</url>
     <content><![CDATA[<p>所以作为一个程序员，数据结构和算法都是必备的知识</p>
 <span id="more"></span>
 
@@ -1490,8 +1478,20 @@
       </tags>
   </entry>
   <entry>
+    <title>画画练习 22-03-29</title>
+    <url>/2022/03/29/214823/02b33d73a2c8/</url>
+    <content><![CDATA[<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/img/202204052015422.png"></p>
+]]></content>
+      <categories>
+        <category>绘画</category>
+      </categories>
+      <tags>
+        <tag>线稿</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>画画练习 22-04-25</title>
-    <url>/blog/2022/04/25/125909/80e46dbcc039/</url>
+    <url>/2022/04/25/125909/80e46dbcc039/</url>
     <content><![CDATA[<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/img/202204251302793.png"></p>
 <span id="more"></span>
 
@@ -1509,7 +1509,7 @@
   </entry>
   <entry>
     <title>画画练习 22-04-26</title>
-    <url>/blog/2022/04/26/010654/b18be603451b/</url>
+    <url>/2022/04/26/010654/b18be603451b/</url>
     <content><![CDATA[<p><img data-src="https://fastly.jsdelivr.net/gh/jesspig/PicBed@main/img/202204260111712.png"></p>
 ]]></content>
       <categories>
@@ -1522,7 +1522,7 @@
   </entry>
   <entry>
     <title>高数-函数</title>
-    <url>/blog/2022/05/04/220836/dc96c6435ae1/</url>
+    <url>/2022/05/04/220836/dc96c6435ae1/</url>
     <content><![CDATA[<p>函数关系，是指  $ \forall x \in \mathbb{D} $  ，存在对应法则 $f$ ，使得存在唯一的 $y$ 值与之对应，就是函数关系</p>
 <blockquote>
 <p>注意：</p>
@@ -1626,7 +1626,7 @@
   </entry>
   <entry>
     <title>高数-集合</title>
-    <url>/blog/2022/03/27/225942/6a4bab6fcd04/</url>
+    <url>/2022/03/27/225942/6a4bab6fcd04/</url>
     <content><![CDATA[<p>集合是指一组确定的对象或事物，如   $ \lbrace1,2,3 \rbrace $ ，班上的学生等都属于集合<span id="more"></span></p>
 <h2 id="元素"><a href="#元素" class="headerlink" title="元素"></a>元素</h2><p>集合里的内容都叫元素，如 $1$ 是 $\lbrace 1,2,3 \rbrace$ 中的元素</p>
 <p>如果某个元素 <strong>在</strong> 一个集合里，那么表示这个元素 <strong>属于</strong> 这个集合，用 $\in$ 来表示<br>$$<br>1 \in \lbrace{1,2,3}\rbrace<br>$$<br>如果某个元素 <strong>不在</strong> 一个集合里，那么表示这个元素 <strong>不属于</strong> 这个集合，用 $\notin$ 来表示<br>$$<br>4 \notin \lbrace { 1,2,3 }\rbrace<br>$$</p>
