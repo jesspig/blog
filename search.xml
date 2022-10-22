@@ -125,214 +125,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Lua 学习笔记</title>
-    <url>/blog/2022/01/21/024632/f29997384681/</url>
-    <content><![CDATA[<p> 最近不知道发什么神经，突然想起 <span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvTHVh">Lua<i class="fa fa-external-link-alt"></i></span> 来了，没错就是发神经，就是我又不是写脚本，又不是写mod啥的，无端端就想起来这门语言了，所以这次就来写个快速入门的教程吧。这次是 Windows 环境下使用 VSCode 进行编写，Linux 和 Mac 其实也差不多</p>
-<span id="more"></span>
-
-<h2 id="配置-Lua"><a href="#配置-Lua" class="headerlink" title="配置 Lua"></a>配置 Lua</h2><p>首先先把 Lua 的环境配置好</p>
-<h3 id="下载-Lua"><a href="#下载-Lua" class="headerlink" title="下载 Lua"></a>下载 Lua</h3><p>首先到浏览器中打开 <span class="exturl" data-url="aHR0cHM6Ly93d3cubHVhLm9yZy8=">Lua 官网 (https://www.lua.org/)<i class="fa fa-external-link-alt"></i></span> </p>
-<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main//img/image-20220120230324696.png"></p>
-<p>然后点击 get started</p>
-<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main//img/image-20220120230520591.png"></p>
-<p>然后点击在 Installing 下面的 LuaDist</p>
-<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main//img/image-20220120230621447.png"></p>
-<p>然后下载自己需要的版本</p>
-<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main//img/image-20220120231052484.png"></p>
-<p>然后解压</p>
-<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main//img/image-20220120231318459.png"></p>
-<p>解压完以后将 bin 配置到环境变量当中，这一步我就不讲了</p>
-<p>配置完环境变量后打开 cmd ，如果是 Linux 或者 Mac 就打开 Terminal ，然后输入 <code>lua -v</code> 查看版本信息，检查是否安装成功</p>
-<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main//img/image-20220120232404660.png"></p>
-<p>也可以输入 <code>lua -i</code> 直接进入控制台</p>
-<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main//img/image-20220120232630696.png"></p>
-<h3 id="vscode-配置"><a href="#vscode-配置" class="headerlink" title="vscode 配置"></a>vscode 配置</h3><p>安装以下插件</p>
-<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main//img/image-20220120231957256.png"></p>
-<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main//img/image-20220120232046494.png"></p>
-<h2 id="编写代码"><a href="#编写代码" class="headerlink" title="编写代码"></a>编写代码</h2><p>接下就是快速入门 Lua 的代码编写</p>
-<h3 id="hello-world"><a href="#hello-world" class="headerlink" title="hello world"></a>hello world</h3><p>程序员的第一步</p>
-<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;hello&#x27;</span>) </span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">a = <span class="number">123</span></span><br><span class="line">b = <span class="string">&#x27;123&#x27;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p>Lua 的变量默认是全局变量，所以想要用局部变量可以在变量名前加上 <code>local</code></p>
-<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line"><span class="keyword">local</span> a = <span class="number">123</span></span><br><span class="line"><span class="keyword">local</span> b = <span class="string">&#x27;123&#x27;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h3><p>注释用 <code>--</code></p>
-<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 注释</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><h4 id="number"><a href="#number" class="headerlink" title="number"></a>number</h4><p>所有的数字都是 number 类型，比如下面的</p>
-<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">a = <span class="number">123</span>		<span class="comment">-- 整数</span></span><br><span class="line">b = <span class="number">123.3</span>	<span class="comment">-- 小数</span></span><br><span class="line">c = <span class="number">0x123</span>	<span class="comment">-- 十六进制</span></span><br><span class="line">e = <span class="number">1e34</span>	<span class="comment">-- 科学计数法</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="布尔"><a href="#布尔" class="headerlink" title="布尔"></a>布尔</h4><p>Lua 也有布尔类型</p>
-<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">a = <span class="literal">true</span></span><br><span class="line">b = <span class="literal">false</span></span><br></pre></td></tr></table></figure>
-
-<p>在 Lua 中只有 <code>false</code> 和 <code>nil</code> 表示 <code>false</code> 其余都是 <code>true</code> 包括 <code>0</code></p>
-<h4 id="nil"><a href="#nil" class="headerlink" title="nil"></a>nil</h4><p>空，没有就是空，虽然是废话</p>
-<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">a = <span class="literal">nil</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="运算"><a href="#运算" class="headerlink" title="运算"></a>运算</h4><p>跟其他编程语言差不多</p>
-<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">a = <span class="number">1</span> + <span class="number">2</span></span><br><span class="line">b = <span class="number">2</span> * <span class="number">3</span></span><br><span class="line">c = <span class="number">5</span> % <span class="number">2</span></span><br><span class="line">d = <span class="number">1</span> &lt;&lt; <span class="number">2</span></span><br><span class="line">e = <span class="number">1</span> == <span class="number">2</span></span><br></pre></td></tr></table></figure>
-
-<p>下面这些跟其他语言可能不太一样</p>
-<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">a = <span class="number">5</span> / <span class="number">2</span>	<span class="comment">-- 除尽</span></span><br><span class="line">b = <span class="number">5</span> // <span class="number">2</span>	<span class="comment">-- 整除</span></span><br><span class="line">c = <span class="number">2</span> ^ <span class="number">3</span>	<span class="comment">-- 乘幂</span></span><br><span class="line">d = <span class="number">1</span> ~= <span class="number">2</span>	<span class="comment">-- 不等于</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="与或非"><a href="#与或非" class="headerlink" title="与或非"></a>与或非</h4><p>Lua 中的与或非跟 Python 类似</p>
-<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">a = <span class="literal">true</span> <span class="keyword">and</span> <span class="literal">false</span></span><br><span class="line">b = <span class="literal">true</span> <span class="keyword">or</span> <span class="literal">false</span></span><br><span class="line">c = <span class="keyword">not</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-
-<p>与或非并不是只输出 <code>true</code> 或者 <code>false</code>，还可以输出原本的值，这跟 JavaScript 类似</p>
-<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">a = <span class="number">1</span> <span class="keyword">or</span> <span class="number">2</span>	<span class="comment">-- 输出 1</span></span><br><span class="line">b = <span class="number">1</span> <span class="keyword">and</span> <span class="number">2</span>	<span class="comment">-- 输出 2</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h4><p>单引号和双引号都表示字符串</p>
-<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">a = <span class="string">&quot;hello&quot;</span></span><br><span class="line">b = <span class="string">&#x27;world&#x27;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p>Lua 也有转义字符，比如</p>
-<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">a = <span class="string">&quot;abc\nefg&quot;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p>多行文本可以用 <code>[[]]</code> 来表示</p>
-<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">a = <span class="string">[[</span></span><br><span class="line"><span class="string">123</span></span><br><span class="line"><span class="string">456</span></span><br><span class="line"><span class="string">789</span></span><br><span class="line"><span class="string">]]</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p>字符串拼接，在 Lua 中是用 <code>..</code> 来表示</p>
-<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">a = <span class="string">&quot;hello&quot;</span></span><br><span class="line">b = <span class="string">&quot;world&quot;</span></span><br><span class="line">c = a..b</span><br></pre></td></tr></table></figure>
-
-
-
-<p>字符串和数字键互相转换，可以用 <code>tostring</code> 和 <code>tonumber</code></p>
-<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">a = <span class="number">123</span></span><br><span class="line">b = <span class="built_in">tostring</span>(a)</span><br><span class="line">c = <span class="built_in">tonumber</span>(b)</span><br></pre></td></tr></table></figure>
-
-
-
-<p>提醒一句如果 <code>tonumber</code> 转换失败的话是会变成 <code>nil</code> 的</p>
-<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">a = <span class="string">&quot;abc&quot;</span></span><br><span class="line">b = <span class="built_in">tonumber</span>(a)</span><br></pre></td></tr></table></figure>
-
-
-
-<p>获取字符串长度可以在前面加上 <code>#</code></p>
-<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">a = <span class="string">&quot;abcdefg&quot;</span></span><br><span class="line">b = #a</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="控制流程"><a href="#控制流程" class="headerlink" title="控制流程"></a>控制流程</h3><h4 id="判断"><a href="#判断" class="headerlink" title="判断"></a>判断</h4><p>判断使用 <code>if ... then ... end</code></p>
-<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">a = <span class="number">1</span></span><br><span class="line">b = <span class="number">2</span></span><br><span class="line"><span class="keyword">if</span> a &gt; b <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;a &gt; b&#x27;</span>)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-
-<p>如果否则 <code>if ... then ... else ... end</code></p>
-<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> a &gt; b <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;a &gt; b&#x27;</span>)</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;a &lt; b&#x27;</span>)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-
-<p>多种不同的判断 <code>if ... then ... elseif ... then ... else ... end</code></p>
-<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> a &gt; b <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;a &gt; b&#x27;</span>)</span><br><span class="line"><span class="keyword">elseif</span> a &lt; b <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;a &lt; b&#x27;</span>)</span><br><span class="line"><span class="keyword">elseif</span> a == b <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;a == b&#x27;</span>)</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;error&#x27;</span>)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h4><h5 id="for"><a href="#for" class="headerlink" title="for"></a>for</h5><p>for 循环跟 Python 差不多，但不完全一样，它有初值和结束值，比如输出 1 到 9</p>
-<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> i = <span class="number">1</span>, <span class="number">9</span> <span class="keyword">do</span></span><br><span class="line">    <span class="built_in">print</span>(i)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-
-<p>或者再加上第三个参数，步长，下面是输出 10 以内奇数</p>
-<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> i = <span class="number">1</span>, <span class="number">10</span>, <span class="number">2</span> <span class="keyword">do</span></span><br><span class="line">    <span class="built_in">print</span>(i)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-
-<h5 id="while"><a href="#while" class="headerlink" title="while"></a>while</h5><p>满足 <code>while</code> 后面的表达式是循环</p>
-<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">i = <span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> i &lt; <span class="number">10</span> <span class="keyword">do</span></span><br><span class="line">    <span class="built_in">print</span>(i)</span><br><span class="line">    i = i + <span class="number">1</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h5 id="repeat-…-until"><a href="#repeat-…-until" class="headerlink" title="repeat … until"></a>repeat … until</h5><p>满足 <code>until</code> 后面的表达式时停止</p>
-<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">i = <span class="number">0</span></span><br><span class="line"><span class="keyword">repeat</span></span><br><span class="line">   <span class="built_in">print</span>(i)</span><br><span class="line">   i = i + <span class="number">1</span></span><br><span class="line"><span class="keyword">until</span> i &lt; <span class="number">10</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h5 id="break"><a href="#break" class="headerlink" title="break"></a>break</h5><p>退出循环</p>
-<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> i = <span class="number">1</span>, <span class="number">9</span> <span class="keyword">do</span></span><br><span class="line">    <span class="built_in">print</span>(i)</span><br><span class="line">    <span class="keyword">if</span> i == <span class="number">5</span> <span class="keyword">then</span> <span class="keyword">break</span> <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><p>数组使用 <code>&#123;&#125;</code> 包含</p>
-<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">a = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;</span><br><span class="line">b = &#123;<span class="string">&#x27;1&#x27;</span>,<span class="string">&#x27;2&#x27;</span>,<span class="string">&#x27;3&#x27;</span>,<span class="string">&#x27;4&#x27;</span>,<span class="string">&#x27;5&#x27;</span>&#125;</span><br></pre></td></tr></table></figure>
-
-<p>Lua 的数组不仅可以包含同类型还可以包含不同类型</p>
-<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">a = &#123;<span class="number">1</span>,<span class="string">&#x27;2&#x27;</span>,&#123;&#125;,<span class="function"><span class="keyword">function</span><span class="params">()</span></span> <span class="keyword">end</span>&#125;</span><br></pre></td></tr></table></figure>
-
-<p>需要注意的是，Lua 的下标从 1 开始而不是 0</p>
-<p>除此以外，还可以通过键值对来存储数组</p>
-<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">t = &#123;</span><br><span class="line">    a = <span class="number">1</span>,</span><br><span class="line">    b = <span class="number">2</span>,</span><br><span class="line">    c = <span class="number">3</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>如果要获取数组的长度也同样是同 <code>#</code></p>
-<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">a = &#123;<span class="number">1</span>,<span class="string">&#x27;2&#x27;</span>,&#123;&#125;,<span class="function"><span class="keyword">function</span><span class="params">()</span></span> <span class="keyword">end</span>&#125;</span><br><span class="line">b = #a</span><br></pre></td></tr></table></figure>
-
-<p>可以通过下标改变数值</p>
-<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">a = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;</span><br><span class="line">a[<span class="number">2</span>] = <span class="number">3</span></span><br></pre></td></tr></table></figure>
-
-<p>如果是键值对存储的话可以这样</p>
-<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">t[<span class="string">&#x27;a&#x27;</span>] = <span class="number">2</span></span><br></pre></td></tr></table></figure>
-
-<p>或者这样也是可以访问的</p>
-<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line"><span class="built_in">print</span>(t.a)</span><br></pre></td></tr></table></figure>
-
-<p>也可以用 <code>table.insert</code> 来在尾部插入元素</p>
-<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">a = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;</span><br><span class="line"><span class="built_in">table</span>.<span class="built_in">insert</span>(a,<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
-
-<p>按下标进行中间插入</p>
-<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">a = &#123;<span class="string">&#x27;1&#x27;</span>,<span class="string">&#x27;2&#x27;</span>,<span class="string">&#x27;4&#x27;</span>,<span class="string">&#x27;5&#x27;</span>&#125;</span><br><span class="line"><span class="built_in">table</span>.<span class="built_in">insert</span>(a,<span class="number">3</span>,<span class="string">&#x27;3&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
-<p>删除元素</p>
-<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">a = &#123;<span class="string">&#x27;1&#x27;</span>,<span class="string">&#x27;2&#x27;</span>,<span class="string">&#x27;2&#x27;</span>,<span class="string">&#x27;3&#x27;</span>&#125;</span><br><span class="line"><span class="built_in">table</span>.<span class="built_in">remove</span>(a,<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><h4 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h4><p>函数的声明是用 <code>function ... end</code> 比如</p>
-<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">funcName</span><span class="params">()</span></span></span><br><span class="line">    <span class="comment">-- code</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p>也可以是这样</p>
-<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">funcName = <span class="function"><span class="keyword">function</span><span class="params">()</span></span></span><br><span class="line">    <span class="comment">-- code</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="入参"><a href="#入参" class="headerlink" title="入参"></a>入参</h4><figure class="highlight lua"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">funcName</span><span class="params">(a, b)</span></span></span><br><span class="line">    <span class="comment">-- code</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="返回"><a href="#返回" class="headerlink" title="返回"></a>返回</h4><figure class="highlight lua"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">funcName</span><span class="params">(a, b)</span></span></span><br><span class="line">    <span class="comment">-- code</span></span><br><span class="line">    <span class="keyword">return</span> a,b</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="调用"><a href="#调用" class="headerlink" title="调用"></a>调用</h4><figure class="highlight lua"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">A</span><span class="params">()</span></span></span><br><span class="line">    <span class="comment">-- code</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">A()</span><br></pre></td></tr></table></figure>
-
-
-
-<hr>
-<p>好了差不多了，更多的用法可以用到再查</p>
-]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-      <tags>
-        <tag>Lua</tag>
-        <tag>vscode</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Log4j 配置</title>
     <url>/blog/2022/05/07/014411/070fc9e13887/</url>
     <content><![CDATA[<p>接下来简单讲解一下 Log4j 的配置，因为最近的学习当中会使用到，所以在这里记录一下<span id="more"></span></p>
@@ -538,6 +330,214 @@
         <tag>Java</tag>
         <tag>maven</tag>
         <tag>log4j</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Lua 学习笔记</title>
+    <url>/blog/2022/01/21/024632/f29997384681/</url>
+    <content><![CDATA[<p> 最近不知道发什么神经，突然想起 <span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvTHVh">Lua<i class="fa fa-external-link-alt"></i></span> 来了，没错就是发神经，就是我又不是写脚本，又不是写mod啥的，无端端就想起来这门语言了，所以这次就来写个快速入门的教程吧。这次是 Windows 环境下使用 VSCode 进行编写，Linux 和 Mac 其实也差不多</p>
+<span id="more"></span>
+
+<h2 id="配置-Lua"><a href="#配置-Lua" class="headerlink" title="配置 Lua"></a>配置 Lua</h2><p>首先先把 Lua 的环境配置好</p>
+<h3 id="下载-Lua"><a href="#下载-Lua" class="headerlink" title="下载 Lua"></a>下载 Lua</h3><p>首先到浏览器中打开 <span class="exturl" data-url="aHR0cHM6Ly93d3cubHVhLm9yZy8=">Lua 官网 (https://www.lua.org/)<i class="fa fa-external-link-alt"></i></span> </p>
+<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main//img/image-20220120230324696.png"></p>
+<p>然后点击 get started</p>
+<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main//img/image-20220120230520591.png"></p>
+<p>然后点击在 Installing 下面的 LuaDist</p>
+<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main//img/image-20220120230621447.png"></p>
+<p>然后下载自己需要的版本</p>
+<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main//img/image-20220120231052484.png"></p>
+<p>然后解压</p>
+<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main//img/image-20220120231318459.png"></p>
+<p>解压完以后将 bin 配置到环境变量当中，这一步我就不讲了</p>
+<p>配置完环境变量后打开 cmd ，如果是 Linux 或者 Mac 就打开 Terminal ，然后输入 <code>lua -v</code> 查看版本信息，检查是否安装成功</p>
+<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main//img/image-20220120232404660.png"></p>
+<p>也可以输入 <code>lua -i</code> 直接进入控制台</p>
+<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main//img/image-20220120232630696.png"></p>
+<h3 id="vscode-配置"><a href="#vscode-配置" class="headerlink" title="vscode 配置"></a>vscode 配置</h3><p>安装以下插件</p>
+<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main//img/image-20220120231957256.png"></p>
+<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main//img/image-20220120232046494.png"></p>
+<h2 id="编写代码"><a href="#编写代码" class="headerlink" title="编写代码"></a>编写代码</h2><p>接下就是快速入门 Lua 的代码编写</p>
+<h3 id="hello-world"><a href="#hello-world" class="headerlink" title="hello world"></a>hello world</h3><p>程序员的第一步</p>
+<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;hello&#x27;</span>) </span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">a = <span class="number">123</span></span><br><span class="line">b = <span class="string">&#x27;123&#x27;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>Lua 的变量默认是全局变量，所以想要用局部变量可以在变量名前加上 <code>local</code></p>
+<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line"><span class="keyword">local</span> a = <span class="number">123</span></span><br><span class="line"><span class="keyword">local</span> b = <span class="string">&#x27;123&#x27;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h3><p>注释用 <code>--</code></p>
+<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 注释</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><h4 id="number"><a href="#number" class="headerlink" title="number"></a>number</h4><p>所有的数字都是 number 类型，比如下面的</p>
+<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">a = <span class="number">123</span>		<span class="comment">-- 整数</span></span><br><span class="line">b = <span class="number">123.3</span>	<span class="comment">-- 小数</span></span><br><span class="line">c = <span class="number">0x123</span>	<span class="comment">-- 十六进制</span></span><br><span class="line">e = <span class="number">1e34</span>	<span class="comment">-- 科学计数法</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="布尔"><a href="#布尔" class="headerlink" title="布尔"></a>布尔</h4><p>Lua 也有布尔类型</p>
+<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">a = <span class="literal">true</span></span><br><span class="line">b = <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<p>在 Lua 中只有 <code>false</code> 和 <code>nil</code> 表示 <code>false</code> 其余都是 <code>true</code> 包括 <code>0</code></p>
+<h4 id="nil"><a href="#nil" class="headerlink" title="nil"></a>nil</h4><p>空，没有就是空，虽然是废话</p>
+<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">a = <span class="literal">nil</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="运算"><a href="#运算" class="headerlink" title="运算"></a>运算</h4><p>跟其他编程语言差不多</p>
+<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">a = <span class="number">1</span> + <span class="number">2</span></span><br><span class="line">b = <span class="number">2</span> * <span class="number">3</span></span><br><span class="line">c = <span class="number">5</span> % <span class="number">2</span></span><br><span class="line">d = <span class="number">1</span> &lt;&lt; <span class="number">2</span></span><br><span class="line">e = <span class="number">1</span> == <span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<p>下面这些跟其他语言可能不太一样</p>
+<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">a = <span class="number">5</span> / <span class="number">2</span>	<span class="comment">-- 除尽</span></span><br><span class="line">b = <span class="number">5</span> // <span class="number">2</span>	<span class="comment">-- 整除</span></span><br><span class="line">c = <span class="number">2</span> ^ <span class="number">3</span>	<span class="comment">-- 乘幂</span></span><br><span class="line">d = <span class="number">1</span> ~= <span class="number">2</span>	<span class="comment">-- 不等于</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="与或非"><a href="#与或非" class="headerlink" title="与或非"></a>与或非</h4><p>Lua 中的与或非跟 Python 类似</p>
+<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">a = <span class="literal">true</span> <span class="keyword">and</span> <span class="literal">false</span></span><br><span class="line">b = <span class="literal">true</span> <span class="keyword">or</span> <span class="literal">false</span></span><br><span class="line">c = <span class="keyword">not</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p>与或非并不是只输出 <code>true</code> 或者 <code>false</code>，还可以输出原本的值，这跟 JavaScript 类似</p>
+<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">a = <span class="number">1</span> <span class="keyword">or</span> <span class="number">2</span>	<span class="comment">-- 输出 1</span></span><br><span class="line">b = <span class="number">1</span> <span class="keyword">and</span> <span class="number">2</span>	<span class="comment">-- 输出 2</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h4><p>单引号和双引号都表示字符串</p>
+<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">a = <span class="string">&quot;hello&quot;</span></span><br><span class="line">b = <span class="string">&#x27;world&#x27;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>Lua 也有转义字符，比如</p>
+<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">a = <span class="string">&quot;abc\nefg&quot;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>多行文本可以用 <code>[[]]</code> 来表示</p>
+<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">a = <span class="string">[[</span></span><br><span class="line"><span class="string">123</span></span><br><span class="line"><span class="string">456</span></span><br><span class="line"><span class="string">789</span></span><br><span class="line"><span class="string">]]</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>字符串拼接，在 Lua 中是用 <code>..</code> 来表示</p>
+<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">a = <span class="string">&quot;hello&quot;</span></span><br><span class="line">b = <span class="string">&quot;world&quot;</span></span><br><span class="line">c = a..b</span><br></pre></td></tr></table></figure>
+
+
+
+<p>字符串和数字键互相转换，可以用 <code>tostring</code> 和 <code>tonumber</code></p>
+<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">a = <span class="number">123</span></span><br><span class="line">b = <span class="built_in">tostring</span>(a)</span><br><span class="line">c = <span class="built_in">tonumber</span>(b)</span><br></pre></td></tr></table></figure>
+
+
+
+<p>提醒一句如果 <code>tonumber</code> 转换失败的话是会变成 <code>nil</code> 的</p>
+<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">a = <span class="string">&quot;abc&quot;</span></span><br><span class="line">b = <span class="built_in">tonumber</span>(a)</span><br></pre></td></tr></table></figure>
+
+
+
+<p>获取字符串长度可以在前面加上 <code>#</code></p>
+<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">a = <span class="string">&quot;abcdefg&quot;</span></span><br><span class="line">b = #a</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="控制流程"><a href="#控制流程" class="headerlink" title="控制流程"></a>控制流程</h3><h4 id="判断"><a href="#判断" class="headerlink" title="判断"></a>判断</h4><p>判断使用 <code>if ... then ... end</code></p>
+<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">a = <span class="number">1</span></span><br><span class="line">b = <span class="number">2</span></span><br><span class="line"><span class="keyword">if</span> a &gt; b <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;a &gt; b&#x27;</span>)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>如果否则 <code>if ... then ... else ... end</code></p>
+<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> a &gt; b <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;a &gt; b&#x27;</span>)</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;a &lt; b&#x27;</span>)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>多种不同的判断 <code>if ... then ... elseif ... then ... else ... end</code></p>
+<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> a &gt; b <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;a &gt; b&#x27;</span>)</span><br><span class="line"><span class="keyword">elseif</span> a &lt; b <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;a &lt; b&#x27;</span>)</span><br><span class="line"><span class="keyword">elseif</span> a == b <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;a == b&#x27;</span>)</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;error&#x27;</span>)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h4><h5 id="for"><a href="#for" class="headerlink" title="for"></a>for</h5><p>for 循环跟 Python 差不多，但不完全一样，它有初值和结束值，比如输出 1 到 9</p>
+<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> i = <span class="number">1</span>, <span class="number">9</span> <span class="keyword">do</span></span><br><span class="line">    <span class="built_in">print</span>(i)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>或者再加上第三个参数，步长，下面是输出 10 以内奇数</p>
+<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> i = <span class="number">1</span>, <span class="number">10</span>, <span class="number">2</span> <span class="keyword">do</span></span><br><span class="line">    <span class="built_in">print</span>(i)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="while"><a href="#while" class="headerlink" title="while"></a>while</h5><p>满足 <code>while</code> 后面的表达式是循环</p>
+<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">i = <span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> i &lt; <span class="number">10</span> <span class="keyword">do</span></span><br><span class="line">    <span class="built_in">print</span>(i)</span><br><span class="line">    i = i + <span class="number">1</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="repeat-…-until"><a href="#repeat-…-until" class="headerlink" title="repeat … until"></a>repeat … until</h5><p>满足 <code>until</code> 后面的表达式时停止</p>
+<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">i = <span class="number">0</span></span><br><span class="line"><span class="keyword">repeat</span></span><br><span class="line">   <span class="built_in">print</span>(i)</span><br><span class="line">   i = i + <span class="number">1</span></span><br><span class="line"><span class="keyword">until</span> i &lt; <span class="number">10</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="break"><a href="#break" class="headerlink" title="break"></a>break</h5><p>退出循环</p>
+<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> i = <span class="number">1</span>, <span class="number">9</span> <span class="keyword">do</span></span><br><span class="line">    <span class="built_in">print</span>(i)</span><br><span class="line">    <span class="keyword">if</span> i == <span class="number">5</span> <span class="keyword">then</span> <span class="keyword">break</span> <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><p>数组使用 <code>&#123;&#125;</code> 包含</p>
+<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">a = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;</span><br><span class="line">b = &#123;<span class="string">&#x27;1&#x27;</span>,<span class="string">&#x27;2&#x27;</span>,<span class="string">&#x27;3&#x27;</span>,<span class="string">&#x27;4&#x27;</span>,<span class="string">&#x27;5&#x27;</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Lua 的数组不仅可以包含同类型还可以包含不同类型</p>
+<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">a = &#123;<span class="number">1</span>,<span class="string">&#x27;2&#x27;</span>,&#123;&#125;,<span class="function"><span class="keyword">function</span><span class="params">()</span></span> <span class="keyword">end</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是，Lua 的下标从 1 开始而不是 0</p>
+<p>除此以外，还可以通过键值对来存储数组</p>
+<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">t = &#123;</span><br><span class="line">    a = <span class="number">1</span>,</span><br><span class="line">    b = <span class="number">2</span>,</span><br><span class="line">    c = <span class="number">3</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果要获取数组的长度也同样是同 <code>#</code></p>
+<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">a = &#123;<span class="number">1</span>,<span class="string">&#x27;2&#x27;</span>,&#123;&#125;,<span class="function"><span class="keyword">function</span><span class="params">()</span></span> <span class="keyword">end</span>&#125;</span><br><span class="line">b = #a</span><br></pre></td></tr></table></figure>
+
+<p>可以通过下标改变数值</p>
+<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">a = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;</span><br><span class="line">a[<span class="number">2</span>] = <span class="number">3</span></span><br></pre></td></tr></table></figure>
+
+<p>如果是键值对存储的话可以这样</p>
+<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">t[<span class="string">&#x27;a&#x27;</span>] = <span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<p>或者这样也是可以访问的</p>
+<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line"><span class="built_in">print</span>(t.a)</span><br></pre></td></tr></table></figure>
+
+<p>也可以用 <code>table.insert</code> 来在尾部插入元素</p>
+<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">a = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;</span><br><span class="line"><span class="built_in">table</span>.<span class="built_in">insert</span>(a,<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+
+<p>按下标进行中间插入</p>
+<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">a = &#123;<span class="string">&#x27;1&#x27;</span>,<span class="string">&#x27;2&#x27;</span>,<span class="string">&#x27;4&#x27;</span>,<span class="string">&#x27;5&#x27;</span>&#125;</span><br><span class="line"><span class="built_in">table</span>.<span class="built_in">insert</span>(a,<span class="number">3</span>,<span class="string">&#x27;3&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>删除元素</p>
+<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">a = &#123;<span class="string">&#x27;1&#x27;</span>,<span class="string">&#x27;2&#x27;</span>,<span class="string">&#x27;2&#x27;</span>,<span class="string">&#x27;3&#x27;</span>&#125;</span><br><span class="line"><span class="built_in">table</span>.<span class="built_in">remove</span>(a,<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><h4 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h4><p>函数的声明是用 <code>function ... end</code> 比如</p>
+<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">funcName</span><span class="params">()</span></span></span><br><span class="line">    <span class="comment">-- code</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>也可以是这样</p>
+<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">funcName = <span class="function"><span class="keyword">function</span><span class="params">()</span></span></span><br><span class="line">    <span class="comment">-- code</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="入参"><a href="#入参" class="headerlink" title="入参"></a>入参</h4><figure class="highlight lua"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">funcName</span><span class="params">(a, b)</span></span></span><br><span class="line">    <span class="comment">-- code</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="返回"><a href="#返回" class="headerlink" title="返回"></a>返回</h4><figure class="highlight lua"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">funcName</span><span class="params">(a, b)</span></span></span><br><span class="line">    <span class="comment">-- code</span></span><br><span class="line">    <span class="keyword">return</span> a,b</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="调用"><a href="#调用" class="headerlink" title="调用"></a>调用</h4><figure class="highlight lua"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">A</span><span class="params">()</span></span></span><br><span class="line">    <span class="comment">-- code</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">A()</span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<p>好了差不多了，更多的用法可以用到再查</p>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>Lua</tag>
+        <tag>vscode</tag>
       </tags>
   </entry>
   <entry>
@@ -748,50 +748,6 @@
       </tags>
   </entry>
   <entry>
-    <title>VSCode 摸鱼插件</title>
-    <url>/blog/2022/01/07/002503/e9243eeadaf9/</url>
-    <content><![CDATA[<p>今天就来做一波 VScode 的插件分享吧，因为写其他东西要花的时间太多了，草稿还存着没写完，不过又想要发点什么内容，所以就有了这一期的 VSCode 的插件分享，这次要分享的插件是一些好玩的摸鱼插件，做人这么能不摸鱼呢，一天不摸鱼就浑身难受，今天就先推荐 5 个吧</p>
-<span id="more"></span>
-
-<h2 id="韭菜盒子"><a href="#韭菜盒子" class="headerlink" title="韭菜盒子"></a>韭菜盒子</h2><p>插件地址：<span class="exturl" data-url="aHR0cHM6Ly9tYXJrZXRwbGFjZS52aXN1YWxzdHVkaW8uY29tL2l0ZW1zP2l0ZW1OYW1lPWdpc2NhZmVyLmxlZWstZnVuZA==">韭菜盒子<i class="fa fa-external-link-alt"></i></span></p>
-<p>顾名思义，就是一个能让在写代码的过程中都不忘当韭菜的插件，这是一款可以看基金看股票的插件，还可以在底部栏显示韭菜的 <del>被割</del> 发育状况😭</p>
-<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main//img/image-20220106233239851.png"></p>
-<p>还可以在控制面板里查看快讯</p>
-<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main//img/image-20220106233828729.png"></p>
-<p>或者是在页面当中查看行情，能够基本满足你在写代码时想当韭菜的愿望</p>
-<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main//img/image-20220106234100341.png"></p>
-<h2 id="蝌蚪池塘"><a href="#蝌蚪池塘" class="headerlink" title="蝌蚪池塘"></a>蝌蚪池塘</h2><p>插件地址：<span class="exturl" data-url="aHR0cHM6Ly9tYXJrZXRwbGFjZS52aXN1YWxzdHVkaW8uY29tL2l0ZW1zP2l0ZW1OYW1lPWV6c2hpbmUudGFkcG9sZQ==">蝌蚪池塘<i class="fa fa-external-link-alt"></i></span></p>
-<p>这是一款聊天室插件，可以让你在摸鱼的同时发现其他摸鱼的人</p>
-<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main//img/image-20220106234456306.png"></p>
-<p>直接打字就可以发送消息</p>
-<p>输入指令 <code>name:</code> 就可以改名字</p>
-<p>输入指令 <code>color:</code> 就可以改小蝌蚪的颜色</p>
-<p>输入指令 <code>size:</code> 就可以让小蝌蚪变大变小</p>
-<p>输入指令 <code>tp:</code> 就可以传送到一个指定的坐标</p>
-<h2 id="vsinder"><a href="#vsinder" class="headerlink" title="vsinder"></a>vsinder</h2><p>插件地址：<span class="exturl" data-url="aHR0cHM6Ly9tYXJrZXRwbGFjZS52aXN1YWxzdHVkaW8uY29tL2l0ZW1zP2l0ZW1OYW1lPWJlbmF3YWQudnNpbmRlcg==">vsinder<i class="fa fa-external-link-alt"></i></span></p>
-<p>这个插件就厉害了，相当于程序员专用的“陌陌”，不过呢，这个插件看的不是人，而是代码（额。。。我的登陆失效了，只好拿人家官方的图来演示了）</p>
-<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main//img/giphy.gif"></p>
-<p>登陆以后你要写上你要分享的代码，和简单的自我介绍，这样别人看到你的代码就可以选择“喜欢”或者“不喜欢”了，当然你也可以去看别人的，在这上面会经常看到一些有趣的代码，或者一些代码的梗</p>
-<h2 id="小霸王"><a href="#小霸王" class="headerlink" title="小霸王"></a>小霸王</h2><p>插件地址：<span class="exturl" data-url="aHR0cHM6Ly9tYXJrZXRwbGFjZS52aXN1YWxzdHVkaW8uY29tL2l0ZW1zP2l0ZW1OYW1lPWdhbWVkaWxvbmcuYW5lcw==">小霸王<i class="fa fa-external-link-alt"></i></span></p>
-<p>这个插件可以让你玩到一些经典的小游戏，安装完以后默认会提供一个超级马里奥的游戏</p>
-<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main//img/image-20220107000219834.png"></p>
-<p>当然你也可以去下载一些默认提供的小游戏</p>
-<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main//img/image-20220107000110751.png"></p>
-<p>如果你有其他小游戏的游戏文件也是可以导入到里面的进行玩耍的哦</p>
-<h2 id="Zhihu-On-VSCode"><a href="#Zhihu-On-VSCode" class="headerlink" title="Zhihu On VSCode"></a>Zhihu On VSCode</h2><p>插件地址：<span class="exturl" data-url="aHR0cHM6Ly9tYXJrZXRwbGFjZS52aXN1YWxzdHVkaW8uY29tL2l0ZW1zP2l0ZW1OYW1lPW5pdWRhaS52c2NvZGUtemhpaHU=">Zhihu On VSCode<i class="fa fa-external-link-alt"></i></span></p>
-<p>这个插件可以让你在 VSCode 当中刷知乎，可以进行登陆绑定账号，这样就可以查看关于你的推荐文章，也可以进行搜索文章或者发布文章</p>
-<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main//img/image-20220107000719622.png"></p>
-<hr>
-<p>关于为什么最近发的这么频繁？其实就是闲的呗，过段时间可能就不会发的这么频繁了，当然我还是希望我可以发的频繁一些</p>
-]]></content>
-      <categories>
-        <category>分享</category>
-      </categories>
-      <tags>
-        <tag>vscode</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>TypeScript 学习笔记</title>
     <url>/blog/2022/01/25/224007/7bef4c9a98bb/</url>
     <content><![CDATA[<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><p>在 JavaScript 当中是没有数据类型的，应该说是在声明变量的时候不需要声明数据类型，所以就会有问题，而且有很多问题是在编写代码的时候不能被发现，因为是动态类型，所以即使是代码编辑器也没办法对代码有正确的提示，只有在编译时才会报错，而 TypeScript 就是为了解决 JavaScript 的这些小问题而出现的，所以就先来讲一下 TypeScript 的写法</p>
@@ -845,6 +801,50 @@
       <tags>
         <tag>TypeScript</tag>
         <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>VSCode 摸鱼插件</title>
+    <url>/blog/2022/01/07/002503/e9243eeadaf9/</url>
+    <content><![CDATA[<p>今天就来做一波 VScode 的插件分享吧，因为写其他东西要花的时间太多了，草稿还存着没写完，不过又想要发点什么内容，所以就有了这一期的 VSCode 的插件分享，这次要分享的插件是一些好玩的摸鱼插件，做人这么能不摸鱼呢，一天不摸鱼就浑身难受，今天就先推荐 5 个吧</p>
+<span id="more"></span>
+
+<h2 id="韭菜盒子"><a href="#韭菜盒子" class="headerlink" title="韭菜盒子"></a>韭菜盒子</h2><p>插件地址：<span class="exturl" data-url="aHR0cHM6Ly9tYXJrZXRwbGFjZS52aXN1YWxzdHVkaW8uY29tL2l0ZW1zP2l0ZW1OYW1lPWdpc2NhZmVyLmxlZWstZnVuZA==">韭菜盒子<i class="fa fa-external-link-alt"></i></span></p>
+<p>顾名思义，就是一个能让在写代码的过程中都不忘当韭菜的插件，这是一款可以看基金看股票的插件，还可以在底部栏显示韭菜的 <del>被割</del> 发育状况😭</p>
+<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main//img/image-20220106233239851.png"></p>
+<p>还可以在控制面板里查看快讯</p>
+<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main//img/image-20220106233828729.png"></p>
+<p>或者是在页面当中查看行情，能够基本满足你在写代码时想当韭菜的愿望</p>
+<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main//img/image-20220106234100341.png"></p>
+<h2 id="蝌蚪池塘"><a href="#蝌蚪池塘" class="headerlink" title="蝌蚪池塘"></a>蝌蚪池塘</h2><p>插件地址：<span class="exturl" data-url="aHR0cHM6Ly9tYXJrZXRwbGFjZS52aXN1YWxzdHVkaW8uY29tL2l0ZW1zP2l0ZW1OYW1lPWV6c2hpbmUudGFkcG9sZQ==">蝌蚪池塘<i class="fa fa-external-link-alt"></i></span></p>
+<p>这是一款聊天室插件，可以让你在摸鱼的同时发现其他摸鱼的人</p>
+<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main//img/image-20220106234456306.png"></p>
+<p>直接打字就可以发送消息</p>
+<p>输入指令 <code>name:</code> 就可以改名字</p>
+<p>输入指令 <code>color:</code> 就可以改小蝌蚪的颜色</p>
+<p>输入指令 <code>size:</code> 就可以让小蝌蚪变大变小</p>
+<p>输入指令 <code>tp:</code> 就可以传送到一个指定的坐标</p>
+<h2 id="vsinder"><a href="#vsinder" class="headerlink" title="vsinder"></a>vsinder</h2><p>插件地址：<span class="exturl" data-url="aHR0cHM6Ly9tYXJrZXRwbGFjZS52aXN1YWxzdHVkaW8uY29tL2l0ZW1zP2l0ZW1OYW1lPWJlbmF3YWQudnNpbmRlcg==">vsinder<i class="fa fa-external-link-alt"></i></span></p>
+<p>这个插件就厉害了，相当于程序员专用的“陌陌”，不过呢，这个插件看的不是人，而是代码（额。。。我的登陆失效了，只好拿人家官方的图来演示了）</p>
+<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main//img/giphy.gif"></p>
+<p>登陆以后你要写上你要分享的代码，和简单的自我介绍，这样别人看到你的代码就可以选择“喜欢”或者“不喜欢”了，当然你也可以去看别人的，在这上面会经常看到一些有趣的代码，或者一些代码的梗</p>
+<h2 id="小霸王"><a href="#小霸王" class="headerlink" title="小霸王"></a>小霸王</h2><p>插件地址：<span class="exturl" data-url="aHR0cHM6Ly9tYXJrZXRwbGFjZS52aXN1YWxzdHVkaW8uY29tL2l0ZW1zP2l0ZW1OYW1lPWdhbWVkaWxvbmcuYW5lcw==">小霸王<i class="fa fa-external-link-alt"></i></span></p>
+<p>这个插件可以让你玩到一些经典的小游戏，安装完以后默认会提供一个超级马里奥的游戏</p>
+<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main//img/image-20220107000219834.png"></p>
+<p>当然你也可以去下载一些默认提供的小游戏</p>
+<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main//img/image-20220107000110751.png"></p>
+<p>如果你有其他小游戏的游戏文件也是可以导入到里面的进行玩耍的哦</p>
+<h2 id="Zhihu-On-VSCode"><a href="#Zhihu-On-VSCode" class="headerlink" title="Zhihu On VSCode"></a>Zhihu On VSCode</h2><p>插件地址：<span class="exturl" data-url="aHR0cHM6Ly9tYXJrZXRwbGFjZS52aXN1YWxzdHVkaW8uY29tL2l0ZW1zP2l0ZW1OYW1lPW5pdWRhaS52c2NvZGUtemhpaHU=">Zhihu On VSCode<i class="fa fa-external-link-alt"></i></span></p>
+<p>这个插件可以让你在 VSCode 当中刷知乎，可以进行登陆绑定账号，这样就可以查看关于你的推荐文章，也可以进行搜索文章或者发布文章</p>
+<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main//img/image-20220107000719622.png"></p>
+<hr>
+<p>关于为什么最近发的这么频繁？其实就是闲的呗，过段时间可能就不会发的这么频繁了，当然我还是希望我可以发的频繁一些</p>
+]]></content>
+      <categories>
+        <category>分享</category>
+      </categories>
+      <tags>
+        <tag>vscode</tag>
       </tags>
   </entry>
   <entry>
@@ -981,6 +981,70 @@
       </tags>
   </entry>
   <entry>
+    <title>docker 部署应用</title>
+    <url>/blog/2022/05/05/211538/38f7bad9b217/</url>
+    <content><![CDATA[<p>最近在耍 docker ，接下来就简单记录一下 docker 的从安装到部署一些容器 <span id="more"></span></p>
+<h2 id="Linux-下安装"><a href="#Linux-下安装" class="headerlink" title="Linux 下安装"></a>Linux 下安装</h2><p>其实 docker 的 <span class="exturl" data-url="aHR0cHM6Ly9kb2NzLmRvY2tlci5jb20vZW5naW5lL2luc3RhbGwv">官方文档<i class="fa fa-external-link-alt"></i></span> 中就已经写明白了，接下来的安装步骤是照搬官网的，以 Ubuntu 为例</p>
+<p><strong>更新 <code>apt</code> 包索引并安装包，以允许 <code>apt</code> 通过HTTPS使用存储库</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get update</span><br><span class="line">apt-get install ca-certificates curl gnupg lsb-release</span><br></pre></td></tr></table></figure>
+
+<p><strong>添加Docker官方GPG密钥</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg</span><br></pre></td></tr></table></figure>
+
+<p><strong>使用以下命令设置稳定存储库</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;deb [arch=<span class="subst">$(dpkg --print-architecture)</span> signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu <span class="subst">$(lsb_release -cs)</span> stable&quot;</span> | sudo <span class="built_in">tee</span> /etc/apt/sources.list.d/docker.list &gt; /dev/null</span><br></pre></td></tr></table></figure>
+
+<p><strong>更新 <code>apt</code> 包索引，安装最新版本的 Docker Engine、containerd 和 Docker Compose</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get update</span><br><span class="line">apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin</span><br></pre></td></tr></table></figure>
+
+<h2 id="Windows-下安装"><a href="#Windows-下安装" class="headerlink" title="Windows 下安装"></a>Windows 下安装</h2><p>windows 下安装其实挺简单的，直接到 <span class="exturl" data-url="aHR0cHM6Ly93d3cuZG9ja2VyLmNvbS9nZXQtc3RhcnRlZC8=">docker 官网<i class="fa fa-external-link-alt"></i></span> 里下载就好了，这里顺便讲一下 wsl2 的安装， wsl2 有 Linux 的内核，所以其实可以按照上面 Linux 的步骤进行安装</p>
+<p><strong>启用 Windows 子系统</strong></p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">dism.exe /online /<span class="built_in">enable-feature</span> /featurename:Microsoft<span class="literal">-Windows-Subsystem-Linux</span> /all /norestart</span><br></pre></td></tr></table></figure>
+
+<p><strong>启用虚拟机</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart</span><br></pre></td></tr></table></figure>
+
+<p><strong>下载内核更新包</strong></p>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly93c2xzdG9yZXN0b3JhZ2UuYmxvYi5jb3JlLndpbmRvd3MubmV0L3dzbGJsb2Ivd3NsX3VwZGF0ZV94NjQubXNp">适用于 x64 计算机的 WSL2 Linux 内核更新包<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+<p><strong>设置 wsl2</strong> </p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">wsl <span class="literal">--set-default-version</span> <span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>安装一个子系统</strong></p>
+<p>这里以 Ubuntu 为例</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">wsl <span class="literal">--install</span> <span class="literal">-d</span> Ubuntu</span><br></pre></td></tr></table></figure>
+
+<p><strong>打开 docker desktop 进行设置</strong></p>
+<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/blog/202205050121079.png"></p>
+<p>这个时候你就会发现你的 windows 的 docker 和子系统的相通了</p>
+<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/blog/202205050127031.png"></p>
+<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/blog/202205050128677.png"></p>
+<h2 id="创建一个容器"><a href="#创建一个容器" class="headerlink" title="创建一个容器"></a>创建一个容器</h2><p>接下来尝试部署一些应用</p>
+<h3 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h3><p><code>-it</code> 远程连接</p>
+<p><code>-p</code> 端口映射</p>
+<p><code>–name</code> 容器名</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -it -p 80:80 -p 443:443 --name nginx nginx</span><br></pre></td></tr></table></figure>
+
+<p>执行完以上命令后就会运行容器，如果发现本地没有对应的镜像就会到 docker hub 上下载，比如像下面这样</p>
+<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/blog/202205052103422.png"></p>
+<p>当它下载完成以后就会开始运行</p>
+<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/blog/202205052106368.png" alt="image-20220505210627987"></p>
+<p>这时候就可以到浏览器中输入 <code>http://localhost:80</code> 进行访问</p>
+<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/blog/202205052109663.png"></p>
+<p>运行成功，现在可以将容器停了，重新打开让它在后台运行</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker start nginx</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>小技巧</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+        <tag>nginx</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>git 的使用</title>
     <url>/blog/2022/03/24/002444/6919d9f4ccfe/</url>
     <content><![CDATA[<p><code>git</code> 在日常开发中会经常使用到，它用于对项目进行版本控制<span id="more"></span></p>
@@ -1074,70 +1138,6 @@
       </categories>
       <tags>
         <tag>git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>docker 部署应用</title>
-    <url>/blog/2022/05/05/211538/38f7bad9b217/</url>
-    <content><![CDATA[<p>最近在耍 docker ，接下来就简单记录一下 docker 的从安装到部署一些容器 <span id="more"></span></p>
-<h2 id="Linux-下安装"><a href="#Linux-下安装" class="headerlink" title="Linux 下安装"></a>Linux 下安装</h2><p>其实 docker 的 <span class="exturl" data-url="aHR0cHM6Ly9kb2NzLmRvY2tlci5jb20vZW5naW5lL2luc3RhbGwv">官方文档<i class="fa fa-external-link-alt"></i></span> 中就已经写明白了，接下来的安装步骤是照搬官网的，以 Ubuntu 为例</p>
-<p><strong>更新 <code>apt</code> 包索引并安装包，以允许 <code>apt</code> 通过HTTPS使用存储库</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get update</span><br><span class="line">apt-get install ca-certificates curl gnupg lsb-release</span><br></pre></td></tr></table></figure>
-
-<p><strong>添加Docker官方GPG密钥</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg</span><br></pre></td></tr></table></figure>
-
-<p><strong>使用以下命令设置稳定存储库</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;deb [arch=<span class="subst">$(dpkg --print-architecture)</span> signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu <span class="subst">$(lsb_release -cs)</span> stable&quot;</span> | sudo <span class="built_in">tee</span> /etc/apt/sources.list.d/docker.list &gt; /dev/null</span><br></pre></td></tr></table></figure>
-
-<p><strong>更新 <code>apt</code> 包索引，安装最新版本的 Docker Engine、containerd 和 Docker Compose</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get update</span><br><span class="line">apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin</span><br></pre></td></tr></table></figure>
-
-<h2 id="Windows-下安装"><a href="#Windows-下安装" class="headerlink" title="Windows 下安装"></a>Windows 下安装</h2><p>windows 下安装其实挺简单的，直接到 <span class="exturl" data-url="aHR0cHM6Ly93d3cuZG9ja2VyLmNvbS9nZXQtc3RhcnRlZC8=">docker 官网<i class="fa fa-external-link-alt"></i></span> 里下载就好了，这里顺便讲一下 wsl2 的安装， wsl2 有 Linux 的内核，所以其实可以按照上面 Linux 的步骤进行安装</p>
-<p><strong>启用 Windows 子系统</strong></p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">dism.exe /online /<span class="built_in">enable-feature</span> /featurename:Microsoft<span class="literal">-Windows-Subsystem-Linux</span> /all /norestart</span><br></pre></td></tr></table></figure>
-
-<p><strong>启用虚拟机</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart</span><br></pre></td></tr></table></figure>
-
-<p><strong>下载内核更新包</strong></p>
-<ul>
-<li><span class="exturl" data-url="aHR0cHM6Ly93c2xzdG9yZXN0b3JhZ2UuYmxvYi5jb3JlLndpbmRvd3MubmV0L3dzbGJsb2Ivd3NsX3VwZGF0ZV94NjQubXNp">适用于 x64 计算机的 WSL2 Linux 内核更新包<i class="fa fa-external-link-alt"></i></span></li>
-</ul>
-<p><strong>设置 wsl2</strong> </p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">wsl <span class="literal">--set-default-version</span> <span class="number">2</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>安装一个子系统</strong></p>
-<p>这里以 Ubuntu 为例</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">wsl <span class="literal">--install</span> <span class="literal">-d</span> Ubuntu</span><br></pre></td></tr></table></figure>
-
-<p><strong>打开 docker desktop 进行设置</strong></p>
-<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/blog/202205050121079.png"></p>
-<p>这个时候你就会发现你的 windows 的 docker 和子系统的相通了</p>
-<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/blog/202205050127031.png"></p>
-<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/blog/202205050128677.png"></p>
-<h2 id="创建一个容器"><a href="#创建一个容器" class="headerlink" title="创建一个容器"></a>创建一个容器</h2><p>接下来尝试部署一些应用</p>
-<h3 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h3><p><code>-it</code> 远程连接</p>
-<p><code>-p</code> 端口映射</p>
-<p><code>–name</code> 容器名</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -it -p 80:80 -p 443:443 --name nginx nginx</span><br></pre></td></tr></table></figure>
-
-<p>执行完以上命令后就会运行容器，如果发现本地没有对应的镜像就会到 docker hub 上下载，比如像下面这样</p>
-<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/blog/202205052103422.png"></p>
-<p>当它下载完成以后就会开始运行</p>
-<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/blog/202205052106368.png" alt="image-20220505210627987"></p>
-<p>这时候就可以到浏览器中输入 <code>http://localhost:80</code> 进行访问</p>
-<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/blog/202205052109663.png"></p>
-<p>运行成功，现在可以将容器停了，重新打开让它在后台运行</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker start nginx</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>小技巧</category>
-      </categories>
-      <tags>
-        <tag>docker</tag>
-        <tag>nginx</tag>
       </tags>
   </entry>
   <entry>
@@ -1396,6 +1396,18 @@
       </tags>
   </entry>
   <entry>
+    <title>画画练习 22-03-29</title>
+    <url>/blog/2022/03/29/214823/02b33d73a2c8/</url>
+    <content><![CDATA[<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/img/202204052015422.png"></p>
+]]></content>
+      <categories>
+        <category>绘画</category>
+      </categories>
+      <tags>
+        <tag>线稿</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>数据结构与算法-基础</title>
     <url>/blog/2022/04/15/212403/93223b13e229/</url>
     <content><![CDATA[<p>所以作为一个程序员，数据结构和算法都是必备的知识</p>
@@ -1475,18 +1487,6 @@
       <tags>
         <tag>数据结构</tag>
         <tag>算法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>画画练习 22-03-29</title>
-    <url>/blog/2022/03/29/214823/02b33d73a2c8/</url>
-    <content><![CDATA[<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/img/202204052015422.png"></p>
-]]></content>
-      <categories>
-        <category>绘画</category>
-      </categories>
-      <tags>
-        <tag>线稿</tag>
       </tags>
   </entry>
   <entry>
