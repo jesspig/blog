@@ -541,33 +541,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Mybatis 二级缓存</title>
-    <url>/2022/06/10/115704/1c591d879103/</url>
-    <content><![CDATA[<p> 今天在使用 mybatis 时想要开启二级缓存，结果报错了，所以来记录一下</p>
-<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/blog/202206101141800.png"></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">org.apache.ibatis.cache.CacheException: Error serializing object.  Cause: java.io.NotSerializableException: exam.pojo.xxx</span><br></pre></td></tr></table></figure>
-
-<span id="more"></span>
-
-<p>可以看到报错信息是序列化的问题那么只需要在对应的实体类中实现序列化接口 <code>Serializable</code> 就行（我这里使用了 Lombok）</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> exam.pojo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> lombok.AllArgsConstructor;</span><br><span class="line"><span class="keyword">import</span> lombok.Data;</span><br><span class="line"><span class="keyword">import</span> lombok.NoArgsConstructor;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.Serializable;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@NoArgsConstructor</span></span><br><span class="line"><span class="meta">@AllArgsConstructor</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">xxx</span> <span class="keyword">implements</span> <span class="title class_">Serializable</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> String attr0;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> attr1;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
-
-<p>如果还不行，那就改一下对应的 mapper 的 <code>&lt;cache /&gt;</code> 标签中的属性，跟着 <span class="exturl" data-url="aHR0cHM6Ly9teWJhdGlzLm9yZy9teWJhdGlzLTMvemgvc3FsbWFwLXhtbC5odG1sI2NhY2hl">官方文档<i class="fa fa-external-link-alt"></i></span> 走就好了</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">cache</span></span></span><br><span class="line"><span class="tag">  <span class="attr">eviction</span>=<span class="string">&quot;FIFO&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">flushInterval</span>=<span class="string">&quot;60000&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">size</span>=<span class="string">&quot;512&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">readOnly</span>=<span class="string">&quot;true&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p><strong>参考自以下内容</strong>：<br>mybatis 官方文档：<span class="exturl" data-url="aHR0cHM6Ly9teWJhdGlzLm9yZy9teWJhdGlzLTMvemgvc3FsbWFwLXhtbC5odG1sI2NhY2hl">https://mybatis.org/mybatis-3/zh/sqlmap-xml.html#cache<i class="fa fa-external-link-alt"></i></span></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>小技巧</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>mybatis</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Markdown 语法</title>
     <url>/2022/03/24/014020/cd2f2ef0ebaa/</url>
     <content><![CDATA[<p><code>markdown</code> （以下称 <code>md</code> ）是一种轻量级的文本标记语言，通常用于编写文档时进行快速排版，是一种很好用的文档编写工具（或者说语言？），并且可以通过一些 Markdown 编辑器可以将其生成为 PDF 、HTML、Word 等文件格式<span id="more"></span></p>
@@ -748,6 +721,33 @@
       </tags>
   </entry>
   <entry>
+    <title>Mybatis 二级缓存</title>
+    <url>/2022/06/10/115704/1c591d879103/</url>
+    <content><![CDATA[<p> 今天在使用 mybatis 时想要开启二级缓存，结果报错了，所以来记录一下</p>
+<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/blog/202206101141800.png"></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">org.apache.ibatis.cache.CacheException: Error serializing object.  Cause: java.io.NotSerializableException: exam.pojo.xxx</span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<p>可以看到报错信息是序列化的问题那么只需要在对应的实体类中实现序列化接口 <code>Serializable</code> 就行（我这里使用了 Lombok）</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> exam.pojo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> lombok.AllArgsConstructor;</span><br><span class="line"><span class="keyword">import</span> lombok.Data;</span><br><span class="line"><span class="keyword">import</span> lombok.NoArgsConstructor;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.Serializable;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@NoArgsConstructor</span></span><br><span class="line"><span class="meta">@AllArgsConstructor</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">xxx</span> <span class="keyword">implements</span> <span class="title class_">Serializable</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> String attr0;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> attr1;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+<p>如果还不行，那就改一下对应的 mapper 的 <code>&lt;cache /&gt;</code> 标签中的属性，跟着 <span class="exturl" data-url="aHR0cHM6Ly9teWJhdGlzLm9yZy9teWJhdGlzLTMvemgvc3FsbWFwLXhtbC5odG1sI2NhY2hl">官方文档<i class="fa fa-external-link-alt"></i></span> 走就好了</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">cache</span></span></span><br><span class="line"><span class="tag">  <span class="attr">eviction</span>=<span class="string">&quot;FIFO&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">flushInterval</span>=<span class="string">&quot;60000&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">size</span>=<span class="string">&quot;512&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">readOnly</span>=<span class="string">&quot;true&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>参考自以下内容</strong>：<br>mybatis 官方文档：<span class="exturl" data-url="aHR0cHM6Ly9teWJhdGlzLm9yZy9teWJhdGlzLTMvemgvc3FsbWFwLXhtbC5odG1sI2NhY2hl">https://mybatis.org/mybatis-3/zh/sqlmap-xml.html#cache<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>小技巧</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>mybatis</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>TypeScript 学习笔记</title>
     <url>/2022/01/25/224007/7bef4c9a98bb/</url>
     <content><![CDATA[<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><p>在 JavaScript 当中是没有数据类型的，应该说是在声明变量的时候不需要声明数据类型，所以就会有问题，而且有很多问题是在编写代码的时候不能被发现，因为是动态类型，所以即使是代码编辑器也没办法对代码有正确的提示，只有在编译时才会报错，而 TypeScript 就是为了解决 JavaScript 的这些小问题而出现的，所以就先来讲一下 TypeScript 的写法</p>
@@ -845,6 +845,83 @@
       </categories>
       <tags>
         <tag>vscode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Windows Terminal 美化</title>
+    <url>/2022/04/15/204456/7ce1539dd5ae/</url>
+    <content><![CDATA[<p><span class="exturl" data-url="aHR0cHM6Ly9kb2NzLm1pY3Jvc29mdC5jb20vemgtY24vd2luZG93cy90ZXJtaW5hbC8=">Windows Terminal<i class="fa fa-external-link-alt"></i></span> 我已经使用了很长一段时间了，美化也用了很长一段时间，但是有个问题，每次一设置完就可以很长一段时间不用管了，所以每次操作系统或者换电脑时很费功夫，所以先记录下来方便之后使用<span id="more"></span></p>
+<h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><ul>
+<li><p><strong>安装 Windows Terminal</strong></p>
+<p><code>win 11</code> 自带可以忽略，<code>win 10</code> 可以到应用商店上搜索 <code>Windows Terminal</code> 安装即可</p>
+</li>
+<li><p><strong>安装 PowerShell 7</strong></p>
+<p>自带的 <code>PowerShell</code> 好像是 5 ，不过不用管了，直接到应用商店搜索 <code>PowerShell</code> 安装即可</p>
+</li>
+<li><p><strong>设置权限</strong></p>
+<p><code>PowerShell</code> 想要执行脚本需要先设置执行权限</p>
+</li>
+</ul>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Set-ExecutionPolicy</span> RemoteSigned <span class="literal">-scope</span> CurrentUser</span><br></pre></td></tr></table></figure>
+
+<h2 id="开始美化"><a href="#开始美化" class="headerlink" title="开始美化"></a>开始美化</h2><p>这里是直接使用 <code>PowerShell</code> 进行安装，如果需要用到 <code>scoop</code> 可以执行以下命令下载 <code>scoop</code></p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Invoke-Expression</span> (<span class="built_in">New-Object</span> System.Net.WebClient).DownloadString(<span class="string">&#x27;https://get.scoop.sh&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>安装 posh-git</strong></li>
+</ul>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Install-Module</span> posh<span class="literal">-git</span> <span class="literal">-Scope</span> CurrentUser</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>安装 oh-my-posh</strong></li>
+</ul>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Install-Module</span> <span class="built_in">oh</span><span class="literal">-my-posh</span> <span class="literal">-Scope</span> CurrentUser</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><strong>设置主题</strong></p>
+<p>我这里使用的是 <code>M365Princess</code> 这款主题</p>
+</li>
+</ul>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Set-PoshPrompt</span> M365Princess</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><strong>其他主题</strong></p>
+<p>如果需要使用其他主题，有两种方式获取，可以到 <code>oh-my-posh</code> 官网查看 <span class="exturl" data-url="aHR0cHM6Ly9vaG15cG9zaC5kZXYvZG9jcy90aGVtZXM=">https://ohmyposh.dev/docs/themes<i class="fa fa-external-link-alt"></i></span> ， 或者执行以下命令</p>
+</li>
+</ul>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Get-PoshThemes</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><strong>安装字体</strong></p>
+<p>设置完主题以后可能会出现乱码的情况，只需要安装一款合适的字体即可，推荐到 <span class="exturl" data-url="aHR0cHM6Ly93d3cubmVyZGZvbnRzLmNvbS8=">https://www.nerdfonts.com/<i class="fa fa-external-link-alt"></i></span> 进行挑选安装</p>
+</li>
+<li><p><strong>更改字体</strong></p>
+</li>
+</ul>
+<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/img/202204152020890.png"></p>
+<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/img/202204152020744.png"></p>
+<ul>
+<li><p><strong>自动设置主题</strong></p>
+<p>当窗口关闭以后主题就消失了，所以需要写一个让 <code>PowerShell</code> 每次启动后都自动设置好主题的脚本</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">notepad <span class="variable">$PROFILE</span>	<span class="comment"># 用记事本打开</span></span><br></pre></td></tr></table></figure>
+
+<p>然后写入以下内容</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Set-PoshPrompt</span> M365Princess</span><br></pre></td></tr></table></figure>
+
+<p>之后每次启动都会自动设置号主体了</p>
+</li>
+</ul>
+<blockquote>
+<p><strong>参考自以下内容</strong><br><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC8zNTI4ODI5OTA=">Windows Terminal 主题美化<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9zdGFja292ZXJmbG93LmNvbS9xdWVzdGlvbnMvNzAzMzUwNDQvdHJpZWQtdG8taW5zdGFsbC1vaC1teS1wb3NoLWJ1dC1pdC10ZWxscy1tZS10aGF0LXRoZS10ZXJtLWlzLW5vdC1yZWNvZ25pemVkLWFz">Tried to install oh-my-posh but it tells me that “the term is not recognized as…”<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>分享</category>
+      </categories>
+      <tags>
+        <tag>美化</tag>
+        <tag>Windows Terminal</tag>
+        <tag>oh-my-posh</tag>
       </tags>
   </entry>
   <entry>
@@ -965,83 +1042,6 @@
       <tags>
         <tag>docker</tag>
         <tag>nginx</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Windows Terminal 美化</title>
-    <url>/2022/04/15/204456/7ce1539dd5ae/</url>
-    <content><![CDATA[<p><span class="exturl" data-url="aHR0cHM6Ly9kb2NzLm1pY3Jvc29mdC5jb20vemgtY24vd2luZG93cy90ZXJtaW5hbC8=">Windows Terminal<i class="fa fa-external-link-alt"></i></span> 我已经使用了很长一段时间了，美化也用了很长一段时间，但是有个问题，每次一设置完就可以很长一段时间不用管了，所以每次操作系统或者换电脑时很费功夫，所以先记录下来方便之后使用<span id="more"></span></p>
-<h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><ul>
-<li><p><strong>安装 Windows Terminal</strong></p>
-<p><code>win 11</code> 自带可以忽略，<code>win 10</code> 可以到应用商店上搜索 <code>Windows Terminal</code> 安装即可</p>
-</li>
-<li><p><strong>安装 PowerShell 7</strong></p>
-<p>自带的 <code>PowerShell</code> 好像是 5 ，不过不用管了，直接到应用商店搜索 <code>PowerShell</code> 安装即可</p>
-</li>
-<li><p><strong>设置权限</strong></p>
-<p><code>PowerShell</code> 想要执行脚本需要先设置执行权限</p>
-</li>
-</ul>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Set-ExecutionPolicy</span> RemoteSigned <span class="literal">-scope</span> CurrentUser</span><br></pre></td></tr></table></figure>
-
-<h2 id="开始美化"><a href="#开始美化" class="headerlink" title="开始美化"></a>开始美化</h2><p>这里是直接使用 <code>PowerShell</code> 进行安装，如果需要用到 <code>scoop</code> 可以执行以下命令下载 <code>scoop</code></p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Invoke-Expression</span> (<span class="built_in">New-Object</span> System.Net.WebClient).DownloadString(<span class="string">&#x27;https://get.scoop.sh&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><strong>安装 posh-git</strong></li>
-</ul>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Install-Module</span> posh<span class="literal">-git</span> <span class="literal">-Scope</span> CurrentUser</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><strong>安装 oh-my-posh</strong></li>
-</ul>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Install-Module</span> <span class="built_in">oh</span><span class="literal">-my-posh</span> <span class="literal">-Scope</span> CurrentUser</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p><strong>设置主题</strong></p>
-<p>我这里使用的是 <code>M365Princess</code> 这款主题</p>
-</li>
-</ul>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Set-PoshPrompt</span> M365Princess</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p><strong>其他主题</strong></p>
-<p>如果需要使用其他主题，有两种方式获取，可以到 <code>oh-my-posh</code> 官网查看 <span class="exturl" data-url="aHR0cHM6Ly9vaG15cG9zaC5kZXYvZG9jcy90aGVtZXM=">https://ohmyposh.dev/docs/themes<i class="fa fa-external-link-alt"></i></span> ， 或者执行以下命令</p>
-</li>
-</ul>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Get-PoshThemes</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p><strong>安装字体</strong></p>
-<p>设置完主题以后可能会出现乱码的情况，只需要安装一款合适的字体即可，推荐到 <span class="exturl" data-url="aHR0cHM6Ly93d3cubmVyZGZvbnRzLmNvbS8=">https://www.nerdfonts.com/<i class="fa fa-external-link-alt"></i></span> 进行挑选安装</p>
-</li>
-<li><p><strong>更改字体</strong></p>
-</li>
-</ul>
-<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/img/202204152020890.png"></p>
-<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/img/202204152020744.png"></p>
-<ul>
-<li><p><strong>自动设置主题</strong></p>
-<p>当窗口关闭以后主题就消失了，所以需要写一个让 <code>PowerShell</code> 每次启动后都自动设置好主题的脚本</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">notepad <span class="variable">$PROFILE</span>	<span class="comment"># 用记事本打开</span></span><br></pre></td></tr></table></figure>
-
-<p>然后写入以下内容</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Set-PoshPrompt</span> M365Princess</span><br></pre></td></tr></table></figure>
-
-<p>之后每次启动都会自动设置号主体了</p>
-</li>
-</ul>
-<blockquote>
-<p><strong>参考自以下内容</strong><br><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC8zNTI4ODI5OTA=">Windows Terminal 主题美化<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9zdGFja292ZXJmbG93LmNvbS9xdWVzdGlvbnMvNzAzMzUwNDQvdHJpZWQtdG8taW5zdGFsbC1vaC1teS1wb3NoLWJ1dC1pdC10ZWxscy1tZS10aGF0LXRoZS10ZXJtLWlzLW5vdC1yZWNvZ25pemVkLWFz">Tried to install oh-my-posh but it tells me that “the term is not recognized as…”<i class="fa fa-external-link-alt"></i></span></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>分享</category>
-      </categories>
-      <tags>
-        <tag>美化</tag>
-        <tag>Windows Terminal</tag>
-        <tag>oh-my-posh</tag>
       </tags>
   </entry>
   <entry>
@@ -1396,6 +1396,24 @@
       </tags>
   </entry>
   <entry>
+    <title>画画练习 22-04-25</title>
+    <url>/2022/04/25/125909/80e46dbcc039/</url>
+    <content><![CDATA[<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/img/202204251302793.png"></p>
+<span id="more"></span>
+
+<h2 id="线稿提取练习"><a href="#线稿提取练习" class="headerlink" title="线稿提取练习"></a>线稿提取练习</h2><p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/img/202204251303010.png"></p>
+<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/img/202204251303396.png"></p>
+<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/img/202204251304095.png"></p>
+<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/img/202204251304984.png"></p>
+]]></content>
+      <categories>
+        <category>绘画</category>
+      </categories>
+      <tags>
+        <tag>线稿</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>数据结构与算法-基础</title>
     <url>/2022/04/15/212403/93223b13e229/</url>
     <content><![CDATA[<p>所以作为一个程序员，数据结构和算法都是必备的知识</p>
@@ -1487,37 +1505,6 @@
       </categories>
       <tags>
         <tag>线稿</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>画画练习 22-04-25</title>
-    <url>/2022/04/25/125909/80e46dbcc039/</url>
-    <content><![CDATA[<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/img/202204251302793.png"></p>
-<span id="more"></span>
-
-<h2 id="线稿提取练习"><a href="#线稿提取练习" class="headerlink" title="线稿提取练习"></a>线稿提取练习</h2><p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/img/202204251303010.png"></p>
-<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/img/202204251303396.png"></p>
-<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/img/202204251304095.png"></p>
-<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/img/202204251304984.png"></p>
-]]></content>
-      <categories>
-        <category>绘画</category>
-      </categories>
-      <tags>
-        <tag>线稿</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>画画练习 22-04-26</title>
-    <url>/2022/04/26/010654/b18be603451b/</url>
-    <content><![CDATA[<p><img data-src="https://fastly.jsdelivr.net/gh/jesspig/PicBed@main/img/202204260111712.png"></p>
-]]></content>
-      <categories>
-        <category>绘画</category>
-      </categories>
-      <tags>
-        <tag>植物</tag>
-        <tag>速写</tag>
       </tags>
   </entry>
   <entry>
@@ -1622,6 +1609,19 @@
       </categories>
       <tags>
         <tag>函数</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>画画练习 22-04-26</title>
+    <url>/2022/04/26/010654/b18be603451b/</url>
+    <content><![CDATA[<p><img data-src="https://fastly.jsdelivr.net/gh/jesspig/PicBed@main/img/202204260111712.png"></p>
+]]></content>
+      <categories>
+        <category>绘画</category>
+      </categories>
+      <tags>
+        <tag>植物</tag>
+        <tag>速写</tag>
       </tags>
   </entry>
   <entry>
