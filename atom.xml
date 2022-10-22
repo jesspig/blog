@@ -79,11 +79,11 @@
     <category term="小技巧" scheme="http://jesspig.github.io/blog/categories/%E5%B0%8F%E6%8A%80%E5%B7%A7/"/>
     
     
+    <category term="Java" scheme="http://jesspig.github.io/blog/tags/Java/"/>
+    
     <category term="maven" scheme="http://jesspig.github.io/blog/tags/maven/"/>
     
     <category term="log4j" scheme="http://jesspig.github.io/blog/tags/log4j/"/>
-    
-    <category term="Java" scheme="http://jesspig.github.io/blog/tags/Java/"/>
     
   </entry>
   
@@ -346,9 +346,9 @@
     <category term="小技巧" scheme="http://jesspig.github.io/blog/categories/%E5%B0%8F%E6%8A%80%E5%B7%A7/"/>
     
     
-    <category term="maven" scheme="http://jesspig.github.io/blog/tags/maven/"/>
-    
     <category term="Java" scheme="http://jesspig.github.io/blog/tags/Java/"/>
+    
+    <category term="maven" scheme="http://jesspig.github.io/blog/tags/maven/"/>
     
     <category term="mybatis" scheme="http://jesspig.github.io/blog/tags/mybatis/"/>
     
