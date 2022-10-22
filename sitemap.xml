@@ -284,13 +284,6 @@
   </url>
   
   <url>
-    <loc>http://jesspig.github.io/blog/tags/Java/</loc>
-    <lastmod>2022-10-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://jesspig.github.io/blog/tags/maven/</loc>
     <lastmod>2022-10-22</lastmod>
     <changefreq>weekly</changefreq>
@@ -299,6 +292,13 @@
   
   <url>
     <loc>http://jesspig.github.io/blog/tags/log4j/</loc>
+    <lastmod>2022-10-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://jesspig.github.io/blog/tags/Java/</loc>
     <lastmod>2022-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -320,20 +320,6 @@
   
   <url>
     <loc>http://jesspig.github.io/blog/tags/mybatis/</loc>
-    <lastmod>2022-10-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://jesspig.github.io/blog/tags/TypeScript/</loc>
-    <lastmod>2022-10-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://jesspig.github.io/blog/tags/JavaScript/</loc>
     <lastmod>2022-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -368,20 +354,6 @@
   </url>
   
   <url>
-    <loc>http://jesspig.github.io/blog/tags/docker/</loc>
-    <lastmod>2022-10-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://jesspig.github.io/blog/tags/nginx/</loc>
-    <lastmod>2022-10-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://jesspig.github.io/blog/tags/git/</loc>
     <lastmod>2022-10-22</lastmod>
     <changefreq>weekly</changefreq>
@@ -396,7 +368,35 @@
   </url>
   
   <url>
+    <loc>http://jesspig.github.io/blog/tags/docker/</loc>
+    <lastmod>2022-10-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://jesspig.github.io/blog/tags/nginx/</loc>
+    <lastmod>2022-10-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://jesspig.github.io/blog/tags/harmonyos/</loc>
+    <lastmod>2022-10-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://jesspig.github.io/blog/tags/TypeScript/</loc>
+    <lastmod>2022-10-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://jesspig.github.io/blog/tags/JavaScript/</loc>
     <lastmod>2022-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -445,13 +445,6 @@
   </url>
   
   <url>
-    <loc>http://jesspig.github.io/blog/tags/%E5%87%BD%E6%95%B0/</loc>
-    <lastmod>2022-10-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://jesspig.github.io/blog/tags/%E6%A4%8D%E7%89%A9/</loc>
     <lastmod>2022-10-22</lastmod>
     <changefreq>weekly</changefreq>
@@ -460,6 +453,13 @@
   
   <url>
     <loc>http://jesspig.github.io/blog/tags/%E9%80%9F%E5%86%99/</loc>
+    <lastmod>2022-10-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://jesspig.github.io/blog/tags/%E5%87%BD%E6%95%B0/</loc>
     <lastmod>2022-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
