@@ -125,214 +125,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Log4j 配置</title>
-    <url>/2022/05/07/014411/070fc9e13887/</url>
-    <content><![CDATA[<p>接下来简单讲解一下 Log4j 的配置，因为最近的学习当中会使用到，所以在这里记录一下<span id="more"></span></p>
-<h2 id="前置操作"><a href="#前置操作" class="headerlink" title="前置操作"></a>前置操作</h2><h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><p>通过 maven 进行拉取相关的依赖</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- https://mvnrepository.com/artifact/log4j/log4j --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>log4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>log4j<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2.17<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="创建-log4j-properties-文件"><a href="#创建-log4j-properties-文件" class="headerlink" title="创建 log4j.properties 文件"></a>创建 log4j.properties 文件</h3><p>到 <code>src/main/resources</code> 目录下创建 <code>log4j.properties</code> </p>
-<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/blog/202205052130067.png"></p>
-<h2 id="配置文件解析"><a href="#配置文件解析" class="headerlink" title="配置文件解析"></a>配置文件解析</h2><h3 id="根配置-rootLogger"><a href="#根配置-rootLogger" class="headerlink" title="根配置 [rootLogger]"></a>根配置 [rootLogger]</h3><figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="attr">log4j.rootLogger</span>=&lt;level&gt;,appenderName ...</span><br></pre></td></tr></table></figure>
-
-<p><code>level</code> 表示日志等级</p>
-<p><code>appenderName</code> 表示输出的位置，可以是一个或多个</p>
-<p>比如以下配置就是将 <code>DEBUG</code> 日志等级的信息输出到控制台和文件</p>
-<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">log4j.rootLogger</span>=<span class="string">DEBUG,Console,File</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>补充：<code>Console</code> 和 <code>File</code> 可以任意取名，只需要跟后面的 <code>log4j.appender.xxx</code> 的 <code>xxx</code> 部分对应即可</p>
-</blockquote>
-<h3 id="日志等级"><a href="#日志等级" class="headerlink" title="日志等级"></a>日志等级</h3><p><strong>ALL &lt; TRACE &lt; DEBUG &lt; INFO &lt; WARN &lt; ERROR &lt; FATAL &lt; OFF</strong> </p>
-<p>级别越低包含内容越多</p>
-<table>
-<thead>
-<tr>
-<th>级别</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>ALL</td>
-<td>所有级别的信息</td>
-</tr>
-<tr>
-<td>TRACE</td>
-<td>比 DEBUG 更详细的信息</td>
-</tr>
-<tr>
-<td>DEBUG</td>
-<td>调试信息</td>
-</tr>
-<tr>
-<td>INFO</td>
-<td>普通信息</td>
-</tr>
-<tr>
-<td>WARN</td>
-<td>可能会出现潜在错误的警告信息</td>
-</tr>
-<tr>
-<td>ERROR</td>
-<td>不影响系统的继续运行的错误信息</td>
-</tr>
-<tr>
-<td>FATAL</td>
-<td>将会导致应用程序的退出的严重错误事件信息</td>
-</tr>
-<tr>
-<td>OFF</td>
-<td>用于关闭所有日志记录</td>
-</tr>
-</tbody></table>
-<h3 id="输出类型-appender"><a href="#输出类型-appender" class="headerlink" title="输出类型 [appender]"></a>输出类型 [appender]</h3><table>
-<thead>
-<tr>
-<th>类型</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>org.apache.log4j.ConsoleAppender</td>
-<td>控制台</td>
-</tr>
-<tr>
-<td>org.apache.log4j.FileAppender</td>
-<td>文件</td>
-</tr>
-<tr>
-<td>org.apache.log4j.DailyRollingFileAppender</td>
-<td>每天产生一个日志文件</td>
-</tr>
-<tr>
-<td>org.apache.log4j.RollingFileAppender</td>
-<td>文件大小到达指定尺寸的时候产生一个新的文件</td>
-</tr>
-<tr>
-<td>org.apache.log4j.WriterAppender</td>
-<td>将日志信息以流格式发送到任意指定的地方</td>
-</tr>
-</tbody></table>
-<p>使用方式大概如下</p>
-<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">log4j.rootLogger</span>=<span class="string">DEBUG,Console,File</span></span><br><span class="line"><span class="comment"># 控制台输出</span></span><br><span class="line"><span class="attr">log4j.appender.Console</span>=<span class="string">org.apache.log4j.ConsoleAppender</span></span><br><span class="line"><span class="comment"># 文件输出</span></span><br><span class="line"><span class="attr">log4j.appender.File</span>=<span class="string">org.apache.log4j.FileAppender</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="信息格式-layout"><a href="#信息格式-layout" class="headerlink" title="信息格式 [layout]"></a>信息格式 [layout]</h3><table>
-<thead>
-<tr>
-<th>格式</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>org.apache.log4j.HTMLLayout</td>
-<td>输出 HTML 表格代码</td>
-</tr>
-<tr>
-<td>org.apache.log4j.PatternLayout</td>
-<td>自定义格式输出</td>
-</tr>
-<tr>
-<td>org.apache.log4j.SimpleLayout</td>
-<td>输出级别和信息</td>
-</tr>
-<tr>
-<td>org.apache.log4j.TTCCLayout</td>
-<td>输出线程、级别、类名、信息</td>
-</tr>
-</tbody></table>
-<p>使用方法如下</p>
-<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 控制台输出，信息格式是 org.apache.log4j.SimpleLayout</span></span><br><span class="line"><span class="attr">log4j.appender.Console</span>=<span class="string">org.apache.log4j.ConsoleAppender</span></span><br><span class="line"><span class="attr">log4j.appender.Console.layout</span>=<span class="string">org.apache.log4j.SimpleLayout</span></span><br></pre></td></tr></table></figure>
-
-<p>输出信息大概如下</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">INFO - xxxx</span><br><span class="line">DEBUG - xxxx</span><br></pre></td></tr></table></figure>
-
-<h4 id="自定义格式的用法"><a href="#自定义格式的用法" class="headerlink" title="自定义格式的用法"></a>自定义格式的用法</h4><p> <code>org.apache.log4j.PatternLayout</code> 的格式</p>
-<table>
-<thead>
-<tr>
-<th>格式</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>%m</td>
-<td>消息</td>
-</tr>
-<tr>
-<td>%n</td>
-<td>换行</td>
-</tr>
-<tr>
-<td>%d</td>
-<td>时间，可以指定格式，如 <code>%d&#123;yyyy-MM-dd HH:mm:ss,SSS&#125;</code></td>
-</tr>
-<tr>
-<td>%t</td>
-<td>线程名</td>
-</tr>
-<tr>
-<td>%p</td>
-<td>输出优先级，即DEBUG，INFO，WARN，ERROR，FATAL</td>
-</tr>
-<tr>
-<td>%c</td>
-<td>类名</td>
-</tr>
-<tr>
-<td>%M</td>
-<td>方法名</td>
-</tr>
-<tr>
-<td>%r</td>
-<td>耗费时间，毫秒</td>
-</tr>
-<tr>
-<td>%l</td>
-<td>代码所在位置</td>
-</tr>
-</tbody></table>
-<p>用法如下</p>
-<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 控制台输出，信息格式是 org.apache.log4j.PatternLayout</span></span><br><span class="line"><span class="attr">log4j.appender.Console</span>=<span class="string">org.apache.log4j.ConsoleAppender</span></span><br><span class="line"><span class="attr">log4j.appender.Console.layout</span>=<span class="string">org.apache.log4j.PatternLayout</span></span><br><span class="line"><span class="comment"># 通过 ConversionPattern 设置属性</span></span><br><span class="line"><span class="attr">log4j.appender.Console.layout.ConversionPattern</span>=<span class="string">%d&#123;HH:mm:ss&#125; [%p] %m%n</span></span><br></pre></td></tr></table></figure>
-
-<p>输出信息大概如下</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">HH:mm:ss [INFO] xxxx</span><br><span class="line">HH:mm:ss [DEBUG] xxxx</span><br></pre></td></tr></table></figure>
-
-<h3 id="输出等级-Threshold"><a href="#输出等级-Threshold" class="headerlink" title="输出等级 [Threshold]"></a>输出等级 [Threshold]</h3><p>相当于过滤，只输出指定级别的内容到指定位置</p>
-<p>比如说控制台中只输出 <code>DEBUG</code> 级别的信息</p>
-<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 文件输出</span></span><br><span class="line"><span class="attr">log4j.appender.Console</span>=<span class="string">org.apache.log4j.ConsoleAppender</span></span><br><span class="line"><span class="attr">log4j.appender.Console.layout</span>=<span class="string">org.apache.log4j.PatternLayout</span></span><br><span class="line"><span class="attr">log4j.appender.Console.layout.ConversionPattern</span>=<span class="string">%d&#123;HH:mm:ss&#125; [%p] %m%n</span></span><br><span class="line"><span class="comment"># 设置级别</span></span><br><span class="line"><span class="attr">log4j.appender.Console.Threshold</span>=<span class="string">DEBUG</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>补充：<code>Threshold</code> 的等级不能比根配置 <code>log4j.rootLogger</code> 低级，所以尽量使用较低的等级，【<a href="#%E6%97%A5%E5%BF%97%E7%AD%89%E7%BA%A7">回顾日志等级</a> 】</p>
-</blockquote>
-<h3 id="追加内容-Append"><a href="#追加内容-Append" class="headerlink" title="追加内容-[Append]"></a>追加内容-[Append]</h3><p>往旧的日志文件中追加内容</p>
-<p>如果为 <code>true</code> 表示开启，会将新的内容追加到旧的日志文件</p>
-<p>如果为 <code>false</code> 表示关闭，会将新的内容覆盖到旧的日志文件</p>
-<p>默认是 <code>true</code></p>
-<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">log4j.appender.File</span>=<span class="string">org.apache.log4j.FileAppender</span></span><br><span class="line"><span class="attr">log4j.appender.File.layout</span>=<span class="string">org.apache.log4j.PatternLayout</span></span><br><span class="line"><span class="attr">log4j.appender.File.layout.ConversionPattern</span>=<span class="string">%d&#123;HH:mm:ss&#125; [%p] %m%n</span></span><br><span class="line"><span class="comment"># 开启追加内容</span></span><br><span class="line"><span class="attr">log4j.appender.File.Append</span>=<span class="string">true</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="内容补充"><a href="#内容补充" class="headerlink" title="内容补充"></a>内容补充</h3><p><code>MaxFileSize</code> 设置日志文件大小，仅 <code>RollingFileAppender</code> 可用</p>
-<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">log4j.appender.File</span>=<span class="string">org.apache.log4j.RollingFileAppender</span></span><br><span class="line"><span class="attr">log4j.appender.File.layout</span>=<span class="string">org.apache.log4j.PatternLayout</span></span><br><span class="line"><span class="attr">log4j.appender.File.layout.ConversionPattern</span>=<span class="string">%d&#123;HH:mm:ss&#125; [%p] %m%n</span></span><br><span class="line"><span class="comment"># 输出大小为 4MB</span></span><br><span class="line"><span class="attr">log4j.appender.File.MaxFileSize</span>=<span class="string">4MB</span></span><br><span class="line"><span class="attr">log4j.appender.File.Append</span>=<span class="string">true</span></span><br></pre></td></tr></table></figure>
-
-<p><code>File</code> 设置日志文件输出位置</p>
-<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">log4j.rootLogger</span>=<span class="string">DEBUG,ErrorFile</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"># error 日志</span></span><br><span class="line"><span class="attr">log4j.appender.ErrorFile</span>=<span class="string">org.apache.log4j.RollingFileAppender</span></span><br><span class="line"><span class="attr">log4j.appender.ErrorFile.layout</span>=<span class="string">org.apache.log4j.PatternLayout</span></span><br><span class="line"><span class="attr">log4j.appender.ErrorFile.layout.ConversionPattern</span>=<span class="string">%d&#123;HH:mm:ss&#125; [%p] %m%n</span></span><br><span class="line"><span class="attr">log4j.appender.ErrorFile.MaxFileSize</span>=<span class="string">4MB</span></span><br><span class="line"><span class="comment"># 输出位置</span></span><br><span class="line"><span class="attr">log4j.appender.ErrorFile.File</span>=<span class="string">/logs/ERROR.log</span></span><br><span class="line"><span class="comment"># 等级不能低于根配置</span></span><br><span class="line"><span class="attr">log4j.appender.ErrorFile.Threshold</span>=<span class="string">Error</span></span><br><span class="line"><span class="attr">log4j.appender.ErrorFile.Append</span>=<span class="string">true</span></span><br></pre></td></tr></table></figure>
-
-
-
-<blockquote>
-<p><strong>参考自以下内容</strong></p>
-<p>哔哩哔哩：<span class="exturl" data-url="aHR0cHM6Ly93d3cuYmlsaWJpbGkuY29tL3ZpZGVvL0JWMWp0NDExVDd6dA==">https://www.bilibili.com/video/BV1jt411T7zt<i class="fa fa-external-link-alt"></i></span></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>小技巧</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>maven</tag>
-        <tag>log4j</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Lua 学习笔记</title>
     <url>/2022/01/21/024632/f29997384681/</url>
     <content><![CDATA[<p> 最近不知道发什么神经，突然想起 <span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3dpa2kvTHVh">Lua<i class="fa fa-external-link-alt"></i></span> 来了，没错就是发神经，就是我又不是写脚本，又不是写mod啥的，无端端就想起来这门语言了，所以这次就来写个快速入门的教程吧。这次是 Windows 环境下使用 VSCode 进行编写，Linux 和 Mac 其实也差不多</p>
@@ -721,6 +513,214 @@
       </tags>
   </entry>
   <entry>
+    <title>Log4j 配置</title>
+    <url>/2022/05/07/014411/070fc9e13887/</url>
+    <content><![CDATA[<p>接下来简单讲解一下 Log4j 的配置，因为最近的学习当中会使用到，所以在这里记录一下<span id="more"></span></p>
+<h2 id="前置操作"><a href="#前置操作" class="headerlink" title="前置操作"></a>前置操作</h2><h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><p>通过 maven 进行拉取相关的依赖</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- https://mvnrepository.com/artifact/log4j/log4j --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>log4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>log4j<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2.17<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="创建-log4j-properties-文件"><a href="#创建-log4j-properties-文件" class="headerlink" title="创建 log4j.properties 文件"></a>创建 log4j.properties 文件</h3><p>到 <code>src/main/resources</code> 目录下创建 <code>log4j.properties</code> </p>
+<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/blog/202205052130067.png"></p>
+<h2 id="配置文件解析"><a href="#配置文件解析" class="headerlink" title="配置文件解析"></a>配置文件解析</h2><h3 id="根配置-rootLogger"><a href="#根配置-rootLogger" class="headerlink" title="根配置 [rootLogger]"></a>根配置 [rootLogger]</h3><figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="attr">log4j.rootLogger</span>=&lt;level&gt;,appenderName ...</span><br></pre></td></tr></table></figure>
+
+<p><code>level</code> 表示日志等级</p>
+<p><code>appenderName</code> 表示输出的位置，可以是一个或多个</p>
+<p>比如以下配置就是将 <code>DEBUG</code> 日志等级的信息输出到控制台和文件</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">log4j.rootLogger</span>=<span class="string">DEBUG,Console,File</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>补充：<code>Console</code> 和 <code>File</code> 可以任意取名，只需要跟后面的 <code>log4j.appender.xxx</code> 的 <code>xxx</code> 部分对应即可</p>
+</blockquote>
+<h3 id="日志等级"><a href="#日志等级" class="headerlink" title="日志等级"></a>日志等级</h3><p><strong>ALL &lt; TRACE &lt; DEBUG &lt; INFO &lt; WARN &lt; ERROR &lt; FATAL &lt; OFF</strong> </p>
+<p>级别越低包含内容越多</p>
+<table>
+<thead>
+<tr>
+<th>级别</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ALL</td>
+<td>所有级别的信息</td>
+</tr>
+<tr>
+<td>TRACE</td>
+<td>比 DEBUG 更详细的信息</td>
+</tr>
+<tr>
+<td>DEBUG</td>
+<td>调试信息</td>
+</tr>
+<tr>
+<td>INFO</td>
+<td>普通信息</td>
+</tr>
+<tr>
+<td>WARN</td>
+<td>可能会出现潜在错误的警告信息</td>
+</tr>
+<tr>
+<td>ERROR</td>
+<td>不影响系统的继续运行的错误信息</td>
+</tr>
+<tr>
+<td>FATAL</td>
+<td>将会导致应用程序的退出的严重错误事件信息</td>
+</tr>
+<tr>
+<td>OFF</td>
+<td>用于关闭所有日志记录</td>
+</tr>
+</tbody></table>
+<h3 id="输出类型-appender"><a href="#输出类型-appender" class="headerlink" title="输出类型 [appender]"></a>输出类型 [appender]</h3><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>org.apache.log4j.ConsoleAppender</td>
+<td>控制台</td>
+</tr>
+<tr>
+<td>org.apache.log4j.FileAppender</td>
+<td>文件</td>
+</tr>
+<tr>
+<td>org.apache.log4j.DailyRollingFileAppender</td>
+<td>每天产生一个日志文件</td>
+</tr>
+<tr>
+<td>org.apache.log4j.RollingFileAppender</td>
+<td>文件大小到达指定尺寸的时候产生一个新的文件</td>
+</tr>
+<tr>
+<td>org.apache.log4j.WriterAppender</td>
+<td>将日志信息以流格式发送到任意指定的地方</td>
+</tr>
+</tbody></table>
+<p>使用方式大概如下</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">log4j.rootLogger</span>=<span class="string">DEBUG,Console,File</span></span><br><span class="line"><span class="comment"># 控制台输出</span></span><br><span class="line"><span class="attr">log4j.appender.Console</span>=<span class="string">org.apache.log4j.ConsoleAppender</span></span><br><span class="line"><span class="comment"># 文件输出</span></span><br><span class="line"><span class="attr">log4j.appender.File</span>=<span class="string">org.apache.log4j.FileAppender</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="信息格式-layout"><a href="#信息格式-layout" class="headerlink" title="信息格式 [layout]"></a>信息格式 [layout]</h3><table>
+<thead>
+<tr>
+<th>格式</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>org.apache.log4j.HTMLLayout</td>
+<td>输出 HTML 表格代码</td>
+</tr>
+<tr>
+<td>org.apache.log4j.PatternLayout</td>
+<td>自定义格式输出</td>
+</tr>
+<tr>
+<td>org.apache.log4j.SimpleLayout</td>
+<td>输出级别和信息</td>
+</tr>
+<tr>
+<td>org.apache.log4j.TTCCLayout</td>
+<td>输出线程、级别、类名、信息</td>
+</tr>
+</tbody></table>
+<p>使用方法如下</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 控制台输出，信息格式是 org.apache.log4j.SimpleLayout</span></span><br><span class="line"><span class="attr">log4j.appender.Console</span>=<span class="string">org.apache.log4j.ConsoleAppender</span></span><br><span class="line"><span class="attr">log4j.appender.Console.layout</span>=<span class="string">org.apache.log4j.SimpleLayout</span></span><br></pre></td></tr></table></figure>
+
+<p>输出信息大概如下</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">INFO - xxxx</span><br><span class="line">DEBUG - xxxx</span><br></pre></td></tr></table></figure>
+
+<h4 id="自定义格式的用法"><a href="#自定义格式的用法" class="headerlink" title="自定义格式的用法"></a>自定义格式的用法</h4><p> <code>org.apache.log4j.PatternLayout</code> 的格式</p>
+<table>
+<thead>
+<tr>
+<th>格式</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>%m</td>
+<td>消息</td>
+</tr>
+<tr>
+<td>%n</td>
+<td>换行</td>
+</tr>
+<tr>
+<td>%d</td>
+<td>时间，可以指定格式，如 <code>%d&#123;yyyy-MM-dd HH:mm:ss,SSS&#125;</code></td>
+</tr>
+<tr>
+<td>%t</td>
+<td>线程名</td>
+</tr>
+<tr>
+<td>%p</td>
+<td>输出优先级，即DEBUG，INFO，WARN，ERROR，FATAL</td>
+</tr>
+<tr>
+<td>%c</td>
+<td>类名</td>
+</tr>
+<tr>
+<td>%M</td>
+<td>方法名</td>
+</tr>
+<tr>
+<td>%r</td>
+<td>耗费时间，毫秒</td>
+</tr>
+<tr>
+<td>%l</td>
+<td>代码所在位置</td>
+</tr>
+</tbody></table>
+<p>用法如下</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 控制台输出，信息格式是 org.apache.log4j.PatternLayout</span></span><br><span class="line"><span class="attr">log4j.appender.Console</span>=<span class="string">org.apache.log4j.ConsoleAppender</span></span><br><span class="line"><span class="attr">log4j.appender.Console.layout</span>=<span class="string">org.apache.log4j.PatternLayout</span></span><br><span class="line"><span class="comment"># 通过 ConversionPattern 设置属性</span></span><br><span class="line"><span class="attr">log4j.appender.Console.layout.ConversionPattern</span>=<span class="string">%d&#123;HH:mm:ss&#125; [%p] %m%n</span></span><br></pre></td></tr></table></figure>
+
+<p>输出信息大概如下</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">HH:mm:ss [INFO] xxxx</span><br><span class="line">HH:mm:ss [DEBUG] xxxx</span><br></pre></td></tr></table></figure>
+
+<h3 id="输出等级-Threshold"><a href="#输出等级-Threshold" class="headerlink" title="输出等级 [Threshold]"></a>输出等级 [Threshold]</h3><p>相当于过滤，只输出指定级别的内容到指定位置</p>
+<p>比如说控制台中只输出 <code>DEBUG</code> 级别的信息</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 文件输出</span></span><br><span class="line"><span class="attr">log4j.appender.Console</span>=<span class="string">org.apache.log4j.ConsoleAppender</span></span><br><span class="line"><span class="attr">log4j.appender.Console.layout</span>=<span class="string">org.apache.log4j.PatternLayout</span></span><br><span class="line"><span class="attr">log4j.appender.Console.layout.ConversionPattern</span>=<span class="string">%d&#123;HH:mm:ss&#125; [%p] %m%n</span></span><br><span class="line"><span class="comment"># 设置级别</span></span><br><span class="line"><span class="attr">log4j.appender.Console.Threshold</span>=<span class="string">DEBUG</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>补充：<code>Threshold</code> 的等级不能比根配置 <code>log4j.rootLogger</code> 低级，所以尽量使用较低的等级，【<a href="#%E6%97%A5%E5%BF%97%E7%AD%89%E7%BA%A7">回顾日志等级</a> 】</p>
+</blockquote>
+<h3 id="追加内容-Append"><a href="#追加内容-Append" class="headerlink" title="追加内容-[Append]"></a>追加内容-[Append]</h3><p>往旧的日志文件中追加内容</p>
+<p>如果为 <code>true</code> 表示开启，会将新的内容追加到旧的日志文件</p>
+<p>如果为 <code>false</code> 表示关闭，会将新的内容覆盖到旧的日志文件</p>
+<p>默认是 <code>true</code></p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">log4j.appender.File</span>=<span class="string">org.apache.log4j.FileAppender</span></span><br><span class="line"><span class="attr">log4j.appender.File.layout</span>=<span class="string">org.apache.log4j.PatternLayout</span></span><br><span class="line"><span class="attr">log4j.appender.File.layout.ConversionPattern</span>=<span class="string">%d&#123;HH:mm:ss&#125; [%p] %m%n</span></span><br><span class="line"><span class="comment"># 开启追加内容</span></span><br><span class="line"><span class="attr">log4j.appender.File.Append</span>=<span class="string">true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="内容补充"><a href="#内容补充" class="headerlink" title="内容补充"></a>内容补充</h3><p><code>MaxFileSize</code> 设置日志文件大小，仅 <code>RollingFileAppender</code> 可用</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">log4j.appender.File</span>=<span class="string">org.apache.log4j.RollingFileAppender</span></span><br><span class="line"><span class="attr">log4j.appender.File.layout</span>=<span class="string">org.apache.log4j.PatternLayout</span></span><br><span class="line"><span class="attr">log4j.appender.File.layout.ConversionPattern</span>=<span class="string">%d&#123;HH:mm:ss&#125; [%p] %m%n</span></span><br><span class="line"><span class="comment"># 输出大小为 4MB</span></span><br><span class="line"><span class="attr">log4j.appender.File.MaxFileSize</span>=<span class="string">4MB</span></span><br><span class="line"><span class="attr">log4j.appender.File.Append</span>=<span class="string">true</span></span><br></pre></td></tr></table></figure>
+
+<p><code>File</code> 设置日志文件输出位置</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">log4j.rootLogger</span>=<span class="string">DEBUG,ErrorFile</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"># error 日志</span></span><br><span class="line"><span class="attr">log4j.appender.ErrorFile</span>=<span class="string">org.apache.log4j.RollingFileAppender</span></span><br><span class="line"><span class="attr">log4j.appender.ErrorFile.layout</span>=<span class="string">org.apache.log4j.PatternLayout</span></span><br><span class="line"><span class="attr">log4j.appender.ErrorFile.layout.ConversionPattern</span>=<span class="string">%d&#123;HH:mm:ss&#125; [%p] %m%n</span></span><br><span class="line"><span class="attr">log4j.appender.ErrorFile.MaxFileSize</span>=<span class="string">4MB</span></span><br><span class="line"><span class="comment"># 输出位置</span></span><br><span class="line"><span class="attr">log4j.appender.ErrorFile.File</span>=<span class="string">/logs/ERROR.log</span></span><br><span class="line"><span class="comment"># 等级不能低于根配置</span></span><br><span class="line"><span class="attr">log4j.appender.ErrorFile.Threshold</span>=<span class="string">Error</span></span><br><span class="line"><span class="attr">log4j.appender.ErrorFile.Append</span>=<span class="string">true</span></span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p><strong>参考自以下内容</strong></p>
+<p>哔哩哔哩：<span class="exturl" data-url="aHR0cHM6Ly93d3cuYmlsaWJpbGkuY29tL3ZpZGVvL0JWMWp0NDExVDd6dA==">https://www.bilibili.com/video/BV1jt411T7zt<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>小技巧</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>maven</tag>
+        <tag>log4j</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Mybatis 二级缓存</title>
     <url>/2022/06/10/115704/1c591d879103/</url>
     <content><![CDATA[<p> 今天在使用 mybatis 时想要开启二级缓存，结果报错了，所以来记录一下</p>
@@ -745,6 +745,50 @@
       <tags>
         <tag>Java</tag>
         <tag>mybatis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>VSCode 摸鱼插件</title>
+    <url>/2022/01/07/002503/e9243eeadaf9/</url>
+    <content><![CDATA[<p>今天就来做一波 VScode 的插件分享吧，因为写其他东西要花的时间太多了，草稿还存着没写完，不过又想要发点什么内容，所以就有了这一期的 VSCode 的插件分享，这次要分享的插件是一些好玩的摸鱼插件，做人这么能不摸鱼呢，一天不摸鱼就浑身难受，今天就先推荐 5 个吧</p>
+<span id="more"></span>
+
+<h2 id="韭菜盒子"><a href="#韭菜盒子" class="headerlink" title="韭菜盒子"></a>韭菜盒子</h2><p>插件地址：<span class="exturl" data-url="aHR0cHM6Ly9tYXJrZXRwbGFjZS52aXN1YWxzdHVkaW8uY29tL2l0ZW1zP2l0ZW1OYW1lPWdpc2NhZmVyLmxlZWstZnVuZA==">韭菜盒子<i class="fa fa-external-link-alt"></i></span></p>
+<p>顾名思义，就是一个能让在写代码的过程中都不忘当韭菜的插件，这是一款可以看基金看股票的插件，还可以在底部栏显示韭菜的 <del>被割</del> 发育状况😭</p>
+<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main//img/image-20220106233239851.png"></p>
+<p>还可以在控制面板里查看快讯</p>
+<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main//img/image-20220106233828729.png"></p>
+<p>或者是在页面当中查看行情，能够基本满足你在写代码时想当韭菜的愿望</p>
+<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main//img/image-20220106234100341.png"></p>
+<h2 id="蝌蚪池塘"><a href="#蝌蚪池塘" class="headerlink" title="蝌蚪池塘"></a>蝌蚪池塘</h2><p>插件地址：<span class="exturl" data-url="aHR0cHM6Ly9tYXJrZXRwbGFjZS52aXN1YWxzdHVkaW8uY29tL2l0ZW1zP2l0ZW1OYW1lPWV6c2hpbmUudGFkcG9sZQ==">蝌蚪池塘<i class="fa fa-external-link-alt"></i></span></p>
+<p>这是一款聊天室插件，可以让你在摸鱼的同时发现其他摸鱼的人</p>
+<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main//img/image-20220106234456306.png"></p>
+<p>直接打字就可以发送消息</p>
+<p>输入指令 <code>name:</code> 就可以改名字</p>
+<p>输入指令 <code>color:</code> 就可以改小蝌蚪的颜色</p>
+<p>输入指令 <code>size:</code> 就可以让小蝌蚪变大变小</p>
+<p>输入指令 <code>tp:</code> 就可以传送到一个指定的坐标</p>
+<h2 id="vsinder"><a href="#vsinder" class="headerlink" title="vsinder"></a>vsinder</h2><p>插件地址：<span class="exturl" data-url="aHR0cHM6Ly9tYXJrZXRwbGFjZS52aXN1YWxzdHVkaW8uY29tL2l0ZW1zP2l0ZW1OYW1lPWJlbmF3YWQudnNpbmRlcg==">vsinder<i class="fa fa-external-link-alt"></i></span></p>
+<p>这个插件就厉害了，相当于程序员专用的“陌陌”，不过呢，这个插件看的不是人，而是代码（额。。。我的登陆失效了，只好拿人家官方的图来演示了）</p>
+<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main//img/giphy.gif"></p>
+<p>登陆以后你要写上你要分享的代码，和简单的自我介绍，这样别人看到你的代码就可以选择“喜欢”或者“不喜欢”了，当然你也可以去看别人的，在这上面会经常看到一些有趣的代码，或者一些代码的梗</p>
+<h2 id="小霸王"><a href="#小霸王" class="headerlink" title="小霸王"></a>小霸王</h2><p>插件地址：<span class="exturl" data-url="aHR0cHM6Ly9tYXJrZXRwbGFjZS52aXN1YWxzdHVkaW8uY29tL2l0ZW1zP2l0ZW1OYW1lPWdhbWVkaWxvbmcuYW5lcw==">小霸王<i class="fa fa-external-link-alt"></i></span></p>
+<p>这个插件可以让你玩到一些经典的小游戏，安装完以后默认会提供一个超级马里奥的游戏</p>
+<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main//img/image-20220107000219834.png"></p>
+<p>当然你也可以去下载一些默认提供的小游戏</p>
+<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main//img/image-20220107000110751.png"></p>
+<p>如果你有其他小游戏的游戏文件也是可以导入到里面的进行玩耍的哦</p>
+<h2 id="Zhihu-On-VSCode"><a href="#Zhihu-On-VSCode" class="headerlink" title="Zhihu On VSCode"></a>Zhihu On VSCode</h2><p>插件地址：<span class="exturl" data-url="aHR0cHM6Ly9tYXJrZXRwbGFjZS52aXN1YWxzdHVkaW8uY29tL2l0ZW1zP2l0ZW1OYW1lPW5pdWRhaS52c2NvZGUtemhpaHU=">Zhihu On VSCode<i class="fa fa-external-link-alt"></i></span></p>
+<p>这个插件可以让你在 VSCode 当中刷知乎，可以进行登陆绑定账号，这样就可以查看关于你的推荐文章，也可以进行搜索文章或者发布文章</p>
+<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main//img/image-20220107000719622.png"></p>
+<hr>
+<p>关于为什么最近发的这么频繁？其实就是闲的呗，过段时间可能就不会发的这么频繁了，当然我还是希望我可以发的频繁一些</p>
+]]></content>
+      <categories>
+        <category>分享</category>
+      </categories>
+      <tags>
+        <tag>vscode</tag>
       </tags>
   </entry>
   <entry>
@@ -801,50 +845,6 @@
       <tags>
         <tag>TypeScript</tag>
         <tag>JavaScript</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>VSCode 摸鱼插件</title>
-    <url>/2022/01/07/002503/e9243eeadaf9/</url>
-    <content><![CDATA[<p>今天就来做一波 VScode 的插件分享吧，因为写其他东西要花的时间太多了，草稿还存着没写完，不过又想要发点什么内容，所以就有了这一期的 VSCode 的插件分享，这次要分享的插件是一些好玩的摸鱼插件，做人这么能不摸鱼呢，一天不摸鱼就浑身难受，今天就先推荐 5 个吧</p>
-<span id="more"></span>
-
-<h2 id="韭菜盒子"><a href="#韭菜盒子" class="headerlink" title="韭菜盒子"></a>韭菜盒子</h2><p>插件地址：<span class="exturl" data-url="aHR0cHM6Ly9tYXJrZXRwbGFjZS52aXN1YWxzdHVkaW8uY29tL2l0ZW1zP2l0ZW1OYW1lPWdpc2NhZmVyLmxlZWstZnVuZA==">韭菜盒子<i class="fa fa-external-link-alt"></i></span></p>
-<p>顾名思义，就是一个能让在写代码的过程中都不忘当韭菜的插件，这是一款可以看基金看股票的插件，还可以在底部栏显示韭菜的 <del>被割</del> 发育状况😭</p>
-<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main//img/image-20220106233239851.png"></p>
-<p>还可以在控制面板里查看快讯</p>
-<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main//img/image-20220106233828729.png"></p>
-<p>或者是在页面当中查看行情，能够基本满足你在写代码时想当韭菜的愿望</p>
-<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main//img/image-20220106234100341.png"></p>
-<h2 id="蝌蚪池塘"><a href="#蝌蚪池塘" class="headerlink" title="蝌蚪池塘"></a>蝌蚪池塘</h2><p>插件地址：<span class="exturl" data-url="aHR0cHM6Ly9tYXJrZXRwbGFjZS52aXN1YWxzdHVkaW8uY29tL2l0ZW1zP2l0ZW1OYW1lPWV6c2hpbmUudGFkcG9sZQ==">蝌蚪池塘<i class="fa fa-external-link-alt"></i></span></p>
-<p>这是一款聊天室插件，可以让你在摸鱼的同时发现其他摸鱼的人</p>
-<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main//img/image-20220106234456306.png"></p>
-<p>直接打字就可以发送消息</p>
-<p>输入指令 <code>name:</code> 就可以改名字</p>
-<p>输入指令 <code>color:</code> 就可以改小蝌蚪的颜色</p>
-<p>输入指令 <code>size:</code> 就可以让小蝌蚪变大变小</p>
-<p>输入指令 <code>tp:</code> 就可以传送到一个指定的坐标</p>
-<h2 id="vsinder"><a href="#vsinder" class="headerlink" title="vsinder"></a>vsinder</h2><p>插件地址：<span class="exturl" data-url="aHR0cHM6Ly9tYXJrZXRwbGFjZS52aXN1YWxzdHVkaW8uY29tL2l0ZW1zP2l0ZW1OYW1lPWJlbmF3YWQudnNpbmRlcg==">vsinder<i class="fa fa-external-link-alt"></i></span></p>
-<p>这个插件就厉害了，相当于程序员专用的“陌陌”，不过呢，这个插件看的不是人，而是代码（额。。。我的登陆失效了，只好拿人家官方的图来演示了）</p>
-<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main//img/giphy.gif"></p>
-<p>登陆以后你要写上你要分享的代码，和简单的自我介绍，这样别人看到你的代码就可以选择“喜欢”或者“不喜欢”了，当然你也可以去看别人的，在这上面会经常看到一些有趣的代码，或者一些代码的梗</p>
-<h2 id="小霸王"><a href="#小霸王" class="headerlink" title="小霸王"></a>小霸王</h2><p>插件地址：<span class="exturl" data-url="aHR0cHM6Ly9tYXJrZXRwbGFjZS52aXN1YWxzdHVkaW8uY29tL2l0ZW1zP2l0ZW1OYW1lPWdhbWVkaWxvbmcuYW5lcw==">小霸王<i class="fa fa-external-link-alt"></i></span></p>
-<p>这个插件可以让你玩到一些经典的小游戏，安装完以后默认会提供一个超级马里奥的游戏</p>
-<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main//img/image-20220107000219834.png"></p>
-<p>当然你也可以去下载一些默认提供的小游戏</p>
-<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main//img/image-20220107000110751.png"></p>
-<p>如果你有其他小游戏的游戏文件也是可以导入到里面的进行玩耍的哦</p>
-<h2 id="Zhihu-On-VSCode"><a href="#Zhihu-On-VSCode" class="headerlink" title="Zhihu On VSCode"></a>Zhihu On VSCode</h2><p>插件地址：<span class="exturl" data-url="aHR0cHM6Ly9tYXJrZXRwbGFjZS52aXN1YWxzdHVkaW8uY29tL2l0ZW1zP2l0ZW1OYW1lPW5pdWRhaS52c2NvZGUtemhpaHU=">Zhihu On VSCode<i class="fa fa-external-link-alt"></i></span></p>
-<p>这个插件可以让你在 VSCode 当中刷知乎，可以进行登陆绑定账号，这样就可以查看关于你的推荐文章，也可以进行搜索文章或者发布文章</p>
-<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main//img/image-20220107000719622.png"></p>
-<hr>
-<p>关于为什么最近发的这么频繁？其实就是闲的呗，过段时间可能就不会发的这么频繁了，当然我还是希望我可以发的频繁一些</p>
-]]></content>
-      <categories>
-        <category>分享</category>
-      </categories>
-      <tags>
-        <tag>vscode</tag>
       </tags>
   </entry>
   <entry>
@@ -1141,6 +1141,477 @@
       </tags>
   </entry>
   <entry>
+    <title>leetcode 22-03-19</title>
+    <url>/2022/03/19/171023/b0b12d2fb859/</url>
+    <content><![CDATA[<p>今天的 leetcode</p>
+<ul>
+<li><strong><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvcmVtb3ZlLWVsZW1lbnQv">27. 移除元素<i class="fa fa-external-link-alt"></i></span></strong> </li>
+<li><strong><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvYXZlcmFnZS1zYWxhcnktZXhjbHVkaW5nLXRoZS1taW5pbXVtLWFuZC1tYXhpbXVtLXNhbGFyeS8=">1491. 去掉最低工资和最高工资后的工资平均值<i class="fa fa-external-link-alt"></i></span></strong></li>
+<li><strong><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvY291bnQtb2RkLW51bWJlcnMtaW4tYW4taW50ZXJ2YWwtcmFuZ2Uv">1523. 在区间范围内统计奇数数目<i class="fa fa-external-link-alt"></i></span></strong></li>
+</ul>
+<span id="more"></span>
+
+<img data-src="https://stats.justsong.cn/api/leetcode/?username=jesspig&cn=true">
+
+<h2 id="27-移除元素"><a href="#27-移除元素" class="headerlink" title="27. 移除元素"></a>27. 移除元素</h2><h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>只需要将原有数组覆盖就行，只有不等于 val 值的才会去覆盖，等于 val 值的就跳过覆盖，只需要记录覆盖了多少次就行</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// C</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">removeElement</span><span class="params">(<span class="type">int</span>* nums, <span class="type">int</span> numsSize, <span class="type">int</span> val)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (val &gt; <span class="number">100</span> || val &lt; <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">if</span> (numsSize &gt; <span class="number">100</span> || numsSize &lt; <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  <span class="type">int</span> newSize = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; numsSize; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (nums[i] != val) &#123;</span><br><span class="line">      nums[newSize++] = nums[i];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> newSize;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// C</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">removeElement</span><span class="params">(<span class="type">int</span>* nums, <span class="type">int</span> numsSize, <span class="type">int</span> val)</span>&#123;</span><br><span class="line">  <span class="type">int</span> newSize = <span class="number">0</span>;</span><br><span class="line">  <span class="type">int</span> i = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">while</span> (i &lt; numsSize) &#123;</span><br><span class="line">    <span class="keyword">if</span> (nums[i] == val) &#123;</span><br><span class="line">      i++;</span><br><span class="line">      <span class="keyword">continue</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    nums[newSize++] = nums[i];</span><br><span class="line">    i++;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> newSize;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="1491-去掉最低工资和最高工资后的工资平均值"><a href="#1491-去掉最低工资和最高工资后的工资平均值" class="headerlink" title="1491. 去掉最低工资和最高工资后的工资平均值"></a>1491. 去掉最低工资和最高工资后的工资平均值</h2><h3 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h3><p>求出最大最小值和总值，然后  $ (sum - max - min) \div (salarySize - 2) $</p>
+<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// C</span></span><br><span class="line"><span class="type">double</span> <span class="title function_">average</span><span class="params">(<span class="type">int</span>* salary, <span class="type">int</span> salarySize)</span>&#123;</span><br><span class="line">  <span class="type">double</span> sum = <span class="number">0</span>;</span><br><span class="line">  <span class="type">double</span> max = salary[<span class="number">0</span>];</span><br><span class="line">  <span class="type">double</span> min = salary[<span class="number">0</span>];</span><br><span class="line">  <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; salarySize; i++)&#123;</span><br><span class="line">    sum += salary[i];</span><br><span class="line">    max = max &lt; salary[i] ? salary[i] : max;</span><br><span class="line">    min = min &gt; salary[i] ? salary[i] : min;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> (sum - max - min) / (salarySize - <span class="number">2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="1523-在区间范围内统计奇数数目"><a href="#1523-在区间范围内统计奇数数目" class="headerlink" title="1523. 在区间范围内统计奇数数目"></a>1523. 在区间范围内统计奇数数目</h2><h3 id="解题思路-2"><a href="#解题思路-2" class="headerlink" title="解题思路"></a>解题思路</h3><p>当总数为偶数个时，奇数个数必然为总数的一半<br>当总数为奇数个时，偶数到偶数间必然是总数整除一半<br>当总数为奇数个时，奇数到奇数间必然比偶数多一个</p>
+<h3 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// C</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">countOdds</span><span class="params">(<span class="type">int</span> low, <span class="type">int</span> high)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span> ((high - low) % <span class="number">2</span> == <span class="number">0</span> &amp;&amp; low % <span class="number">2</span> == <span class="number">0</span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> (high - low) / <span class="number">2</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> (high - low) / <span class="number">2</span> + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>C</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>leetcode 22-03-20</title>
+    <url>/2022/03/20/212340/c02eaed37a41/</url>
+    <content><![CDATA[<p>今日份 LeetCode</p>
+<ul>
+<li><strong><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvbnVtYmVyLW9mLTEtYml0cy8=">191. 位1的个数<i class="fa fa-external-link-alt"></i></span></strong> </li>
+<li><strong><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvc3VidHJhY3QtdGhlLXByb2R1Y3QtYW5kLXN1bS1vZi1kaWdpdHMtb2YtYW4taW50ZWdlci8=">1281. 整数的各位积和之差<i class="fa fa-external-link-alt"></i></span></strong></li>
+<li><strong><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvYmluYXJ5LXNlYXJjaC8=">704. 二分查找<i class="fa fa-external-link-alt"></i></span></strong></li>
+</ul>
+<span id="more"></span>
+
+<p><img data-src="https://stats.justsong.cn/api/leetcode/?username=jesspig&cn=true"></p>
+<h2 id="191-位1的个数"><a href="#191-位1的个数" class="headerlink" title="191. 位1的个数"></a>191. 位1的个数</h2><h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>跟 <code>1</code> 进行按位与运算，等于 <code>1</code> 时 <code>res</code> 加 1</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// C</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">hammingWeight</span><span class="params">(<span class="type">uint32_t</span> n)</span> &#123;</span><br><span class="line">  <span class="type">int</span> res = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">32</span>; i++)&#123;</span><br><span class="line">    res = (n &gt;&gt; i) &amp; <span class="number">1u</span> ? res + <span class="number">1</span> : res;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="1281-整数的各位积和之差"><a href="#1281-整数的各位积和之差" class="headerlink" title="1281. 整数的各位积和之差"></a>1281. 整数的各位积和之差</h2><h3 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h3><p>取出每一位数进行累加和累乘</p>
+<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// C</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">subtractProductAndSum</span><span class="params">(<span class="type">int</span> n)</span>&#123;</span><br><span class="line">  <span class="type">int</span> sum = <span class="number">0</span>;</span><br><span class="line">  <span class="type">int</span> product = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">while</span>(n &gt; <span class="number">0</span>)&#123;</span><br><span class="line">    <span class="type">int</span> m = n % <span class="number">10</span>;</span><br><span class="line">    sum += m;</span><br><span class="line">    product *= m;</span><br><span class="line">    n /= <span class="number">10</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> product - sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="704-二分查找"><a href="#704-二分查找" class="headerlink" title="704. 二分查找"></a>704. 二分查找</h2><h3 id="解题思路-2"><a href="#解题思路-2" class="headerlink" title="解题思路"></a>解题思路</h3><p>将数分成两堆，如果不在左边就在右边，一直这样分，直到找出或者没找出来为止</p>
+<h3 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// C</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">search</span><span class="params">(<span class="type">int</span>* nums, <span class="type">int</span> numsSize, <span class="type">int</span> target)</span>&#123;</span><br><span class="line">  <span class="type">int</span> l = <span class="number">0</span>, r = numsSize - <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">while</span>(l &lt;= r)&#123;</span><br><span class="line">    <span class="type">int</span> m = (r - l) / <span class="number">2</span> + l;</span><br><span class="line">    <span class="keyword">if</span>(nums[m] == target) <span class="keyword">return</span> m;</span><br><span class="line">    <span class="keyword">if</span>(nums[m] &gt; target) r = m - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span>(nums[m] &lt; target) l = m + <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>C</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>leetcode 22-03-21</title>
+    <url>/2022/03/21/231736/27b76f5015b0/</url>
+    <content><![CDATA[<p>今日份 leetcode，只做了两题</p>
+<ul>
+<li><strong><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvbGFyZ2VzdC1wZXJpbWV0ZXItdHJpYW5nbGUv">976. 三角形的最大周长<i class="fa fa-external-link-alt"></i></span></strong></li>
+<li><strong><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvZmluZC1uZWFyZXN0LXBvaW50LXRoYXQtaGFzLXRoZS1zYW1lLXgtb3IteS1jb29yZGluYXRlLw==">1779. 找到最近的有相同 X 或 Y 坐标的点<i class="fa fa-external-link-alt"></i></span></strong></li>
+</ul>
+<span id="more"></span>
+
+<p><img data-src="https://stats.justsong.cn/api/leetcode/?username=jesspig&cn=true"></p>
+<hr>
+<h2 id="976-三角形的最大周长"><a href="#976-三角形的最大周长" class="headerlink" title="976. 三角形的最大周长"></a>976. 三角形的最大周长</h2><h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>先排序，后比较，满足三角形条件后返回</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// C</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">cmp</span><span class="params">(<span class="type">void</span> *a, <span class="type">void</span> *b)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> *(<span class="type">int</span> *)b - *(<span class="type">int</span> *)a;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">largestPerimeter</span><span class="params">(<span class="type">int</span>* nums, <span class="type">int</span> numsSize)</span>&#123;</span><br><span class="line">    qsort(nums,numsSize,<span class="keyword">sizeof</span>(<span class="type">int</span>),cmp);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; numsSize - <span class="number">2</span> ; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(nums[i + <span class="number">2</span>] + nums[i + <span class="number">1</span>] &gt; nums[i])&#123;</span><br><span class="line">            <span class="keyword">return</span> nums[i] + nums[i + <span class="number">1</span>] + nums[i + <span class="number">2</span>];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="1779-找到最近的有相同-X-或-Y-坐标的点"><a href="#1779-找到最近的有相同-X-或-Y-坐标的点" class="headerlink" title="1779. 找到最近的有相同 X 或 Y 坐标的点"></a>1779. 找到最近的有相同 X 或 Y 坐标的点</h2><h3 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h3><p>计算每个符合条件的坐标距离，并记录下标，当遇到更小的距离时才替换记录的下标，否则不改变记录的下标</p>
+<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// C</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">nearestValidPoint</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y, <span class="type">int</span>** points, <span class="type">int</span> pointsSize, <span class="type">int</span>* pointsColSize)</span>&#123;</span><br><span class="line">  <span class="type">int</span> dist = INT_MAX;</span><br><span class="line">  <span class="type">int</span> x1 = <span class="number">-1</span>;</span><br><span class="line">  <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; pointsSize; i++)&#123;</span><br><span class="line">    <span class="keyword">if</span> (points[i][<span class="number">0</span>] == x || points[i][<span class="number">1</span>] == y)&#123;</span><br><span class="line">      <span class="type">int</span> x2 = <span class="built_in">abs</span>(points[i][<span class="number">0</span>] - x);</span><br><span class="line">      <span class="type">int</span> y2 = <span class="built_in">abs</span>(points[i][<span class="number">1</span>] - y);</span><br><span class="line">      <span class="keyword">if</span>((x2 + y2) &lt; dist)&#123;</span><br><span class="line">        dist = (x2 + y2) &lt; dist ? (x2 + y2) : dist;</span><br><span class="line">        x1 = i;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> x1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>C</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>leetcode 22-03-22</title>
+    <url>/2022/03/22/015201/855f2896c820/</url>
+    <content><![CDATA[<p>今日份 leetcode ，昨天两题，那今天就补上</p>
+<ul>
+<li><strong><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvc2lnbi1vZi10aGUtcHJvZHVjdC1vZi1hbi1hcnJheS8=">1822. 数组元素积的符号<i class="fa fa-external-link-alt"></i></span></strong></li>
+<li><strong><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvY2FuLW1ha2UtYXJpdGhtZXRpYy1wcm9ncmVzc2lvbi1mcm9tLXNlcXVlbmNlLw==">1502. 判断能否形成等差数列<i class="fa fa-external-link-alt"></i></span></strong></li>
+<li><strong><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvaGFwcHktbnVtYmVyLw==">202. 快乐数<i class="fa fa-external-link-alt"></i></span></strong></li>
+<li><strong><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvY2hlY2staWYtb25lLXN0cmluZy1zd2FwLWNhbi1tYWtlLXN0cmluZ3MtZXF1YWwv">1790. 仅执行一次字符串交换能否使两个字符串相等<i class="fa fa-external-link-alt"></i></span></strong></li>
+</ul>
+<span id="more"></span>
+
+<p><img data-src="https://stats.justsong.cn/api/leetcode/?username=jesspig&cn=true"></p>
+<h2 id="1822-数组元素积的符号"><a href="#1822-数组元素积的符号" class="headerlink" title="1822. 数组元素积的符号"></a>1822. 数组元素积的符号</h2><p>这道题有点意思，本来想着有点过于简单</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// C</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">signFunc</span><span class="params">(<span class="type">int</span> x)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(x == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">return</span> x &gt; <span class="number">0</span> ? <span class="number">1</span> : <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">arraySign</span><span class="params">(<span class="type">int</span>* nums, <span class="type">int</span> numsSize)</span>&#123;</span><br><span class="line">  <span class="type">int</span> product = nums[<span class="number">0</span>];</span><br><span class="line">  <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt; numsSize; i++)&#123;</span><br><span class="line">    product *= nums[i];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> signFunc(product);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>结果发现溢出了，即使换成 <code>long long int</code> 也是会溢出，还在想着要不转成科学计数法试试，结果发现标题就是答案</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>既然标题就是答案，要求记录最终乘积的符号，那就只记符号就好了</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// C</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">arraySign</span><span class="params">(<span class="type">int</span>* nums, <span class="type">int</span> numsSize)</span>&#123;</span><br><span class="line">  <span class="type">int</span> product = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; numsSize; i++)&#123;</span><br><span class="line">    <span class="keyword">if</span>(nums[i] == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    product *= nums[i] &gt; <span class="number">0</span> ? <span class="number">1</span> : <span class="number">-1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> product;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="1502-判断能否形成等差数列"><a href="#1502-判断能否形成等差数列" class="headerlink" title="1502. 判断能否形成等差数列"></a>1502. 判断能否形成等差数列</h2><h3 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h3><p>先排序，再比较每个值的差是否相等</p>
+<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// C</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">cmp</span><span class="params">(<span class="type">void</span> *x, <span class="type">void</span> *y)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> *(<span class="type">int</span> *) x - *(<span class="type">int</span> *) y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">bool</span> <span class="title function_">canMakeArithmeticProgression</span><span class="params">(<span class="type">int</span>* arr, <span class="type">int</span> arrSize)</span>&#123;</span><br><span class="line">  qsort(arr,arrSize,<span class="keyword">sizeof</span>(<span class="type">int</span>),cmp);</span><br><span class="line">  <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt; arrSize - <span class="number">1</span>; i++)&#123;</span><br><span class="line">    <span class="keyword">if</span>(arr[i] - arr[i - <span class="number">1</span>] != arr[i + <span class="number">1</span>] - arr[i])&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="202-快乐数"><a href="#202-快乐数" class="headerlink" title="202. 快乐数"></a>202. 快乐数</h2><h3 id="解题思路-2"><a href="#解题思路-2" class="headerlink" title="解题思路"></a>解题思路</h3><p>将出现过的数记录下来，只要重复出现那就代表循环了，至于数组大小为什么是 <code>810</code> 因为那是我用计算器算的，哈哈🤣，其实应该可以更小点<br><img data-src="https://pic.leetcode-cn.com/1647884527-NqGbHu-image.png"></p>
+<h3 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// C</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">sum</span><span class="params">(<span class="type">int</span> n)</span>&#123;</span><br><span class="line">  <span class="type">int</span> s = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">while</span>(n != <span class="number">0</span>)&#123;</span><br><span class="line">    <span class="type">int</span> t = n % <span class="number">10</span>;</span><br><span class="line">    n /= <span class="number">10</span>;</span><br><span class="line">    s += t * t;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> s;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">bool</span> <span class="title function_">isHappy</span><span class="params">(<span class="type">int</span> n)</span>&#123;</span><br><span class="line">  <span class="type">int</span> t[<span class="number">810</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">  <span class="keyword">if</span> (n == <span class="number">1</span>) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">  <span class="keyword">while</span>(n != <span class="number">1</span>)&#123;</span><br><span class="line">    n = sum(n);</span><br><span class="line">    <span class="keyword">if</span> (t[n] &gt; <span class="number">1</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    t[n]++;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>而且第一次拿这么好的成绩，有点小激动</p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/jesspig/PicBed@main/img/202203220146259.png"></p>
+<h2 id="1790-仅执行一次字符串交换能否使两个字符串相等"><a href="#1790-仅执行一次字符串交换能否使两个字符串相等" class="headerlink" title="1790. 仅执行一次字符串交换能否使两个字符串相等"></a>1790. 仅执行一次字符串交换能否使两个字符串相等</h2><h3 id="解题思路-3"><a href="#解题思路-3" class="headerlink" title="解题思路"></a>解题思路</h3><p>标记不相同的下标，然后查看两个下标的元素是否可以交换，相差超过3个必然不能进行交换</p>
+<h3 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// C</span></span><br><span class="line"><span class="type">bool</span> <span class="title function_">areAlmostEqual</span><span class="params">(<span class="type">char</span> * s1, <span class="type">char</span> * s2)</span>&#123;</span><br><span class="line">  <span class="type">int</span> len = <span class="built_in">strlen</span>(s1);</span><br><span class="line">  <span class="type">int</span> diff = <span class="number">0</span>;</span><br><span class="line">  <span class="type">int</span> flag[<span class="number">2</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">  <span class="keyword">if</span> (s1 == s2) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; len; i++)&#123;</span><br><span class="line">    <span class="keyword">if</span> (s1[i] != s2[i]) &#123;</span><br><span class="line">      <span class="keyword">if</span> (diff == <span class="number">0</span>) flag[<span class="number">0</span>] = i;</span><br><span class="line">      <span class="keyword">if</span> (diff == <span class="number">1</span>) flag[<span class="number">1</span>] = i;</span><br><span class="line">      diff++;</span><br><span class="line">      <span class="keyword">if</span> (diff &gt; <span class="number">2</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (s1[flag[<span class="number">0</span>]] == s2[flag[<span class="number">1</span>]] &amp;&amp; s1[flag[<span class="number">1</span>]] == s2[flag[<span class="number">0</span>]]) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>C</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>leetcode 22-03-26</title>
+    <url>/2022/03/26/234538/e196352b0882/</url>
+    <content><![CDATA[<p>今日份 leetcode</p>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvbWVyZ2Utc3RyaW5ncy1hbHRlcm5hdGVseS8=">1768. 交替合并字符串<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvZ29hbC1wYXJzZXItaW50ZXJwcmV0YXRpb24v">1678. 设计 Goal 解析器<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvZmluZC10aGUtZGlmZmVyZW5jZS8=">389. 找不同<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+<span id="more"></span>
+
+<p><img data-src="https://stats.justsong.cn/api/leetcode/?username=jesspig&cn=true"></p>
+<h2 id="1768-交替合并字符串"><a href="#1768-交替合并字符串" class="headerlink" title="1768. 交替合并字符串"></a>1768. 交替合并字符串</h2><h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>先轮流往新字符串里加字符，有多的再全部补上，结尾以 <code>\0</code> 结束字符串</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// C</span></span><br><span class="line"><span class="type">char</span> * <span class="title function_">mergeAlternately</span><span class="params">(<span class="type">char</span> * word1, <span class="type">char</span> * word2)</span>&#123;</span><br><span class="line">    <span class="type">int</span> len1 = <span class="built_in">strlen</span>(word1);</span><br><span class="line">    <span class="type">int</span> len2 = <span class="built_in">strlen</span>(word2);</span><br><span class="line">    <span class="type">char</span> * res = (<span class="type">char</span> *) <span class="built_in">malloc</span> (<span class="keyword">sizeof</span>(<span class="type">char</span>) * (len1 + len2 + <span class="number">1</span>));</span><br><span class="line">    <span class="type">int</span> residx = <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> idx1 = <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> idx2 = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(idx1 &lt; len1 &amp;&amp; idx2 &lt; len2)&#123;</span><br><span class="line">        res[residx++] = word1[idx1++];</span><br><span class="line">        res[residx++] = word2[idx2++];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(idx1 &lt; len1) res[residx++] = word1[idx1++];</span><br><span class="line">    <span class="keyword">while</span>(idx2 &lt; len2) res[residx++] = word2[idx2++];</span><br><span class="line">    res[residx] = <span class="string">&#x27;\0&#x27;</span>;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="1678-设计-Goal-解析器"><a href="#1678-设计-Goal-解析器" class="headerlink" title="1678. 设计 Goal 解析器"></a>1678. 设计 Goal 解析器</h2><h3 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h3><p>已知输入的字符串只会包含 G、() 和 (al)，所以只需要知道是不是 G 还有知道 ( 后面跟的是什么就行了，然后往新字符串中加入对应值，遍历到其他字符的情况就跳过，最后补上 \0 结束字符串</p>
+<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// C</span></span><br><span class="line"><span class="type">char</span> * <span class="title function_">interpret</span><span class="params">(<span class="type">char</span> * command)</span>&#123;</span><br><span class="line">    <span class="type">int</span> reslen = <span class="built_in">strlen</span>(command);</span><br><span class="line">    <span class="type">char</span> * res = (<span class="type">char</span> *) <span class="built_in">malloc</span> (<span class="keyword">sizeof</span>(<span class="type">char</span>) * reslen + <span class="number">1</span>); </span><br><span class="line">    <span class="type">int</span> idx = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; reslen; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(command[i] == <span class="string">&#x27;G&#x27;</span>) res[idx++] = <span class="string">&#x27;G&#x27;</span>;</span><br><span class="line">        <span class="keyword">if</span>(command[i] == <span class="string">&#x27;(&#x27;</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(command[i + <span class="number">1</span>] == <span class="string">&#x27;)&#x27;</span>) res[idx++] = <span class="string">&#x27;o&#x27;</span>;</span><br><span class="line">            <span class="keyword">if</span>(command[i + <span class="number">1</span>] == <span class="string">&#x27;a&#x27;</span>) &#123;</span><br><span class="line">                res[idx++] = <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">                res[idx++] = <span class="string">&#x27;l&#x27;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    res[idx] = <span class="string">&#x27;\0&#x27;</span>;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="389-找不同"><a href="#389-找不同" class="headerlink" title="389. 找不同"></a>389. 找不同</h2><p><img data-src="https://pic.leetcode-cn.com/1648314548-zRkkjZ-image.png" alt="image.png"></p>
+<h3 id="解题思路-2"><a href="#解题思路-2" class="headerlink" title="解题思路"></a>解题思路</h3><p>统计每个字符出现的次数，然后找出次数不一样的将它返回就行</p>
+<h3 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// C</span></span><br><span class="line"><span class="type">char</span> <span class="title function_">findTheDifference</span><span class="params">(<span class="type">char</span> * s, <span class="type">char</span> * t)</span>&#123;</span><br><span class="line">    <span class="type">int</span> len = <span class="built_in">strlen</span>(s);</span><br><span class="line">    <span class="type">int</span> idx = <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> s_flags[<span class="number">26</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="type">int</span> t_flags[<span class="number">26</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; len; i++)&#123;</span><br><span class="line">        s_flags[s[i] - <span class="string">&#x27;a&#x27;</span>]++;</span><br><span class="line">        t_flags[t[i] - <span class="string">&#x27;a&#x27;</span>]++;</span><br><span class="line">    &#125;</span><br><span class="line">    t_flags[t[len] - <span class="string">&#x27;a&#x27;</span>]++;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">26</span>; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(s_flags[i] != t_flags[i])&#123;</span><br><span class="line">            idx = i;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> idx + <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>C</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>leetcode 22-03-25</title>
+    <url>/2022/03/25/155735/2967112ba5a3/</url>
+    <content><![CDATA[<p>今日份 leetcode</p>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvbWF0cml4LWRpYWdvbmFsLXN1bS8=">1572. 矩阵对角线元素的和<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvc3F1YXJlcy1vZi1hLXNvcnRlZC1hcnJheS8=">977. 有序数组的平方<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvZmlyc3QtYmFkLXZlcnNpb24v">278. 第一个错误的版本<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+<span id="more"></span>
+
+<p><img data-src="https://stats.justsong.cn/api/leetcode/?username=jesspig&cn=true"></p>
+<h2 id="1572-矩阵对角线元素的和"><a href="#1572-矩阵对角线元素的和" class="headerlink" title="1572. 矩阵对角线元素的和"></a>1572. 矩阵对角线元素的和</h2><h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>存在交点时交点只被计算一次</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// C</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">diagonalSum</span><span class="params">(<span class="type">int</span>** mat, <span class="type">int</span> matSize, <span class="type">int</span>* matColSize)</span>&#123;</span><br><span class="line">    <span class="type">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; matSize; i++)&#123;</span><br><span class="line">        sum += i == matSize - i - <span class="number">1</span> ? mat[i][i] : mat[i][i] + mat[i][matSize - i - <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="977-有序数组的平方"><a href="#977-有序数组的平方" class="headerlink" title="977. 有序数组的平方"></a>977. 有序数组的平方</h2><h3 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h3><p>每个元素乘以自己然后再排序</p>
+<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// C</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Note: The returned array must be malloced, assume caller calls free().</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">cmp</span> <span class="params">(<span class="type">void</span> * a, <span class="type">void</span> * b)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> *(<span class="type">int</span> *) a - *(<span class="type">int</span> *) b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span>* <span class="title function_">sortedSquares</span><span class="params">(<span class="type">int</span>* nums, <span class="type">int</span> numsSize, <span class="type">int</span>* returnSize)</span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; numsSize ; i++)&#123;</span><br><span class="line">        nums[i] *= nums[i]; </span><br><span class="line">    &#125;</span><br><span class="line">    qsort(nums,numsSize,<span class="keyword">sizeof</span>(<span class="type">int</span>),cmp);</span><br><span class="line">    *returnSize = numsSize;</span><br><span class="line">    <span class="keyword">return</span> nums;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="278-第一个错误的版本"><a href="#278-第一个错误的版本" class="headerlink" title="278. 第一个错误的版本"></a>278. 第一个错误的版本</h2><p>本来打算直接找的，不过果不其然超时了，所以用二分</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// C</span></span><br><span class="line"><span class="comment">// The API isBadVersion is defined for you.</span></span><br><span class="line"><span class="comment">// bool isBadVersion(int version);</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">firstBadVersion</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt;= n; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(isBadVersion(i))&#123;</span><br><span class="line">            <span class="keyword">return</span> i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="解题思路-2"><a href="#解题思路-2" class="headerlink" title="解题思路"></a>解题思路</h3><p>因为只要错了一个版本后面的都会错，所以只要两边缩直到剩下一个，要注意的是 <code>right</code> 不用 <code>-1</code> ，因为它本身可能就是第一个错误</p>
+<h3 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// C</span></span><br><span class="line"><span class="comment">// The API isBadVersion is defined for you.</span></span><br><span class="line"><span class="comment">// bool isBadVersion(int version);</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">firstBadVersion</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">    <span class="type">int</span> left = <span class="number">1</span>;</span><br><span class="line">    <span class="type">int</span> right = n;</span><br><span class="line">    <span class="keyword">while</span>(left &lt; right)&#123;</span><br><span class="line">        <span class="type">int</span> mid = (right - left) / <span class="number">2</span> + left;</span><br><span class="line">        <span class="keyword">if</span> (isBadVersion(mid)) right = mid;</span><br><span class="line">        <span class="keyword">else</span> left = mid + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> left;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>C</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>leetcode 22-03-24</title>
+    <url>/2022/03/24/235102/56310aed3073/</url>
+    <content><![CDATA[<p>今日份 leetcode ，昨天没更，因为发现关于树的都不会，我需要先去研究一下</p>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvc3VtLW9mLWFsbC1vZGQtbGVuZ3RoLXN1YmFycmF5cy8=">1588. 所有奇数长度子数组的和<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvbW92ZS16ZXJvZXMv">283. 移动零<i class="fa fa-external-link-alt"></i></span> </li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvcmljaGVzdC1jdXN0b21lci13ZWFsdGgv">1672. 最富有客户的资产总量<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+<span id="more"></span>
+
+<p><img data-src="https://stats.justsong.cn/api/leetcode/?username=jesspig&cn=true"></p>
+<h2 id="1588-所有奇数长度子数组的和"><a href="#1588-所有奇数长度子数组的和" class="headerlink" title="1588. 所有奇数长度子数组的和"></a>1588. 所有奇数长度子数组的和</h2><h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>从第一个元素开始往下，计算每奇数个连续的数能组合的情况的和再相加<br>大概就像这样</p>
+<figure class="highlight ruby"><table><tr><td class="code"><pre><span class="line">&lt;&lt; [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line"></span><br><span class="line"><span class="meta prompt_">&gt;&gt;</span> [<span class="number">1</span>],[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line"><span class="meta prompt_">&gt;&gt;</span> [<span class="number">2</span>],[<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line"><span class="meta prompt_">&gt;&gt;</span> [<span class="number">3</span>]</span><br><span class="line"><span class="meta prompt_">&gt;&gt;</span> [<span class="number">4</span>]</span><br></pre></td></tr></table></figure>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">sumOddLengthSubarrays</span><span class="params">(<span class="type">int</span>* arr, <span class="type">int</span> arrSize)</span> &#123;</span><br><span class="line">    <span class="type">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> left = <span class="number">0</span>; left &lt; arrSize; left++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> len = <span class="number">1</span>; len + left &lt;= arrSize; len += <span class="number">2</span>)&#123;</span><br><span class="line">            <span class="type">int</span> right = left + len - <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> i = left; i &lt;= right; i++)&#123;</span><br><span class="line">                sum += arr[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="283-移动零"><a href="#283-移动零" class="headerlink" title="283. 移动零"></a>283. 移动零</h2><h3 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h3><p>只要不等于0的都往前覆盖，并记录下覆盖的次数，然后填0</p>
+<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// C</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">moveZeroes</span><span class="params">(<span class="type">int</span>* nums, <span class="type">int</span> numsSize)</span>&#123;</span><br><span class="line">    <span class="type">int</span> count = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; numsSize; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span> (nums[i] != <span class="number">0</span>) &#123;</span><br><span class="line">            nums[count++] = nums[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = count; i &lt; numsSize; i++)&#123;</span><br><span class="line">        nums[i] = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="1672-最富有客户的资产总量"><a href="#1672-最富有客户的资产总量" class="headerlink" title="1672. 最富有客户的资产总量"></a>1672. 最富有客户的资产总量</h2><h3 id="解题思路-2"><a href="#解题思路-2" class="headerlink" title="解题思路"></a>解题思路</h3><p>只需要使用一个临时变量来保存每组的总值，然后返回最大的</p>
+<h3 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// C</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">maximumWealth</span><span class="params">(<span class="type">int</span>** accounts, <span class="type">int</span> accountsSize, <span class="type">int</span>* accountsColSize)</span>&#123;</span><br><span class="line">    <span class="type">int</span> max = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; accountsSize; i++)&#123;</span><br><span class="line">        <span class="type">int</span> t = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">0</span>; j &lt; *accountsColSize; j++)&#123;</span><br><span class="line">            t += accounts[i][j];</span><br><span class="line">        &#125;</span><br><span class="line">        max = max &lt; t ? t : max;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> max;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>C</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>leetcode 22-03-27</title>
+    <url>/2022/03/27/171557/7c83337496ca/</url>
+    <content><![CDATA[<p>今日份 leetcode</p>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvcm90YXRlLWFycmF5Lw==">189. 轮转数组<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvdG8tbG93ZXItY2FzZS8=">709. 转换成小写字母<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvZGVjcnlwdC1zdHJpbmctZnJvbS1hbHBoYWJldC10by1pbnRlZ2VyLW1hcHBpbmcv">1309. 解码字母到整数映射<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+<span id="more"></span>
+
+<p><img data-src="https://stats.justsong.cn/api/leetcode/?username=jesspig&cn=true"></p>
+<h2 id="189-轮转数组"><a href="#189-轮转数组" class="headerlink" title="189. 轮转数组"></a>189. 轮转数组</h2><h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>将值放到新数组中对应的位置，然后用新数组覆盖原数组</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// C</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">rotate</span><span class="params">(<span class="type">int</span>* nums, <span class="type">int</span> numsSize, <span class="type">int</span> k)</span>&#123;</span><br><span class="line">    <span class="type">int</span> arr[numsSize];</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; numsSize; i++) &#123;</span><br><span class="line">        arr[(i + k) % numsSize] = nums[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; numsSize; i++) &#123;</span><br><span class="line">        nums[i] = arr[i];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="709-转换成小写字母"><a href="#709-转换成小写字母" class="headerlink" title="709. 转换成小写字母"></a>709. 转换成小写字母</h2><h3 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h3><p>判断是否为大写，是大写就 ‘+32’，因为大小写相差 32</p>
+<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">//C</span></span><br><span class="line"><span class="type">char</span> * <span class="title function_">toLowerCase</span><span class="params">(<span class="type">char</span> * s)</span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="built_in">strlen</span>(s); i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(s[i] &gt;= <span class="string">&#x27;A&#x27;</span> &amp;&amp; s[i] &lt;= <span class="string">&#x27;Z&#x27;</span>) s[i] += <span class="number">32</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> s;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="1309-解码字母到整数映射"><a href="#1309-解码字母到整数映射" class="headerlink" title="1309. 解码字母到整数映射"></a>1309. 解码字母到整数映射</h2><p>又是个难得的好成绩🤣</p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/jesspig/PicBed@main/img/202203271659043.png"></p>
+<h3 id="解题思路-2"><a href="#解题思路-2" class="headerlink" title="解题思路"></a>解题思路</h3><p>字符 <code>0 - 9</code> 减去 字符 <code>0</code> 就是数字 <code>0 - 9</code>，这时只要加上字符 <code>a</code> 就会等于其对应的小写字母，知道这些，就只需要判断输入的字符满足 <code>0 - 9</code> 还是 <code>#</code> 的条件就好了</p>
+<h3 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// C</span></span><br><span class="line"><span class="type">char</span> * <span class="title function_">freqAlphabets</span><span class="params">(<span class="type">char</span> * s)</span>&#123;</span><br><span class="line">    <span class="type">char</span> *res= <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="type">char</span>) * (<span class="built_in">strlen</span>(s) + <span class="number">1</span>) );</span><br><span class="line">    <span class="type">int</span> idx = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="built_in">strlen</span>(s);)&#123;</span><br><span class="line">        <span class="keyword">if</span>(i+<span class="number">2</span> &lt; <span class="built_in">strlen</span>(s) &amp;&amp; s[i+<span class="number">2</span>] == <span class="string">&#x27;#&#x27;</span>)&#123;</span><br><span class="line">            res[idx++] = ((s[i] - <span class="string">&#x27;0&#x27;</span>) * <span class="number">10</span> + s[i + <span class="number">1</span>] - <span class="string">&#x27;1&#x27;</span>) + <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">            i += <span class="number">3</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            res[idx++] = (s[i] - <span class="string">&#x27;1&#x27;</span>) + <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    res[idx] =  <span class="string">&#x27;\0&#x27;</span>;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>C</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>leetcode 22-03-29</title>
+    <url>/2022/03/29/012204/22c6f06ff444/</url>
+    <content><![CDATA[<p>今日份 leetcode</p>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvY29udGFpbnMtZHVwbGljYXRlLw==">217. 存在重复元素<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvdHdvLXN1bS1paS1pbnB1dC1hcnJheS1pcy1zb3J0ZWQv">167. 两数之和 II - 输入有序数组<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+<span id="more"></span>
+
+<p><img data-src="https://stats.justsong.cn/api/leetcode/?username=jesspig&cn=true"></p>
+<h2 id="217-存在重复元素"><a href="#217-存在重复元素" class="headerlink" title="217. 存在重复元素"></a>217. 存在重复元素</h2><p>提交时才发现这道题之前做过一次，但好像没发题解</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>先将代码进行排序，然后逐一比较，若当前元素等于后一个，则表示存在重复元素</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// C</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">cmp</span><span class="params">(<span class="type">int</span> *x, <span class="type">int</span> *y)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> *x - *y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">bool</span> <span class="title function_">containsDuplicate</span><span class="params">(<span class="type">int</span>* nums, <span class="type">int</span> numsSize)</span> &#123;</span><br><span class="line">    qsort(nums, numsSize, <span class="keyword">sizeof</span>(<span class="type">int</span>), cmp);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; numsSize - <span class="number">1</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (nums[i] == nums[i + <span class="number">1</span>]) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// javascript</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">number[]</span>&#125; <span class="variable">nums</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> &#123;<span class="type">boolean</span>&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> containsDuplicate = <span class="keyword">function</span>(<span class="params">nums</span>) &#123;</span><br><span class="line">    nums.<span class="title function_">sort</span>();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; nums.<span class="property">length</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(nums[i] == nums[i + <span class="number">1</span>])</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="167-两数之和-II-输入有序数组"><a href="#167-两数之和-II-输入有序数组" class="headerlink" title="167. 两数之和 II - 输入有序数组"></a>167. 两数之和 II - 输入有序数组</h2><h3 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h3><p>因为给定的数组是有序的，所以可以得出以下结论<br>左边和右边相加，如果比目标值大，说明右边的数太大了，所以往前推<br>左边和右边相加，如果比目标值小，说明左边的数太小了，所以往后推<br>左边和右边相加，如果等于目标值，说明找到了，所以返回下标 <code>+1</code>，一开始没看清楚题目以为是返回下标</p>
+<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Note: The returned array must be malloced, assume caller calls free().</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="type">int</span>* <span class="title function_">twoSum</span><span class="params">(<span class="type">int</span>* numbers, <span class="type">int</span> numbersSize, <span class="type">int</span> target, <span class="type">int</span>* returnSize)</span>&#123;</span><br><span class="line">    <span class="type">int</span> * res = (<span class="type">int</span> *) <span class="built_in">malloc</span> (<span class="keyword">sizeof</span>(<span class="type">int</span>) * <span class="number">2</span>);</span><br><span class="line">    <span class="type">int</span> left = <span class="number">0</span>, right = numbersSize - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(left &lt; numbersSize)&#123;</span><br><span class="line">        <span class="keyword">if</span>(numbers[left] + numbers[right] == target)&#123;</span><br><span class="line">            res[<span class="number">0</span>] = left + <span class="number">1</span>;</span><br><span class="line">            res[<span class="number">1</span>] = right + <span class="number">1</span>;</span><br><span class="line">            *returnSize = <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">return</span> res;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(numbers[left] + numbers[right] &gt; target) right--;</span><br><span class="line">        <span class="keyword">if</span>(numbers[left] + numbers[right] &lt; target) left++;</span><br><span class="line">    &#125;</span><br><span class="line">    *returnSize = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>最后吐槽一下，为什么别人暴力能过，我暴力超时😭<br><img data-src="https://pic.leetcode-cn.com/1648487226-smZsZq-image.png" alt="image.png"></p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span>* <span class="title function_">twoSum</span><span class="params">(<span class="type">int</span>* numbers, <span class="type">int</span> numbersSize, <span class="type">int</span> target, <span class="type">int</span>* returnSize)</span>&#123;</span><br><span class="line">    <span class="type">int</span> * res = (<span class="type">int</span> *) <span class="built_in">malloc</span> (<span class="keyword">sizeof</span>(<span class="type">int</span>) * <span class="number">2</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; numbersSize - <span class="number">1</span>; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j = i + <span class="number">1</span>; j &lt; numbersSize; j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(numbers[i] + numbers[j] == target)&#123;</span><br><span class="line">                res[<span class="number">0</span>] = i + <span class="number">1</span>;</span><br><span class="line">                res[<span class="number">1</span>] = j + <span class="number">1</span>;</span><br><span class="line">                *returnSize = <span class="number">2</span>;</span><br><span class="line">                <span class="keyword">return</span> res;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    *returnSize = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+        <tag>leetcode</tag>
+        <tag>C</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>leetcode 22-04-05</title>
+    <url>/2022/04/05/222755/f25dbf83e235/</url>
+    <content><![CDATA[<p>今日份 leetcode</p>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvYmluYXJ5LXByZWZpeC1kaXZpc2libGUtYnktNS8=">1018. 可被 5 整除的二进制前缀<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvcmVwbGFjZS1hbGwtZGlnaXRzLXdpdGgtY2hhcmFjdGVycy8=">1844. 将所有数字用字符替换<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvYnVsbHMtYW5kLWNvd3Mv">299. 猜数字游戏<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvZmluZC1ncmVhdGVzdC1jb21tb24tZGl2aXNvci1vZi1hcnJheS8=">1979. 找出数组的最大公约数<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+<span id="more"></span>
+
+<p><img data-src="https://stats.justsong.cn/api/leetcode/?username=jesspig&cn=true"></p>
+<p>最近学校的作业有那么亿点点多，所以没太多时间刷题</p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/jesspig/PicBed@main/img/202204051846179.png"></p>
+<h2 id="1018-可被-5-整除的二进制前缀"><a href="#1018-可被-5-整除的二进制前缀" class="headerlink" title="1018. 可被 5 整除的二进制前缀"></a>1018. 可被 5 整除的二进制前缀</h2><h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>通过左移加上二进制数组的元素再模 <code>5</code>，然后再判断是否等于 <code>0</code> 即可<br>但会有一个问题，那就是这个数会变得很大，不过根据平时的计算可以发现 <code>5</code> 的倍数跟其他位无关，只跟个位上的数有关，所以其余的位数可以舍去，只需要知道<code>(个位数上的数 * 2 + 数组元素) % 5</code> 是否等于 <code>0</code> 即可</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// C</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Note: The returned array must be malloced, assume caller calls free().</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"> <span class="type">bool</span>* <span class="title function_">prefixesDivBy5</span><span class="params">(<span class="type">int</span>* nums, <span class="type">int</span> numsSize, <span class="type">int</span>* returnSize)</span>&#123;</span><br><span class="line">    *returnSize = numsSize;</span><br><span class="line">    <span class="type">bool</span> * ans = (<span class="type">bool</span> *) <span class="built_in">malloc</span> (<span class="keyword">sizeof</span>(<span class="type">bool</span>) * numsSize);</span><br><span class="line">    <span class="type">int</span> n = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; numsSize; i++)&#123;</span><br><span class="line">        ans[i] = (n = ((n &lt;&lt; <span class="number">1</span>) + nums[i]) % <span class="number">5</span>) == <span class="number">0</span>;</span><br><span class="line">    &#125; </span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="1844-将所有数字用字符替换"><a href="#1844-将所有数字用字符替换" class="headerlink" title="1844. 将所有数字用字符替换"></a>1844. 将所有数字用字符替换</h2><h3 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h3><p>如果是字母直接保存，是 <code>&#39;0&#39; - &#39;9&#39;</code> 话就减去 <code>&#39;0&#39;</code>，因为减去 <code>&#39;0&#39;</code> 就可以得到本身的数字，然后让上一个字符加上这个数保存即可</p>
+<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// C</span></span><br><span class="line"><span class="type">char</span> * <span class="title function_">replaceDigits</span><span class="params">(<span class="type">char</span> * s)</span>&#123;</span><br><span class="line">    <span class="type">int</span> len = <span class="built_in">strlen</span>(s);</span><br><span class="line">    <span class="type">char</span> * res =  (<span class="type">char</span> *) <span class="built_in">malloc</span> (<span class="keyword">sizeof</span>(<span class="type">char</span>) * len + <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; len; i++)&#123;</span><br><span class="line">        res[i] = (s[i] &gt;= <span class="string">&#x27;0&#x27;</span> &amp;&amp; s[i] &lt;= <span class="string">&#x27;9&#x27;</span>) ? s[i - <span class="number">1</span>] + s[i] - <span class="string">&#x27;0&#x27;</span> : s[i];</span><br><span class="line">    &#125;</span><br><span class="line">    res[len] = <span class="string">&#x27;\0&#x27;</span>;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="299-猜数字游戏"><a href="#299-猜数字游戏" class="headerlink" title="299. 猜数字游戏"></a>299. 猜数字游戏</h2><h3 id="解题思路-2"><a href="#解题思路-2" class="headerlink" title="解题思路"></a>解题思路</h3><p>统计对应的个数，不对应的则分别记录出现次数，然后判断出现过的数的交集，因为交集且不对应的数才是 <code>Cows</code>，然后求出交集中每个数最小出现次数的和，因为每个位置不对的数只匹配一次</p>
+<h3 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// C</span></span><br><span class="line"><span class="type">char</span> * <span class="title function_">getHint</span><span class="params">(<span class="type">char</span> * secret, <span class="type">char</span> * guess)</span>&#123;</span><br><span class="line">    <span class="type">int</span> len = <span class="built_in">strlen</span>(secret);</span><br><span class="line">    <span class="type">int</span> As[<span class="number">10</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="type">int</span> Bs[<span class="number">10</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="type">int</span> A = <span class="number">0</span>,B = <span class="number">0</span>;</span><br><span class="line">    <span class="type">char</span> * res = (<span class="type">char</span> *) <span class="built_in">malloc</span> (<span class="keyword">sizeof</span>(<span class="type">char</span>) * <span class="number">9</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; len; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(secret[i] == guess[i]) A++;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            As[secret[i] - <span class="string">&#x27;0&#x27;</span>]++;</span><br><span class="line">            Bs[guess[i] - <span class="string">&#x27;0&#x27;</span>]++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(As[i] &gt; <span class="number">0</span> &amp;&amp; Bs[i] &gt; <span class="number">0</span>) B += As[i] &gt; Bs[i] ? Bs[i] : As[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">sprintf</span>(res,<span class="string">&quot;%dA%dB&quot;</span>,A,B);</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="1979-找出数组的最大公约数"><a href="#1979-找出数组的最大公约数" class="headerlink" title="1979. 找出数组的最大公约数"></a>1979. 找出数组的最大公约数</h2><h3 id="解题思路-3"><a href="#解题思路-3" class="headerlink" title="解题思路"></a>解题思路</h3><p>先使用 qsort 对数组进行排序，然后利用辗转相除法求出最大公约数</p>
+<h3 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// C</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">cmp</span><span class="params">(<span class="type">void</span> * a, <span class="type">void</span> * b)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> * (<span class="type">int</span> *) a - * (<span class="type">int</span> *)b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> <span class="title function_">findGCD</span><span class="params">(<span class="type">int</span>* nums, <span class="type">int</span> numsSize)</span>&#123;</span><br><span class="line">    qsort(nums, numsSize, <span class="keyword">sizeof</span>(<span class="type">int</span>), cmp);</span><br><span class="line">    <span class="type">int</span> max = nums[numsSize - <span class="number">1</span>];</span><br><span class="line">    <span class="type">int</span> min = nums[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> n= max % min;</span><br><span class="line">    <span class="keyword">while</span>(n)</span><br><span class="line">    &#123;</span><br><span class="line">        max = min;</span><br><span class="line">        min = n;</span><br><span class="line">        n= max % min;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> min;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>C</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>leetcode 22-04-14</title>
+    <url>/2022/04/14/215203/68083bf21bb5/</url>
+    <content><![CDATA[<p>今日份 leetcode</p>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvY2FsY3VsYXRlLXNwZWNpYWwtYm9udXMv">1873. 计算特殊奖金<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvc3dhcC1zYWxhcnkv">627. 变更性别<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+<span id="more"></span>
+
+<p><img data-src="https://stats.justsong.cn/api/leetcode/?username=jesspig&cn=true"></p>
+<h2 id="1873-计算特殊奖金"><a href="#1873-计算特殊奖金" class="headerlink" title="1873. 计算特殊奖金"></a>1873. 计算特殊奖金</h2><h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>只要是偶数或 <code>M</code> 开头的返回 <code>0</code> 否则返回 <code>salary</code></p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- mysql</span></span><br><span class="line"># Write your MySQL query statement below</span><br><span class="line"><span class="keyword">select</span> employee_id, if (employee_id <span class="operator">%</span> <span class="number">2</span> <span class="operator">=</span> <span class="number">0</span> <span class="keyword">or</span> name <span class="keyword">like</span> <span class="string">&#x27;M%&#x27;</span>, <span class="number">0</span>, salary) <span class="keyword">as</span> bonus <span class="keyword">from</span> Employees;</span><br></pre></td></tr></table></figure>
+
+<h2 id="627-变更性别"><a href="#627-变更性别" class="headerlink" title="627. 变更性别"></a>627. 变更性别</h2><h3 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h3><p><code>sex</code> 是 <code>f</code> 时返回 <code>m</code> 否则返回 <code>f</code></p>
+<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- mysql</span></span><br><span class="line"># Write your MySQL query statement below</span><br><span class="line"><span class="keyword">update</span> Salary <span class="keyword">set</span> sex <span class="operator">=</span> if(sex <span class="operator">=</span> &quot;f&quot;, &quot;m&quot;, &quot;f&quot;);</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>leetcode 22-04-13</title>
+    <url>/2022/04/13/120313/eae37935120e/</url>
+    <content><![CDATA[<p>今日份 leetcode，整点数据库</p>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvYmlnLWNvdW50cmllcy8=">595. 大的国家<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvcmVjeWNsYWJsZS1hbmQtbG93LWZhdC1wcm9kdWN0cy8=">1757. 可回收且低脂的产品<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvZmluZC1jdXN0b21lci1yZWZlcmVlLw==">584. 寻找用户推荐人<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+<span id="more"></span>
+
+<p><img data-src="https://stats.justsong.cn/api/leetcode/?username=jesspig&cn=true"></p>
+<h2 id="595-大的国家"><a href="#595-大的国家" class="headerlink" title="595. 大的国家"></a>595. 大的国家</h2><h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>直接根据条件查就好了</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- mysql</span></span><br><span class="line"># Write your MySQL query statement below</span><br><span class="line"><span class="keyword">select</span> name, population, area <span class="keyword">from</span> world <span class="keyword">where</span> population <span class="operator">&gt;=</span> <span class="number">25000000</span> <span class="keyword">or</span> area <span class="operator">&gt;=</span> <span class="number">3000000</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="1757-可回收且低脂的产品"><a href="#1757-可回收且低脂的产品" class="headerlink" title="1757. 可回收且低脂的产品"></a>1757. 可回收且低脂的产品</h2><h3 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h3><p>直接根据条件查就好了</p>
+<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- mysql</span></span><br><span class="line"># Write your MySQL query statement below</span><br><span class="line"><span class="keyword">select</span> product_id <span class="keyword">from</span> Products <span class="keyword">where</span> low_fats <span class="operator">=</span> &quot;Y&quot; <span class="keyword">and</span> recyclable <span class="operator">=</span> &quot;Y&quot;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="584-寻找用户推荐人"><a href="#584-寻找用户推荐人" class="headerlink" title="584. 寻找用户推荐人"></a>584. 寻找用户推荐人</h2><h3 id="解题思路-2"><a href="#解题思路-2" class="headerlink" title="解题思路"></a>解题思路</h3><p>这道题感觉有点反直觉，直觉上来说直接下面这样就好了，但结果并不仅排除了 <code>2</code> 还排除了 <code>null</code></p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> name <span class="keyword">from</span> customer <span class="keyword">where</span> referee_id <span class="operator">!=</span> <span class="number">2</span>;</span><br></pre></td></tr></table></figure>
+<p>所以再加一个条件就好了</p>
+<h3 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- mysql</span></span><br><span class="line"># Write your MySQL query statement below</span><br><span class="line"><span class="keyword">select</span> name <span class="keyword">from</span> customer <span class="keyword">where</span> referee_id <span class="operator">!=</span> <span class="number">2</span> <span class="keyword">or</span> referee_id <span class="keyword">is</span> <span class="keyword">null</span>;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>leetcode 22-04-15</title>
+    <url>/2022/04/15/234111/3fb05e670303/</url>
+    <content><![CDATA[<p>今日份 leetcode</p>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvcGF0aWVudHMtd2l0aC1hLWNvbmRpdGlvbi8=">1527. 患某种疾病的患者<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvcmVtb3ZlLWR1cGxpY2F0ZXMtZnJvbS1zb3J0ZWQtbGlzdC8=">83. 删除排序链表中的重复元素<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+<span id="more"></span>
+
+<p><img data-src="https://stats.justsong.cn/api/leetcode/?username=jesspig&cn=true"></p>
+<h2 id="1527-患某种疾病的患者"><a href="#1527-患某种疾病的患者" class="headerlink" title="1527. 患某种疾病的患者"></a>1527. 患某种疾病的患者</h2><h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p><code>^DIAB1|\\sDIAB1</code> 表示以 <code>DIAB1</code> 开头或空格后的 <code>DIAB1</code></p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- mysql</span></span><br><span class="line"># Write your MySQL query statement below</span><br><span class="line"><span class="keyword">select</span> patient_id, patient_name, conditions <span class="keyword">from</span> Patients <span class="keyword">where</span> conditions regexp <span class="string">&#x27;^DIAB1|\\sDIAB1&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="83-删除排序链表中的重复元素"><a href="#83-删除排序链表中的重复元素" class="headerlink" title="83. 删除排序链表中的重复元素"></a>83. 删除排序链表中的重复元素</h2><h3 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h3><p>如果当前节点的值与后继节点的值相等，那么将后继的后继覆盖到当前节点的后继，否则返回当前节点</p>
+<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// C</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * struct ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     struct ListNode *next;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> ListNode* <span class="title function_">deleteDuplicates</span><span class="params">(<span class="keyword">struct</span> ListNode* head)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!head || !head-&gt;next) <span class="keyword">return</span> head;</span><br><span class="line">    head-&gt;next = deleteDuplicates(head-&gt;next);</span><br><span class="line">    <span class="keyword">return</span> head-&gt;val == head-&gt;next-&gt;val ? head-&gt;next : head;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>C</tag>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>leetcode 22-04-16</title>
+    <url>/2022/04/16/232822/4df1e42b6d1f/</url>
+    <content><![CDATA[<p>今日份 leetcode</p>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvbWF4aW11bS1wb2ludHMteW91LWNhbi1vYnRhaW4tZnJvbS1jYXJkcy8=">1423. 可获得的最大点数<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+<span id="more"></span>
+
+<p><img data-src="https://stats.justsong.cn/api/leetcode/?username=jesspig&cn=true"></p>
+<h2 id="1423-可获得的最大点数"><a href="#1423-可获得的最大点数" class="headerlink" title="1423. 可获得的最大点数"></a>1423. 可获得的最大点数</h2><h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>先计算出前 <code>k</code> 个数的和，然后再一个个减掉并从后面开始一个个地加，即计算前 <code>k - i</code> 个数加后 <code>i</code> 个数的和，在此过程中比较出最大的和并返回</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// C</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">maxScore</span><span class="params">(<span class="type">int</span>* cardPoints, <span class="type">int</span> cardPointsSize, <span class="type">int</span> k)</span>&#123;</span><br><span class="line">    <span class="type">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; k; i++)&#123;</span><br><span class="line">        sum += cardPoints[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> res = sum;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = k - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)&#123;</span><br><span class="line">        sum -= cardPoints[i];</span><br><span class="line">        sum += cardPoints[cardPointsSize - k + i];</span><br><span class="line">        res = res &gt; sum ? res : sum;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>C</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Python 中的 &#39;*args&#39; 和 &#39;**kwargs&#39;</title>
+    <url>/2022/03/23/131930/314aa0d5ce97/</url>
+    <content><![CDATA[<p>在看别人的 <code>python</code> 代码时，会发现一些函数的入参是 <code>*args</code> 和 <code>**kwargs</code> ，那么这两个是用来干嘛的呢，接下来进行测试和研究一下它们的用法<span id="more"></span></p>
+<h2 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h2><p>首先看一下它们是什么类型，这样好方便之后研究怎么用</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">func</span>(<span class="params">*args,**kwargs</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;args:&#x27;</span>,<span class="built_in">type</span>(args))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;kwargs:&#x27;</span>,<span class="built_in">type</span>(kwargs))</span><br><span class="line">    </span><br><span class="line">func()</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">args: &lt;class <span class="string">&#x27;tuple&#x27;</span>&gt;</span><br><span class="line">kwargs: &lt;class <span class="string">&#x27;dict&#x27;</span>&gt;</span><br></pre></td></tr></table></figure>
+
+<p>可以发现 <code>*args</code> 是元组 （ <code>tuple</code> ）类型，而 <code>**kwargs</code> 是字典 ( <code>dict</code> ) 类型</p>
+<h2 id="传参"><a href="#传参" class="headerlink" title="传参"></a>传参</h2><p>那么怎么进行传参呢，可以再进行测试一下</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">func</span>(<span class="params">*args,**kwargs</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;args:&#x27;</span>,<span class="built_in">type</span>(args))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;--&gt;&#x27;</span>,args)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;kwargs:&#x27;</span>,<span class="built_in">type</span>(kwargs))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;--&gt;&#x27;</span>,kwargs)</span><br><span class="line">    </span><br><span class="line">func(<span class="number">1</span>,<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">args: &lt;class <span class="string">&#x27;tuple&#x27;</span>&gt;</span><br><span class="line">--&gt; (1, 2)</span><br><span class="line">kwargs: &lt;class <span class="string">&#x27;dict&#x27;</span>&gt;</span><br><span class="line">--&gt; &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以发现，明明函数是要求两个入参，但是输入了两个入参后都被传去 <code>*args</code> 里了，那么怎么把值传到 <code>**kwargs</code> 里呢，可以再来测试一下</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">func</span>(<span class="params">*args,**kwargs</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;args:&#x27;</span>,<span class="built_in">type</span>(args))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;--&gt;&#x27;</span>,args)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;kwargs:&#x27;</span>,<span class="built_in">type</span>(kwargs))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;--&gt;&#x27;</span>,kwargs)</span><br><span class="line">    </span><br><span class="line">func(&#123;<span class="string">&#x27;a&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;b&#x27;</span> : <span class="number">2</span>&#125;)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">args: &lt;class <span class="string">&#x27;tuple&#x27;</span>&gt;</span><br><span class="line">--&gt; (&#123;<span class="string">&#x27;a&#x27;</span>: 1, <span class="string">&#x27;b&#x27;</span>: 2&#125;,)</span><br><span class="line">kwargs: &lt;class <span class="string">&#x27;dict&#x27;</span>&gt;</span><br><span class="line">--&gt; &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以发现即便是直接放一个字典类型进去，他还是会放到 <code>*args</code> 中，所以现在可以简单的先下个结论， <code>*args</code> 是用来接收入参并放到元组中，但是问题是还是不知道 <code>**kwargs</code> 是干什么用的，所以再改下代码来测试一下</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">func</span>(<span class="params">**kwargs</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;kwargs:&#x27;</span>,kwargs)</span><br><span class="line">    </span><br><span class="line">func(&#123;<span class="string">&#x27;a&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;b&#x27;</span> : <span class="number">2</span>&#125;)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">---------------------------------------------------------------------------</span><br><span class="line">TypeError                                 Traceback (most recent call last)</span><br><span class="line">~\AppData\Local\Temp/ipykernel_14972/513502206.py <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">      2     <span class="built_in">print</span>(<span class="string">&#x27;kwargs:&#x27;</span>,kwargs)</span><br><span class="line">      3 </span><br><span class="line">----&gt; 4 func(&#123;<span class="string">&#x27;a&#x27;</span>: 1, <span class="string">&#x27;b&#x27;</span> : 2&#125;)</span><br><span class="line"></span><br><span class="line">TypeError: func() takes 0 positional arguments but 1 was given</span><br></pre></td></tr></table></figure>
+
+<p>可以发现报错了，而且报错信息的大意是需要 <code>0</code> 个参数，但现在有 <code>1</code> 个（我英语不太好，翻译可能不准确），可是入参明明是规定了个 <code>**kwargs</code> 并且这个 <code>**kwargs</code> 是个字典，而我传参也是个字典啊，换种方式再试试</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">func</span>(<span class="params">**kwargs</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;kwargs:&#x27;</span>,kwargs)</span><br><span class="line">    </span><br><span class="line">func(<span class="number">1</span>,<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">---------------------------------------------------------------------------</span><br><span class="line">TypeError                                 Traceback (most recent call last)</span><br><span class="line">~\AppData\Local\Temp/ipykernel_14972/3682828006.py <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">      2     <span class="built_in">print</span>(<span class="string">&#x27;kwargs:&#x27;</span>,kwargs)</span><br><span class="line">      3 </span><br><span class="line">----&gt; 4 func(1,2)</span><br><span class="line"></span><br><span class="line">TypeError: func() takes 0 positional arguments but 2 were given</span><br></pre></td></tr></table></figure>
+
+<p>同样的错误，我们想想还有没有其他传参方式，好像是有的，那么再来试试</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">func</span>(<span class="params">**kwargs</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;kwargs:&#x27;</span>,kwargs)</span><br><span class="line">    </span><br><span class="line">func(a = <span class="number">1</span>,b = <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">kwargs: &#123;<span class="string">&#x27;a&#x27;</span>: 1, <span class="string">&#x27;b&#x27;</span>: 2&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以发现，这次成功了，也就是说它会把入参当变成字典</p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>知道了这些，那么就来使用一下</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">func</span>(<span class="params">a,b,*args</span>):</span><br><span class="line">    total = a + b</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> args:</span><br><span class="line">        total += i</span><br><span class="line">    <span class="keyword">return</span> total</span><br><span class="line"></span><br><span class="line">val = func(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line"><span class="built_in">print</span>(val)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">10</span><br></pre></td></tr></table></figure>
+
+<p>这样就可以做到参数可变了，或者是这样</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">func</span>(<span class="params">a,b</span>):</span><br><span class="line">    <span class="built_in">print</span>(a + b)</span><br><span class="line">        </span><br><span class="line">kwargs = &#123;<span class="string">&#x27;a&#x27;</span>:<span class="number">1</span>,<span class="string">&#x27;b&#x27;</span>:<span class="number">2</span>&#125;</span><br><span class="line">func(**kwargs)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">3</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>小技巧</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>maven 配置 mybatis</title>
     <url>/2022/03/27/145724/14018c0d6b6c/</url>
     <content><![CDATA[<p>使用 <code>idea</code> 通过 <code>maven</code> 进行配置 <code>mybatis</code>  <span id="more"></span></p>
@@ -1214,57 +1685,36 @@
       </tags>
   </entry>
   <entry>
-    <title>Python 中的 &#39;*args&#39; 和 &#39;**kwargs&#39;</title>
-    <url>/2022/03/23/131930/314aa0d5ce97/</url>
-    <content><![CDATA[<p>在看别人的 <code>python</code> 代码时，会发现一些函数的入参是 <code>*args</code> 和 <code>**kwargs</code> ，那么这两个是用来干嘛的呢，接下来进行测试和研究一下它们的用法<span id="more"></span></p>
-<h2 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h2><p>首先看一下它们是什么类型，这样好方便之后研究怎么用</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">func</span>(<span class="params">*args,**kwargs</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;args:&#x27;</span>,<span class="built_in">type</span>(args))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;kwargs:&#x27;</span>,<span class="built_in">type</span>(kwargs))</span><br><span class="line">    </span><br><span class="line">func()</span><br></pre></td></tr></table></figure>
+    <title>搭建个人图床</title>
+    <url>/2022/03/19/210217/ae3618c68f4d/</url>
+    <content><![CDATA[<p>在写博客或写笔记时会需要用到很多图片，但是为了节省本地资源，可以使用网络图片，那么就需要用到图床了，可以使用 <code>PicGo</code> 来搭建属于自己的图床<span id="more"></span></p>
+<h2 id="安装-PicGo"><a href="#安装-PicGo" class="headerlink" title="安装 PicGo"></a>安装 PicGo</h2><p>首先到 <span class="exturl" data-url="aHR0cHM6Ly9tb2x1bmVyZmlubi5jb20vUGljR28v">PicGo 官网<i class="fa fa-external-link-alt"></i></span> 进行下载，点击 <code>免费下载</code> 以后会跳转到 <code>GitHub</code> ，这时候点开 <code>Assets</code> 选择自己需要的版本进行下载安装即可</p>
+<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/img/202203192006170.png"></p>
+<h2 id="配置-PicGo"><a href="#配置-PicGo" class="headerlink" title="配置 PicGo"></a>配置 PicGo</h2><p>安装完成以后就可以开始进行配置了</p>
+<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/img/202203192010149.png"></p>
+<h3 id="仓库名"><a href="#仓库名" class="headerlink" title="仓库名"></a>仓库名</h3><p>首先可以看到必填项是 <code>仓库名</code> 、<code>分支名</code> 以及 <code>Token</code> ，当然我这里的前提是使用 <code>GitHub</code> 作为图床，其他的有其他配置方式，所以我就以 <code>GitHub 图床</code> 进行举例，首先我们要到 <code>GitHub</code> 上新建一个仓库，新建完就行不需要进行其他操作，然后在 <code>仓库名</code> 那一栏填上你的 <code>用户名/仓库名</code> </p>
+<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/img/202203192018373.png"></p>
+<h3 id="分支名"><a href="#分支名" class="headerlink" title="分支名"></a>分支名</h3><p>然后在第二栏填入你的分支名一般现在新建的 GitHub 仓库主分支都是 <code>main</code> ，所以可以直接填 <code>main</code> 或者根据需要，填你的分支名</p>
+<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/img/202203192021841.png"></p>
+<h3 id="token"><a href="#token" class="headerlink" title="token"></a>token</h3><p>接下来就是最后一步了，填写 <code>token</code> ，这一步有点麻烦，但也不算很复杂，首先到浏览器登录你的 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tLw==">GitHub<i class="fa fa-external-link-alt"></i></span> 👉 点击你的头像 👉 点击 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3NldHRpbmdzL3Byb2ZpbGU=">Settings<i class="fa fa-external-link-alt"></i></span> ，然后到最下面点击 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3NldHRpbmdzL2FwcHM=">Developer settings<i class="fa fa-external-link-alt"></i></span> </p>
+<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/img/202203192047099.png"></p>
+<p>👉 点击 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3NldHRpbmdzL3Rva2Vucw==">Personal access tokens<i class="fa fa-external-link-alt"></i></span> 👉 点击 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3NldHRpbmdzL3Rva2Vucy9uZXc=">Generate new token<i class="fa fa-external-link-alt"></i></span> </p>
+<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/img/202203192046987.png"></p>
+<p>然后输入你这个填好信息勾选上对应的选项，然后到最下面点击 Generate token 即可生成</p>
+<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/img/202203192050312.png"></p>
+<p>然后点击复制并粘贴到对应的位置上即可</p>
+<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/img/202203192053087.png"></p>
+<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/img/202203192054984.png"></p>
+<h2 id="加速"><a href="#加速" class="headerlink" title="加速"></a>加速</h2><p>上传之后的图片访问起来可能会有点慢，但是可以通过 <code>CDN</code> 进行加速，这里选择的 CDN 是 <span class="exturl" data-url="aHR0cHM6Ly93d3cuanNkZWxpdnIuY29tLw==">jsDeliver<i class="fa fa-external-link-alt"></i></span> ，只需要在设定自定义域名里填上 CDN 地址即可</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">https:<span class="regexp">//g</span>core.jsdelivr.net<span class="regexp">/gh/</span>用户名/仓库名@分支名</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">args: &lt;class <span class="string">&#x27;tuple&#x27;</span>&gt;</span><br><span class="line">kwargs: &lt;class <span class="string">&#x27;dict&#x27;</span>&gt;</span><br></pre></td></tr></table></figure>
-
-<p>可以发现 <code>*args</code> 是元组 （ <code>tuple</code> ）类型，而 <code>**kwargs</code> 是字典 ( <code>dict</code> ) 类型</p>
-<h2 id="传参"><a href="#传参" class="headerlink" title="传参"></a>传参</h2><p>那么怎么进行传参呢，可以再进行测试一下</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">func</span>(<span class="params">*args,**kwargs</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;args:&#x27;</span>,<span class="built_in">type</span>(args))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;--&gt;&#x27;</span>,args)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;kwargs:&#x27;</span>,<span class="built_in">type</span>(kwargs))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;--&gt;&#x27;</span>,kwargs)</span><br><span class="line">    </span><br><span class="line">func(<span class="number">1</span>,<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">args: &lt;class <span class="string">&#x27;tuple&#x27;</span>&gt;</span><br><span class="line">--&gt; (1, 2)</span><br><span class="line">kwargs: &lt;class <span class="string">&#x27;dict&#x27;</span>&gt;</span><br><span class="line">--&gt; &#123;&#125;</span><br></pre></td></tr></table></figure>
-
-<p>可以发现，明明函数是要求两个入参，但是输入了两个入参后都被传去 <code>*args</code> 里了，那么怎么把值传到 <code>**kwargs</code> 里呢，可以再来测试一下</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">func</span>(<span class="params">*args,**kwargs</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;args:&#x27;</span>,<span class="built_in">type</span>(args))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;--&gt;&#x27;</span>,args)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;kwargs:&#x27;</span>,<span class="built_in">type</span>(kwargs))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;--&gt;&#x27;</span>,kwargs)</span><br><span class="line">    </span><br><span class="line">func(&#123;<span class="string">&#x27;a&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;b&#x27;</span> : <span class="number">2</span>&#125;)</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">args: &lt;class <span class="string">&#x27;tuple&#x27;</span>&gt;</span><br><span class="line">--&gt; (&#123;<span class="string">&#x27;a&#x27;</span>: 1, <span class="string">&#x27;b&#x27;</span>: 2&#125;,)</span><br><span class="line">kwargs: &lt;class <span class="string">&#x27;dict&#x27;</span>&gt;</span><br><span class="line">--&gt; &#123;&#125;</span><br></pre></td></tr></table></figure>
-
-<p>可以发现即便是直接放一个字典类型进去，他还是会放到 <code>*args</code> 中，所以现在可以简单的先下个结论， <code>*args</code> 是用来接收入参并放到元组中，但是问题是还是不知道 <code>**kwargs</code> 是干什么用的，所以再改下代码来测试一下</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">func</span>(<span class="params">**kwargs</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;kwargs:&#x27;</span>,kwargs)</span><br><span class="line">    </span><br><span class="line">func(&#123;<span class="string">&#x27;a&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;b&#x27;</span> : <span class="number">2</span>&#125;)</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">---------------------------------------------------------------------------</span><br><span class="line">TypeError                                 Traceback (most recent call last)</span><br><span class="line">~\AppData\Local\Temp/ipykernel_14972/513502206.py <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">      2     <span class="built_in">print</span>(<span class="string">&#x27;kwargs:&#x27;</span>,kwargs)</span><br><span class="line">      3 </span><br><span class="line">----&gt; 4 func(&#123;<span class="string">&#x27;a&#x27;</span>: 1, <span class="string">&#x27;b&#x27;</span> : 2&#125;)</span><br><span class="line"></span><br><span class="line">TypeError: func() takes 0 positional arguments but 1 was given</span><br></pre></td></tr></table></figure>
-
-<p>可以发现报错了，而且报错信息的大意是需要 <code>0</code> 个参数，但现在有 <code>1</code> 个（我英语不太好，翻译可能不准确），可是入参明明是规定了个 <code>**kwargs</code> 并且这个 <code>**kwargs</code> 是个字典，而我传参也是个字典啊，换种方式再试试</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">func</span>(<span class="params">**kwargs</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;kwargs:&#x27;</span>,kwargs)</span><br><span class="line">    </span><br><span class="line">func(<span class="number">1</span>,<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">---------------------------------------------------------------------------</span><br><span class="line">TypeError                                 Traceback (most recent call last)</span><br><span class="line">~\AppData\Local\Temp/ipykernel_14972/3682828006.py <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">      2     <span class="built_in">print</span>(<span class="string">&#x27;kwargs:&#x27;</span>,kwargs)</span><br><span class="line">      3 </span><br><span class="line">----&gt; 4 func(1,2)</span><br><span class="line"></span><br><span class="line">TypeError: func() takes 0 positional arguments but 2 were given</span><br></pre></td></tr></table></figure>
-
-<p>同样的错误，我们想想还有没有其他传参方式，好像是有的，那么再来试试</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">func</span>(<span class="params">**kwargs</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;kwargs:&#x27;</span>,kwargs)</span><br><span class="line">    </span><br><span class="line">func(a = <span class="number">1</span>,b = <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">kwargs: &#123;<span class="string">&#x27;a&#x27;</span>: 1, <span class="string">&#x27;b&#x27;</span>: 2&#125;</span><br></pre></td></tr></table></figure>
-
-<p>可以发现，这次成功了，也就是说它会把入参当变成字典</p>
-<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>知道了这些，那么就来使用一下</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">func</span>(<span class="params">a,b,*args</span>):</span><br><span class="line">    total = a + b</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> args:</span><br><span class="line">        total += i</span><br><span class="line">    <span class="keyword">return</span> total</span><br><span class="line"></span><br><span class="line">val = func(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line"><span class="built_in">print</span>(val)</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">10</span><br></pre></td></tr></table></figure>
-
-<p>这样就可以做到参数可变了，或者是这样</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">func</span>(<span class="params">a,b</span>):</span><br><span class="line">    <span class="built_in">print</span>(a + b)</span><br><span class="line">        </span><br><span class="line">kwargs = &#123;<span class="string">&#x27;a&#x27;</span>:<span class="number">1</span>,<span class="string">&#x27;b&#x27;</span>:<span class="number">2</span>&#125;</span><br><span class="line">func(**kwargs)</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">3</span><br></pre></td></tr></table></figure>
-
+<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/img/202203192058698.png"></p>
 ]]></content>
       <categories>
-        <category>小技巧</category>
+        <category>分享</category>
       </categories>
       <tags>
-        <tag>Python</tag>
+        <tag>PicGo</tag>
       </tags>
   </entry>
   <entry>
@@ -1300,36 +1750,15 @@
       </tags>
   </entry>
   <entry>
-    <title>搭建个人图床</title>
-    <url>/2022/03/19/210217/ae3618c68f4d/</url>
-    <content><![CDATA[<p>在写博客或写笔记时会需要用到很多图片，但是为了节省本地资源，可以使用网络图片，那么就需要用到图床了，可以使用 <code>PicGo</code> 来搭建属于自己的图床<span id="more"></span></p>
-<h2 id="安装-PicGo"><a href="#安装-PicGo" class="headerlink" title="安装 PicGo"></a>安装 PicGo</h2><p>首先到 <span class="exturl" data-url="aHR0cHM6Ly9tb2x1bmVyZmlubi5jb20vUGljR28v">PicGo 官网<i class="fa fa-external-link-alt"></i></span> 进行下载，点击 <code>免费下载</code> 以后会跳转到 <code>GitHub</code> ，这时候点开 <code>Assets</code> 选择自己需要的版本进行下载安装即可</p>
-<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/img/202203192006170.png"></p>
-<h2 id="配置-PicGo"><a href="#配置-PicGo" class="headerlink" title="配置 PicGo"></a>配置 PicGo</h2><p>安装完成以后就可以开始进行配置了</p>
-<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/img/202203192010149.png"></p>
-<h3 id="仓库名"><a href="#仓库名" class="headerlink" title="仓库名"></a>仓库名</h3><p>首先可以看到必填项是 <code>仓库名</code> 、<code>分支名</code> 以及 <code>Token</code> ，当然我这里的前提是使用 <code>GitHub</code> 作为图床，其他的有其他配置方式，所以我就以 <code>GitHub 图床</code> 进行举例，首先我们要到 <code>GitHub</code> 上新建一个仓库，新建完就行不需要进行其他操作，然后在 <code>仓库名</code> 那一栏填上你的 <code>用户名/仓库名</code> </p>
-<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/img/202203192018373.png"></p>
-<h3 id="分支名"><a href="#分支名" class="headerlink" title="分支名"></a>分支名</h3><p>然后在第二栏填入你的分支名一般现在新建的 GitHub 仓库主分支都是 <code>main</code> ，所以可以直接填 <code>main</code> 或者根据需要，填你的分支名</p>
-<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/img/202203192021841.png"></p>
-<h3 id="token"><a href="#token" class="headerlink" title="token"></a>token</h3><p>接下来就是最后一步了，填写 <code>token</code> ，这一步有点麻烦，但也不算很复杂，首先到浏览器登录你的 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tLw==">GitHub<i class="fa fa-external-link-alt"></i></span> 👉 点击你的头像 👉 点击 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3NldHRpbmdzL3Byb2ZpbGU=">Settings<i class="fa fa-external-link-alt"></i></span> ，然后到最下面点击 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3NldHRpbmdzL2FwcHM=">Developer settings<i class="fa fa-external-link-alt"></i></span> </p>
-<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/img/202203192047099.png"></p>
-<p>👉 点击 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3NldHRpbmdzL3Rva2Vucw==">Personal access tokens<i class="fa fa-external-link-alt"></i></span> 👉 点击 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3NldHRpbmdzL3Rva2Vucy9uZXc=">Generate new token<i class="fa fa-external-link-alt"></i></span> </p>
-<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/img/202203192046987.png"></p>
-<p>然后输入你这个填好信息勾选上对应的选项，然后到最下面点击 Generate token 即可生成</p>
-<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/img/202203192050312.png"></p>
-<p>然后点击复制并粘贴到对应的位置上即可</p>
-<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/img/202203192053087.png"></p>
-<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/img/202203192054984.png"></p>
-<h2 id="加速"><a href="#加速" class="headerlink" title="加速"></a>加速</h2><p>上传之后的图片访问起来可能会有点慢，但是可以通过 <code>CDN</code> 进行加速，这里选择的 CDN 是 <span class="exturl" data-url="aHR0cHM6Ly93d3cuanNkZWxpdnIuY29tLw==">jsDeliver<i class="fa fa-external-link-alt"></i></span> ，只需要在设定自定义域名里填上 CDN 地址即可</p>
-<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">https:<span class="regexp">//g</span>core.jsdelivr.net<span class="regexp">/gh/</span>用户名/仓库名@分支名</span><br></pre></td></tr></table></figure>
-
-<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/img/202203192058698.png"></p>
+    <title>画画练习 22-03-29</title>
+    <url>/2022/03/29/214823/02b33d73a2c8/</url>
+    <content><![CDATA[<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/img/202204052015422.png"></p>
 ]]></content>
       <categories>
-        <category>分享</category>
+        <category>绘画</category>
       </categories>
       <tags>
-        <tag>PicGo</tag>
+        <tag>线稿</tag>
       </tags>
   </entry>
   <entry>
@@ -1390,27 +1819,9 @@
         <category>数据结构与算法</category>
       </categories>
       <tags>
+        <tag>C</tag>
         <tag>数据结构</tag>
         <tag>链表</tag>
-        <tag>C</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>画画练习 22-04-25</title>
-    <url>/2022/04/25/125909/80e46dbcc039/</url>
-    <content><![CDATA[<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/img/202204251302793.png"></p>
-<span id="more"></span>
-
-<h2 id="线稿提取练习"><a href="#线稿提取练习" class="headerlink" title="线稿提取练习"></a>线稿提取练习</h2><p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/img/202204251303010.png"></p>
-<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/img/202204251303396.png"></p>
-<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/img/202204251304095.png"></p>
-<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/img/202204251304984.png"></p>
-]]></content>
-      <categories>
-        <category>绘画</category>
-      </categories>
-      <tags>
-        <tag>线稿</tag>
       </tags>
   </entry>
   <entry>
@@ -1496,15 +1907,34 @@
       </tags>
   </entry>
   <entry>
-    <title>画画练习 22-03-29</title>
-    <url>/2022/03/29/214823/02b33d73a2c8/</url>
-    <content><![CDATA[<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/img/202204052015422.png"></p>
+    <title>画画练习 22-04-25</title>
+    <url>/2022/04/25/125909/80e46dbcc039/</url>
+    <content><![CDATA[<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/img/202204251302793.png"></p>
+<span id="more"></span>
+
+<h2 id="线稿提取练习"><a href="#线稿提取练习" class="headerlink" title="线稿提取练习"></a>线稿提取练习</h2><p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/img/202204251303010.png"></p>
+<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/img/202204251303396.png"></p>
+<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/img/202204251304095.png"></p>
+<p><img data-src="https://gcore.jsdelivr.net/gh/jesspig/PicBed@main/img/202204251304984.png"></p>
 ]]></content>
       <categories>
         <category>绘画</category>
       </categories>
       <tags>
         <tag>线稿</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>画画练习 22-04-26</title>
+    <url>/2022/04/26/010654/b18be603451b/</url>
+    <content><![CDATA[<p><img data-src="https://fastly.jsdelivr.net/gh/jesspig/PicBed@main/img/202204260111712.png"></p>
+]]></content>
+      <categories>
+        <category>绘画</category>
+      </categories>
+      <tags>
+        <tag>植物</tag>
+        <tag>速写</tag>
       </tags>
   </entry>
   <entry>
@@ -1609,19 +2039,6 @@
       </categories>
       <tags>
         <tag>函数</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>画画练习 22-04-26</title>
-    <url>/2022/04/26/010654/b18be603451b/</url>
-    <content><![CDATA[<p><img data-src="https://fastly.jsdelivr.net/gh/jesspig/PicBed@main/img/202204260111712.png"></p>
-]]></content>
-      <categories>
-        <category>绘画</category>
-      </categories>
-      <tags>
-        <tag>植物</tag>
-        <tag>速写</tag>
       </tags>
   </entry>
   <entry>
